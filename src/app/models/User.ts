@@ -1,7 +1,7 @@
 import bcryptNodejs from "bcrypt-nodejs";
 import crypto from "crypto";
 import mongoose from "mongoose";
-
+import { USER } from "../../config/util/collection-name";
 export type UserDocument = mongoose.Document & {
   email: string,
   password: string,
@@ -91,4 +91,4 @@ userSchema.methods.gravatar = function (size: number= 200) {
 };
 
 // tslint:disable-next-line: variable-name
-export const User = mongoose.model<UserDocument>("User", userSchema);
+export const User = mongoose.model<UserDocument>(USER, userSchema);

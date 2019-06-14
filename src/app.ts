@@ -4,6 +4,7 @@ import path from "path";
 import * as mongooseFunction from "./config/mongoose";
 import * as expressConfig from "./config/express";
 import * as routeConfig from "./config/routes";
+import * as restRoute from "./config/rest-routes";
 
 // Load environment variables from .env file, where API keys and passwords are configured
 dotenv.config({ path: ".env.example" });
@@ -29,6 +30,7 @@ app.use((req, res, next) => {
 });
 
 routeConfig.initRoutes(app);
+restRoute.initRestRoutes(app);
 
 app.use((req, res, next) => {
   // After successful login, redirect back to the intended page
