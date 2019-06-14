@@ -4,6 +4,6 @@ import * as userController from "../controllers/user-controller";
 const router = express.Router();
 
 /* GET users listing. */
-router.get("/register", userController.register);
+router.post("/register", userController.register);
 
 export { router };

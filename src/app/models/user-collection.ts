@@ -1,19 +1,19 @@
 import bcryptNodejs from "bcrypt-nodejs";
 import crypto from "crypto";
 import mongoose from "mongoose";
-import { USER } from "../../config/util/collection-name";
+import { USER1 } from "../../config/util/collection-name";
 export type UserDocument = mongoose.Document & {
-  username: string
+  username: string,
   email: string,
   password: string,
   passwordResetToken: string,
   passwordResetExpires: Date,
   role: number,
   active: boolean,
-  lock: boolean,
-
+  lock: boolean
   profile: {
-    name: string,
+    firstName: string,
+    LastName: string,
     gender: string,
     location: string,
     website: string,
@@ -34,24 +34,51 @@ export type AuthToken = {
 };
 
 const userSchema = new mongoose.Schema({
-  email: { type: String, unique: true },
-  password: String,
-  passwordResetToken: String,
-  passwordResetExpires: Date,
-
-  facebook: String,
-  twitter: String,
-  google: String,
-  tokens: Array,
-
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  role: {
+    type: Number,
+    required: true,
+    unique: true,
+    default: 1,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  passwordResetToken: {
+    type: String,
+  },
+  passwordResetExpires: {
+    type: Date,
+  },
+  active: {
+    type: Boolean,
+    default: true,
+  },
+  lock: {
+    type: Boolean,
+    default: false,
+  },
   profile: {
-    name: String,
+    firstName: String,
+    LastName: String,
     gender: String,
     location: String,
     website: String,
     picture: String,
   },
-},                                     { timestamps: true });
+},                                     {
+  timestamps: true,
+});
 
 /**
  * Password hash middleware.
@@ -92,4 +119,4 @@ userSchema.methods.gravatar = function (size: number= 200) {
 };
 
 // tslint:disable-next-line: variable-name
-export const User = mongoose.model<UserDocument>(USER, userSchema);
+export const User1 = mongoose.model<UserDocument>(USER1, userSchema);
