@@ -47,7 +47,6 @@ const userSchema = new mongoose.Schema({
   role: {
     type: Number,
     required: true,
-    unique: true,
     default: 1,
   },
   password: {
