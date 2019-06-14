@@ -6,7 +6,7 @@ import lodash from "lodash";
 import * as local from "./strategies/local";
 import * as facebook from "./strategies/facebook";
 // import { User, UserType } from '../models/User';
-import { User } from "../models/User";
+import { User } from "../app/models/User";
 import { Request, Response, NextFunction } from "express";
 
 passport.serializeUser<any, any>((user, done) => {

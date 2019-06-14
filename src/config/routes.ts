@@ -2,10 +2,10 @@ import passport from "passport";
 import { Request, Response, NextFunction } from "express";
 
 // Controllers (route handlers)
-import * as homeController from "../controllers/home";
-import * as userController from "../controllers/user";
-import * as apiController from "../controllers/api";
-import * as contactController from "../controllers/contact";
+import * as homeController from "../app/controllers/home";
+import * as userController from "../app/controllers/user";
+import * as apiController from "../app/controllers/api";
+import * as contactController from "../app/controllers/contact";
 import * as passportConfig from "../config/passport";
 
 export function initRoutes(app: any) {

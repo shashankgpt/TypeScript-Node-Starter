@@ -1,7 +1,7 @@
 import passport from "passport";
 import request from "request";
 import passportFacebook from "passport-facebook";
-import { User } from "../../models/User";
+import { User } from "../../app/models/User";
 const facebookStrategy = passportFacebook.Strategy;
 
 export function initFacebookStrategy() {
@@ -16,13 +16,13 @@ Sign in with that account or delete it, then link it with your current account.`
     passReqToCallback: true,
   },                                (req: any, accessToken, refreshToken, profile, done) => {
     if (req.user) {
-      User.findOne({ facebook: profile.id }, (err, existingUser) => {
+      User.findOne({ facebook: profile.id }, (err: any, existingUser: any) => {
         if (err) { return done(err); }
         if (existingUser) {
           req.flash("errors", { msg: errMessage });
           done(err);
         } else {
-          User.findById(req.user.id, (err, user: any) => {
+          User.findById(req.user.id, (err: any, user: any) => {
             if (err) { return done(err); }
             user.facebook = profile.id;
             user.tokens.push({ accessToken, kind: "facebook"  });
@@ -39,12 +39,12 @@ Sign in with that account or delete it, then link it with your current account.`
         }
       });
     } else {
-      User.findOne({ facebook: profile.id }, (err, existingUser) => {
+      User.findOne({ facebook: profile.id }, (err: any, existingUser: any) => {
         if (err) { return done(err); }
         if (existingUser) {
           return done(undefined, existingUser);
         }
-        User.findOne({ email: profile._json.email }, (err, existingEmailUser) => {
+        User.findOne({ email: profile._json.email }, (err: any, existingEmailUser: any) => {
           if (err) { return done(err); }
           if (existingEmailUser) {
             req.flash("errors", { msg:

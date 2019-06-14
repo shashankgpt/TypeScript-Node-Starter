@@ -1,7 +1,7 @@
 import passport from "passport";
 import request from "request";
 import passportLocal from "passport-local";
-import { User } from "../../models/User";
+import { User } from "../../app/models/User";
 const localStrategy = passportLocal.Strategy;
 
 export function initBasicStrategy() {
