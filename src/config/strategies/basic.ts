@@ -1,11 +1,11 @@
 import passport from "passport";
 import request from "request";
-import passportLocal from "passport-local";
+const BasicStrategy = require("passport-http").BasicStrategy;
 import { User1 } from "../../app/models/user-collection";
-const localStrategy = passportLocal.Strategy;
 
-export function initLocalStrategy() {
-  passport.use(new localStrategy({ usernameField: "email" }, (email, password, done) => {
+export function initHttpBasicStrategy() {
+  // tslint:disable-next-line:max-line-length
+  passport.use(new BasicStrategy({ usernameField: "email" }, (email: string, password: string, done: any) => {
     User1.findOne({ email: email.toLowerCase() }, (err, user: any) => {
       if (err) { return done(err); }
       if (!user) {

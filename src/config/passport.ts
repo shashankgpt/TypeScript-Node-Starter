@@ -5,16 +5,18 @@ import passportFacebook from "passport-facebook";
 import lodash from "lodash";
 import * as local from "./strategies/local";
 import * as facebook from "./strategies/facebook";
+import * as basic from "./strategies/basic";
 // import { User, UserType } from '../models/User';
-import { User } from "../app/models/User";
+import { User1 } from "../app/models/user-collection";
 import { Request, Response, NextFunction } from "express";
+const BasicStrategy = require("passport-http").BasicStrategy;
 
 passport.serializeUser<any, any>((user, done) => {
   done(undefined, user.id);
 });
 
 passport.deserializeUser((id, done) => {
-  User.findById(id, (err, user) => {
+  User1.findById(id, (err, user) => {
     done(err, user);
   });
 });
@@ -22,8 +24,9 @@ passport.deserializeUser((id, done) => {
 /**
  * Sign in using Email and Password.
  */
-local.initBasicStrategy();
-
+local.initLocalStrategy();
+basic.initHttpBasicStrategy();
+// tslint:disable-next-line:max-line-length
 /**
  * OAuth Strategy Overview
  *
