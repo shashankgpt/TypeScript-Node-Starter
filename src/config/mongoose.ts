@@ -1,5 +1,5 @@
 import bluebird from "bluebird";
-import { MONGODB_URI, SESSION_SECRET } from "../util/secrets";
+import { MONGODB_URI, SESSION_SECRET } from "./util/secrets";
 import mongoose from "mongoose";
 import connectMongo from "connect-mongo";
 import expressSession from "express-session";
