@@ -2,6 +2,7 @@ import errorhandler from "errorhandler";
 
 import app from "./app";
 
+const debug = require("debug")("http");
 /**
  * Error Handler. Provides full stack - remove for production
  */
