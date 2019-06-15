@@ -15,3 +15,19 @@ import "../../config/passport";
 export let authentication = (req: Request, res: Response, next: NextFunction) => {
   return passport.authenticate("bearer", { session: true })(req, res, next);
 };
+export let login =  (req: Request, res: Response, next: NextFunction) => {
+  passport.authenticate("basic", async (err: Error, user: UserDocument, info: IVerifyOptions) => {
+    if (err) { return next(err); }
+    if (!user) {
+      const resMessage: IResponseMessage = {
+        statusCode: PRECONDITIONFAILED,
+        Message: "Incorrect Credentials",
+        dateTime: new Date(),
+      };
+      return res.status(PRECONDITIONFAILED).json(resMessage);
+    }
+    const tokenHelp = new TokenHelper();
+    const token = await tokenHelp.saveToken(user);
+    res.status(SUCCESSFUL).json(token);
+  })(req, res, next);
+};

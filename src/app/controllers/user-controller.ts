@@ -16,6 +16,12 @@ export let getUser = (req: Request, res: Response, next: NextFunction) => {
   res.send(req.user);
 };
 
+export let updatePassword = (req: Request, res: Response, next: NextFunction) => {
+  res.send(req.params.username);
+};
+export let updateProfile = (req: Request, res: Response, next: NextFunction) => {
+  res.send(req.params.username + req.user);
+};
 export let register = async (req: Request, res: Response, next: NextFunction) => {
   req.assert("email", "Email is not valid").isEmail();
   req.assert("password", "Password must be at least 4 characters long").len({ min: 4 });
@@ -56,20 +62,4 @@ export let register = async (req: Request, res: Response, next: NextFunction) =>
     };
     return res.status(CREATED).json(resMessage);
   }
-};
-export let login =  (req: Request, res: Response, next: NextFunction) => {
-  passport.authenticate("basic", async (err: Error, user: UserDocument, info: IVerifyOptions) => {
-    if (err) { return next(err); }
-    if (!user) {
-      const resMessage: IResponseMessage = {
-        statusCode: PRECONDITIONFAILED,
-        Message: "Incorrect Credentials",
-        dateTime: new Date(),
-      };
-      return res.status(PRECONDITIONFAILED).json(resMessage);
-    }
-    const tokenHelp = new TokenHelper();
-    const token = await tokenHelp.saveToken(user);
-    res.status(SUCCESSFUL).json(token);
-  })(req, res, next);
 };

@@ -6,7 +6,11 @@ import * as authenticationController from "../controllers/authentication-control
 
 const router = express.Router();
 
+router.use(authenticationController.authentication);
 /* GET users listing. */
-router.get("/", authenticationController.authentication, userController.getUser);
+router.get("/", userController.getUser);
+router.patch("/:username", userController.updatePassword);
+router.put("/:username",  userController.updateProfile);
+router.delete("/:username", userController.updateProfile);
 
 export { router };
