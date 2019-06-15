@@ -1,23 +1,26 @@
 import passport from "passport";
 import request from "request";
 const BasicStrategy = require("passport-http").BasicStrategy;
-import { User1 } from "../../app/models/user-collection";
-
+import { User1, UserDocument } from "../../app/models/user-collection";
+import { UserHelper } from "../../app/helpers/user-helper";
 export function initHttpBasicStrategy() {
-  // tslint:disable-next-line:max-line-length
-  passport.use(new BasicStrategy({ usernameField: "email" }, (email: string, password: string, done: any) => {
-    User1.findOne({ email: email.toLowerCase() }, (err, user: any) => {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(undefined, false, { message: `Email ${email} not found.` });
-      }
-      user.comparePassword(password, (err: Error, isMatch: boolean) => {
-        if (err) { return done(err); }
-        if (isMatch) {
-          return done(undefined, user);
+  passport.use(
+    new BasicStrategy(
+      { usernameField: "username" },
+      async (username: string, password: string, done: any) => {
+        const userHelp = new UserHelper();
+        const user = await userHelp.findUserByUsername(username);
+        if (user === false) {
+          return done(undefined, false, { message: `username ${username} not found.` });
         }
-        return done(undefined, false, { message: "Invalid email or password." });
-      });
-    });
-  }));
+        if (user instanceof User1) {
+          user.comparePassword(password, (err: Error, isMatch: boolean) => {
+            if (err) { return done(err); }
+            if (isMatch) {
+              return done(undefined, user);
+            }
+            return done(undefined, false, { message: "Invalid email or password." });
+          });
+        }
+      }));
 }
