@@ -4,11 +4,13 @@ import crypto from "crypto";
 import nodemailer from "nodemailer";
 import passport from "passport";
 import { User1, UserDocument, AuthToken } from "../models/user-collection";
+import { Token, TokenDocument } from "../models/token-collection";
 import { IVerifyOptions } from "passport-local";
 import { WriteError } from "mongodb";
 import { UserHelper } from "../helpers/user-helper";
+import { TokenHelper } from "../helpers/token-helper";
 import { IResponseMessage } from "../data-types/interfaces/IResponseMessage";
-import { CREATED, PRECONDITIONFAILED } from "../../config/util/response-code";
+import { SUCCESSFUL, CREATED, PRECONDITIONFAILED } from "../../config/util/response-code";
 import "../../config/passport";
 export let getUser = (req: Request, res: Response, next: NextFunction) => {
   res.send("hello");
@@ -55,13 +57,19 @@ export let register = async (req: Request, res: Response, next: NextFunction) =>
     return res.status(CREATED).json(resMessage);
   }
 };
-export let login = (req: Request, res: Response, next: NextFunction) => {
-  passport.authenticate("basic", (err: Error, user: UserDocument, info: IVerifyOptions) => {
+export let login =  (req: Request, res: Response, next: NextFunction) => {
+  passport.authenticate("basic", async (err: Error, user: UserDocument, info: IVerifyOptions) => {
     if (err) { return next(err); }
     if (!user) {
-      // req.flash("errors", info.message);
-      // return res.redirect("/login");
+      const resMessage: IResponseMessage = {
+        statusCode: PRECONDITIONFAILED,
+        Message: "Incorrect Credentials",
+        dateTime: new Date(),
+      };
+      return res.status(PRECONDITIONFAILED).json(resMessage);
     }
-    res.json(user);
+    const tokenHelp = new TokenHelper();
+    const token = await tokenHelp.saveToken(user);
+    res.status(SUCCESSFUL).json(token);
   })(req, res, next);
 };
