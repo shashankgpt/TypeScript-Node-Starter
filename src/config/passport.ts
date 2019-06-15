@@ -6,6 +6,7 @@ import lodash from "lodash";
 import * as local from "./strategies/local";
 import * as facebook from "./strategies/facebook";
 import * as basic from "./strategies/basic";
+import * as bearer from "./strategies/bearer";
 // import { User, UserType } from '../models/User';
 import { User1 } from "../app/models/user-collection";
 import { Request, Response, NextFunction } from "express";
@@ -26,6 +27,7 @@ passport.deserializeUser((id, done) => {
  */
 local.initLocalStrategy();
 basic.initHttpBasicStrategy();
+bearer.initBearerStrategy();
 // tslint:disable-next-line:max-line-length
 /**
  * OAuth Strategy Overview

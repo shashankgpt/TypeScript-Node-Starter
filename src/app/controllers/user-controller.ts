@@ -13,7 +13,7 @@ import { IResponseMessage } from "../data-types/interfaces/IResponseMessage";
 import { SUCCESSFUL, CREATED, PRECONDITIONFAILED } from "../../config/util/response-code";
 import "../../config/passport";
 export let getUser = (req: Request, res: Response, next: NextFunction) => {
-  res.send("hello");
+  res.send(req.user);
 };
 
 export let register = async (req: Request, res: Response, next: NextFunction) => {
