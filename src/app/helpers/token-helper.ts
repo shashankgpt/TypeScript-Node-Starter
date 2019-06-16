@@ -7,7 +7,17 @@ import { UserDocument } from "../models/user-collection";
 import { ObjectId } from "bson";
 
 const LEN = 16;
+
 export class TokenHelper implements ITokenHelper {
+  refreshToken(token: string): Promise<string | ObjectId> {
+    throw new Error("Method not implemented.");
+  }
+  deleteAllTokenUser(username: string): Promise<string | ObjectId> {
+    throw new Error("Method not implemented.");
+  }
+  getLatestTokenUser(username: string): Promise<string | ObjectId> {
+    throw new Error("Method not implemented.");
+  }
   getToken(token: string): Promise<ObjectId | string> {
     return new Promise((resolve, reject) => {
       Token.findOne({ hash: token })

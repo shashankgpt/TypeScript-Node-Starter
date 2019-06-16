@@ -23,11 +23,18 @@ export let login =  (req: Request, res: Response, next: NextFunction) => {
         statusCode: PRECONDITIONFAILED,
         Message: "Incorrect Credentials",
         dateTime: new Date(),
+        data: 0,
       };
       return res.status(PRECONDITIONFAILED).json(resMessage);
     }
     const tokenHelp = new TokenHelper();
     const token = await tokenHelp.saveToken(user);
-    res.status(SUCCESSFUL).json(token);
+    const resMessage: IResponseMessage = {
+      statusCode: SUCCESSFUL,
+      Message: "Logged In",
+      dateTime: new Date(),
+      data: { token },
+    };
+    res.status(SUCCESSFUL).json(resMessage);
   })(req, res, next);
 };

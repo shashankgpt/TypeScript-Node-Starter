@@ -13,7 +13,7 @@ export type UserDocument = mongoose.Document & {
   lock: boolean
   profile: {
     firstName: string,
-    LastName: string,
+    lastName: string,
     gender: string,
     location: string,
     website: string,
@@ -26,7 +26,7 @@ export type UserDocument = mongoose.Document & {
 
 type comparePasswordFunction = (candidatePassword: string,
                                 cb: (err: any, isMatch: any) =>
-  {}) => void;
+  any) => void;
 
 export type AuthToken = {
   accessToken: string,
@@ -69,7 +69,7 @@ const userSchema = new mongoose.Schema({
   },
   profile: {
     firstName: String,
-    LastName: String,
+    lastName: String,
     gender: String,
     location: String,
     website: String,

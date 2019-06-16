@@ -8,9 +8,10 @@ const router = express.Router();
 
 router.use(authenticationController.authentication);
 /* GET users listing. */
-router.get("/", userController.getUser);
-router.patch("/:username", userController.updatePassword);
+router.get("/", userController.getLoggedUserProfile);
+router.get("/:username", userController.getUser);
+router.patch("/updatePassword", userController.updatePassword);
 router.put("/:username",  userController.updateProfile);
-router.delete("/:username", userController.updateProfile);
+router.delete("/:username", userController.deleteUser);
 
 export { router };

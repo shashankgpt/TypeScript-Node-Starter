@@ -30,6 +30,7 @@ export function mongooseInit(app: any) {
     }),
   }));
   mongoose.set("useCreateIndex", true);
+  mongoose.set("useFindAndModify", false);
 }
 function cleanup() {
   const closeMessage = "Closing DB connections and stopping the app. Bye bye.";
