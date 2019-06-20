@@ -13,6 +13,7 @@ import { IResponseMessage , IUser } from "../data-types/interfaces";
 import { RoleName } from "../data-types/data-structure";
 import promiseErrorHandler from "../middlewares/promise.error-handler";
 
+const debug = require("debug")("app");
 import { FORBIDDEN,
         SUCCESSFUL,
         CREATED,
@@ -158,7 +159,7 @@ export let updateProfile = async (req: Request, res: Response, next: NextFunctio
   const errors = req.validationErrors();
 
   if (errors) {
-    console.log(errors);
+    debug(errors);
   }
   const userHelp = new UserHelper();
   const { email, firstName, lastName , gender, location, website } = req.body;

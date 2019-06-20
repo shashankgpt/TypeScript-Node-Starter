@@ -2,7 +2,7 @@ import errorhandler from "errorhandler";
 
 import app from "./app";
 
-const debug = require("debug")("http");
+const debug = require("debug")("app");
 /**
  * Error Handler. Provides full stack - remove for production
  */
@@ -17,7 +17,7 @@ const server = app.listen(app.get("port"), () => {
     app.get("port"),
     app.get("env"),
   );
-  console.log("  Press CTRL-C to stop\n");
+  debug("  Press CTRL-C to stop\n");
 });
 
 export default server;
