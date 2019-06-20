@@ -5,6 +5,9 @@ import * as mongooseFunction from "./config/mongoose";
 import * as expressConfig from "./config/express";
 import * as routeConfig from "./config/routes";
 import * as restRoute from "./config/rest-routes";
+import expressErrorHandler from "./app/middlewares/express.error-handler";
+import { processPromiseErrorHandler, processErrorHandler  }
+from "./app/middlewares/process.error-handler";
 
 // Load environment variables from .env file, where API keys and passwords are configured
 dotenv.config({ path: ".env.example" });
@@ -46,9 +49,10 @@ app.use((req, res, next) => {
   }
   next();
 });
-
+app.use(expressErrorHandler);
 app.use(
   express.static(path.join(__dirname, "public"), { maxAge: 31557600000 }),
 );
-
+process.on("unhandledRejection", processPromiseErrorHandler);
+process.on("uncaughtException", processErrorHandler);
 export default app;

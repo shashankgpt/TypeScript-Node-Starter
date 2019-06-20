@@ -10,7 +10,7 @@ import { WriteError, ObjectId } from "mongodb";
 import { UserHelper } from "../helpers/user-helper";
 import { TokenHelper } from "../helpers/token-helper";
 import { IResponseMessage , IUser } from "../data-types/interfaces";
-import { RoleName } from "../data-types/data-structure/user";
+import { RoleName } from "../data-types/data-structure";
 import promiseErrorHandler from "../middlewares/promise.error-handler";
 
 import { FORBIDDEN,
