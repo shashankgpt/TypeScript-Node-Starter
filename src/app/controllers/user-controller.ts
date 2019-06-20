@@ -6,12 +6,13 @@ import passport from "passport";
 import { User1, UserDocument, AuthToken } from "../models/user-collection";
 import { Token, TokenDocument } from "../models/token-collection";
 import { IVerifyOptions } from "passport-local";
-import { WriteError } from "mongodb";
+import { WriteError, ObjectId } from "mongodb";
 import { UserHelper } from "../helpers/user-helper";
 import { TokenHelper } from "../helpers/token-helper";
-import { IResponseMessage } from "../data-types/interfaces/IResponseMessage";
-import { IUser } from "../data-types/interfaces/IUser";
+import { IResponseMessage , IUser } from "../data-types/interfaces";
 import { RoleName } from "../data-types/data-structure/user";
+import promiseErrorHandler from "../middlewares/promise.error-handler";
+
 import { FORBIDDEN,
         SUCCESSFUL,
         CREATED,
@@ -26,7 +27,8 @@ export let getUser = async (req: Request, res: Response, next: NextFunction) => 
     console.log(errors);
   }
   const userHelp = new UserHelper();
-  const exist = await userHelp.findUserByUsername(req.params.username);
+  const exist = await promiseErrorHandler<boolean , UserDocument>(
+    userHelp.findUserByUsername(req.params.username));
   if (exist === false) {
     const resMessage: IResponseMessage = {
       statusCode: FORBIDDEN,
@@ -95,7 +97,8 @@ export let updatePassword = async (req: Request, res: Response, next: NextFuncti
   }
   const userHelp = new UserHelper();
   const { oldPassword , newPassword } = req.body;
-  const updated = await userHelp.updatePassword(req.user._id, oldPassword, newPassword);
+  const updated = await promiseErrorHandler<boolean, boolean>(
+    userHelp.updatePassword(req.user._id, oldPassword, newPassword));
   if (updated) {
     const resMessage: IResponseMessage = {
       statusCode: SUCCESSFUL,
@@ -121,7 +124,8 @@ export let deleteUser = async (req: Request, res: Response, next: NextFunction) 
     console.log(errors);
   }
   const userHelp = new UserHelper();
-  const exist = await userHelp.deleteUserByUsername(req.params.username);
+  const exist = await promiseErrorHandler<boolean, UserDocument>(
+    userHelp.deleteUserByUsername(req.params.username));
   if (exist === false) {
     const resMessage: IResponseMessage = {
       statusCode: FORBIDDEN,
@@ -166,7 +170,8 @@ export let updateProfile = async (req: Request, res: Response, next: NextFunctio
     website,
     lastName,
   };
-  const newUser = await userHelp.updateProfileByUsername(req.params.username, oldUser);
+  const newUser = await promiseErrorHandler<boolean, UserDocument>(
+    userHelp.updateProfileByUsername(req.params.username, oldUser));
   if (newUser === false) {
     const resMessage: IResponseMessage = {
       statusCode: FORBIDDEN,
@@ -210,8 +215,10 @@ export let register = async (req: Request, res: Response, next: NextFunction) =>
     console.log(errors);
   }
   const userHelp = new UserHelper();
-  const exist = await userHelp.findUserByUsername(req.body.username);
-  const exitEmail = await userHelp.findUserByEmail(req.body.email);
+  const exist = await promiseErrorHandler<boolean, UserDocument>(
+    userHelp.findUserByUsername(req.body.username));
+  const exitEmail = await promiseErrorHandler<boolean, UserDocument>(
+    userHelp.findUserByEmail(req.body.email));
   if (exist || exitEmail) {
     let errMessage = "";
     if (exist) {
@@ -231,7 +238,8 @@ export let register = async (req: Request, res: Response, next: NextFunction) =>
     };
     return res.status(PRECONDITIONFAILED).json(resMessage);
   }
-  const id = await userHelp.createUser(req.body);
+  const id = await promiseErrorHandler<boolean, ObjectId>(
+    userHelp.createUser(req.body));
   if (id) {
     const resMessage: IResponseMessage = {
       statusCode: CREATED,

@@ -1,6 +1,6 @@
 import { ObjectID } from "bson";
 import { UserDocument } from "../../models/user-collection";
-import { IUserRegister, IUserProfile } from "./IUser";
+import { IUserRegister, IUserProfile } from "./";
 
 export interface IUserHelper {
   getAllUser(): Promise<UserDocument[]>;

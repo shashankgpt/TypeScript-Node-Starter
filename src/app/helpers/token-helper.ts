@@ -1,6 +1,6 @@
 import  crypto  from "crypto";
 import { Function } from "babel-types";
-import { ITokenHelper } from "../data-types/interfaces/ITokenHelper";
+import { ITokenHelper } from "../data-types/interfaces";
 import { reject } from "bluebird";
 import { Token, TokenDocument } from "../models/token-collection";
 import { UserDocument } from "../models/user-collection";
@@ -18,21 +18,21 @@ export class TokenHelper implements ITokenHelper {
   getLatestTokenUser(username: string): Promise<string | ObjectId> {
     throw new Error("Method not implemented.");
   }
-  getToken(token: string): Promise<ObjectId | string> {
+  getToken(token: string): Promise<ObjectId | boolean> {
     return new Promise((resolve, reject) => {
       Token.findOne({ hash: token })
                  .populate("user")
                  .exec((err, result) => {
                    if (err) {
-                     return resolve("Unauthorized.");
+                     return resolve(false);
                    }
                    if (!result) {
-                     return resolve("Unauthorized.");
+                     return resolve(false);
                    }
 
                    if (!result.user) {
                     // tslint:disable-next-line:no-null-keyword
-                     return resolve("Unauthorized.");
+                     return resolve(false);
                    }
                    return resolve(result.user);
                  });

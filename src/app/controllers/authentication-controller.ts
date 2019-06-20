@@ -9,8 +9,9 @@ import { IVerifyOptions } from "passport-local";
 import { WriteError } from "mongodb";
 import { UserHelper } from "../helpers/user-helper";
 import { TokenHelper } from "../helpers/token-helper";
-import { IResponseMessage } from "../data-types/interfaces/IResponseMessage";
+import { IResponseMessage } from "../data-types/interfaces";
 import { SUCCESSFUL, CREATED, PRECONDITIONFAILED } from "../../config/util/response-code";
+import promiseErrorHandler from "../middlewares/promise.error-handler";
 import "../../config/passport";
 export let authentication = (req: Request, res: Response, next: NextFunction) => {
   return passport.authenticate("bearer", { session: true })(req, res, next);
@@ -28,7 +29,8 @@ export let login =  (req: Request, res: Response, next: NextFunction) => {
       return res.status(PRECONDITIONFAILED).json(resMessage);
     }
     const tokenHelp = new TokenHelper();
-    const token = await tokenHelp.saveToken(user);
+    const token = await promiseErrorHandler<boolean, string>(
+      tokenHelp.saveToken(user));
     const resMessage: IResponseMessage = {
       statusCode: SUCCESSFUL,
       Message: "Logged In",

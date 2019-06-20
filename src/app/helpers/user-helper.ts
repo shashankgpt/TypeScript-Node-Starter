@@ -1,9 +1,8 @@
 import { User1, UserDocument, AuthToken } from "../models/user-collection";
-import { IUserRegister, IUserProfile, IUser } from "../data-types/interfaces/IUser";
-import { IUserHelper } from "../data-types/interfaces/IUserHelper";
+import { IUserHelper, IUserRegister, IUserProfile, IUser } from "../data-types/interfaces";
 import { ObjectID } from "bson";
 import { WriteError } from "mongodb";
-
+import promiseErrorHandler from "../middlewares/promise.error-handler";
 export class UserHelper implements IUserHelper {
   getAllUser(): Promise<UserDocument[]> {
     throw new Error("Method not implemented.");
@@ -17,8 +16,8 @@ export class UserHelper implements IUserHelper {
   activeUser(username: string): Promise<boolean> {
     throw new Error("Method not implemented.");
   }
-  createUser(user: IUserRegister): Promise<ObjectID | Boolean> {
-    return new Promise<ObjectID | Boolean>((resolve, reject) => {
+  createUser(user: IUserRegister): Promise<ObjectID | boolean> {
+    return new Promise<ObjectID | boolean>((resolve, reject) => {
       const userModel = new User1({
         username: user.username,
         email: user.email,
@@ -33,21 +32,21 @@ export class UserHelper implements IUserHelper {
   deleteUserByUsername(username: string): Promise<UserDocument | boolean> {
     return new Promise<boolean | UserDocument>(async (resolve, reject) => {
       const query = { username };
-      const userDoc = await this.deleteUser(query);
+      const userDoc = await promiseErrorHandler<boolean, UserDocument>(this.deleteUser(query));
       return resolve(userDoc);
     });
   }
   deleteUserByUserID(userId: ObjectID): Promise<UserDocument | boolean> {
     return new Promise<boolean | UserDocument>(async (resolve, reject) => {
       const query = { _id: userId };
-      const userDoc = await this.deleteUser(query);
+      const userDoc = await promiseErrorHandler<boolean, UserDocument>(this.deleteUser(query));
       return resolve(userDoc);
     });
   }
   updatePassword(userId: ObjectID, oldPassword: string, newPassword: string)
   : Promise<boolean> {
     return new Promise<boolean>(async (resolve, reject) => {
-      const user = await this.findUserByUserID(userId);
+      const user = await promiseErrorHandler<boolean, UserDocument>(this.findUserByUserID(userId));
       if (user instanceof User1) {
         user.comparePassword(oldPassword, (err: Error, isMatch: boolean) => {
           if (err) { return reject(err); }
@@ -82,7 +81,7 @@ export class UserHelper implements IUserHelper {
           website: newProfile.website,
         },
       };
-      const userDoc = await this.update(query, update);
+      const userDoc = await promiseErrorHandler<boolean, UserDocument>(this.update(query, update));
       return resolve(userDoc);
     });
   }
@@ -100,7 +99,7 @@ export class UserHelper implements IUserHelper {
           website: newProfile.website,
         },
       };
-      const userDoc = await this.update(query, update);
+      const userDoc = await promiseErrorHandler<boolean, UserDocument>(this.update(query, update));
       return resolve(userDoc);
     });
   }
@@ -129,21 +128,21 @@ export class UserHelper implements IUserHelper {
   async findUserByUsername(userName: string): Promise<UserDocument | boolean > {
     return new Promise<boolean | UserDocument>(async (resolve, reject) => {
       const query = { username : userName };
-      const userDoc = await this.findUser(query);
+      const userDoc = await promiseErrorHandler<boolean, UserDocument>(this.findUser(query));
       return resolve(userDoc);
     });
   }
   async findUserByEmail(mail: string): Promise< UserDocument | boolean > {
     return new Promise<boolean | UserDocument>(async (resolve, reject) => {
       const query = { email : mail };
-      const userDoc = await this.findUser(query);
+      const userDoc = await promiseErrorHandler<boolean, UserDocument>(this.findUser(query));
       return resolve(userDoc);
     });
   }
   async findUserByUserID(userId: ObjectID): Promise< UserDocument | boolean > {
     return new Promise<boolean | UserDocument>(async (resolve, reject) => {
       const query = { _id : userId };
-      const userDoc = await this.findUser(query);
+      const userDoc = await promiseErrorHandler<boolean, UserDocument>(this.findUser(query));
       return resolve(userDoc);
     });
   }
