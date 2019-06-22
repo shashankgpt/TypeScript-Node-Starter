@@ -9,14 +9,39 @@ import { ObjectId } from "bson";
 const LEN = 16;
 
 export class TokenHelper implements ITokenHelper {
-  refreshToken(token: string): Promise<string | ObjectId> {
-    throw new Error("Method not implemented.");
+  deleteAllTokenUser(username: string): Promise<boolean | ObjectId> {
+    return new Promise((resolve, reject) => {
+      Token.deleteMany({ username }, (err) => {
+        return reject(err);
+      });
+      return resolve(true);
+    });
   }
-  deleteAllTokenUser(username: string): Promise<string | ObjectId> {
-    throw new Error("Method not implemented.");
+  refreshToken(token: string): Promise<string | boolean> {
+    return new Promise<boolean | string>((resolve, reject) => {
+      Token.findOneAndRemove({ hash: token }, (err, token) => {
+        if (err) { return reject(err); }
+        if (token) {
+          const tokenString = this.createToken();
+          const tokenInstance = new Token({
+            user: token.user,
+            hash: tokenString,
+            username: token.username,
+          });
+          tokenInstance.save((err) => {
+            if (err) { return reject(err); }
+            resolve(tokenString);
+          });
+        }
+      });
+    });
   }
   getLatestTokenUser(username: string): Promise<string | ObjectId> {
-    throw new Error("Method not implemented.");
+    return new Promise((resolve, reject) => {
+      Token.findOne({ username }, {}, { sort: { createdAt : -1 } },  (err, token) => {
+        return resolve(token.hash);
+      });
+    });
   }
   getToken(token: string): Promise<ObjectId | boolean> {
     return new Promise((resolve, reject) => {
@@ -31,7 +56,6 @@ export class TokenHelper implements ITokenHelper {
                    }
 
                    if (!result.user) {
-                    // tslint:disable-next-line:no-null-keyword
                      return resolve(false);
                    }
                    return resolve(result.user);

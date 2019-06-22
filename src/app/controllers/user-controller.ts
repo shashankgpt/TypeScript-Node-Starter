@@ -1,42 +1,34 @@
 import { Request, Response, NextFunction } from "express";
-import async from "async";
-import crypto from "crypto";
-import nodemailer from "nodemailer";
-import passport from "passport";
 import { User1, UserDocument, AuthToken } from "../models/user-collection";
-import { Token, TokenDocument } from "../models/token-collection";
-import { IVerifyOptions } from "passport-local";
 import { WriteError, ObjectId } from "mongodb";
 import { UserHelper } from "../helpers/user-helper";
-import { TokenHelper } from "../helpers/token-helper";
-import { IResponseMessage , IUser } from "../data-types/interfaces";
-import { RoleName } from "../data-types/data-structure";
+import { MessageHelper } from "../helpers/message-helper";
+import { IResponseMessage , IUser , IValidationError } from "../data-types/interfaces";
 import promiseErrorHandler from "../middlewares/promise.error-handler";
-
-const debug = require("debug")("app");
 import { FORBIDDEN,
         SUCCESSFUL,
         CREATED,
         PRECONDITIONFAILED,
-                            } from "../../config/util/response-code";
+        BADREQUEST                    } from "../../config/util/response-code";
 import "../../config/passport";
+import * as Debug from "debug";
+const debug = Debug.debug("app:controller");
 
 export let getUser = async (req: Request, res: Response, next: NextFunction) => {
   req.assert("username", "username must be at least 4 characters long").len({ min: 4 });
   const errors = req.validationErrors();
+  const messageHelp = new MessageHelper();
   if (errors) {
-    console.log(errors);
+    debug(errors);
+    const resMessage: IResponseMessage = messageHelp.createRequiredFieldMessage(errors);
+    return res.status(BADREQUEST).json(resMessage);
   }
   const userHelp = new UserHelper();
   const exist = await promiseErrorHandler<boolean , UserDocument>(
     userHelp.findUserByUsername(req.params.username));
   if (exist === false) {
-    const resMessage: IResponseMessage = {
-      statusCode: FORBIDDEN,
-      Message: `User is not found with username ${req.params.username}`,
-      dateTime: new Date(),
-      data: 0,
-    };
+    const msg = `User is not found with username ${req.params.username}`;
+    const resMessage: IResponseMessage = messageHelp.createFailureMessage(msg);
     return res.status(FORBIDDEN).json(resMessage);
   }
   if (exist instanceof User1) {
@@ -52,18 +44,18 @@ export let getUser = async (req: Request, res: Response, next: NextFunction) => 
       user.website = exist.profile.website === undefined ? undefined : exist.profile.website;
       user.picture = exist.profile.picture === undefined ? undefined : exist.profile.picture;
     }
-    const resMessage: IResponseMessage = {
-      statusCode: SUCCESSFUL,
-      Message: `User is exists with username ${exist.username}`,
-      dateTime: new Date(),
-      data: { user },
-    };
+    const msg = `User is exists with username ${exist.username}`;
+    const resMessage: IResponseMessage = messageHelp.createSuccessMessage(msg, { user });
     return res.status(SUCCESSFUL).json(resMessage);
   }
 };
 export let getLoggedUserProfile = async (req: Request, res: Response, next: NextFunction) => {
-  if (req.user) {
-    console.log("no such user");
+  const errors = req.validationErrors();
+  const messageHelp = new MessageHelper();
+  if (!req.user) {
+    debug("no such user");
+    const resMessage: IResponseMessage = messageHelp.createRequiredFieldMessage(errors);
+    return res.status(BADREQUEST).json(resMessage);
   }
   if (req.user instanceof User1) {
     const exist  = req.user;
@@ -79,12 +71,8 @@ export let getLoggedUserProfile = async (req: Request, res: Response, next: Next
       user.website = exist.profile.website === undefined ? undefined : exist.profile.website;
       user.picture = exist.profile.picture === undefined ? undefined : exist.profile.picture;
     }
-    const resMessage: IResponseMessage = {
-      statusCode: SUCCESSFUL,
-      Message: `User is exists with username ${req.user.username}`,
-      dateTime: new Date(),
-      data: { user },
-    };
+    const msg = `User is exists with username ${req.user.username}`;
+    const resMessage: IResponseMessage = messageHelp.createSuccessMessage(msg, { user });
     return res.status(SUCCESSFUL).json(resMessage);
   }
 };
@@ -93,56 +81,47 @@ export let updatePassword = async (req: Request, res: Response, next: NextFuncti
   req.assert("oldPassword", "old password must be at least 4 characters long").len({ min: 4 });
   req.assert("newPassword", "new password must be at least 4 characters long").len({ min: 4 });
   const errors = req.validationErrors();
+  const messageHelp = new MessageHelper();
   if (errors) {
-    console.log(errors);
+    debug(errors);
+    const resMessage: IResponseMessage = messageHelp.createRequiredFieldMessage(errors);
+    return res.status(BADREQUEST).json(resMessage);
   }
   const userHelp = new UserHelper();
   const { oldPassword , newPassword } = req.body;
   const updated = await promiseErrorHandler<boolean, boolean>(
     userHelp.updatePassword(req.user._id, oldPassword, newPassword));
   if (updated) {
-    const resMessage: IResponseMessage = {
-      statusCode: SUCCESSFUL,
-      Message: `User password is updated with username ${req.user.username}`,
-      dateTime: new Date(),
-      data: 0,
-    };
+    const msg = `User password is updated with username ${req.user.username}`;
+    const resMessage: IResponseMessage = messageHelp.createSuccessMessage(msg);
     return res.status(SUCCESSFUL).json(resMessage);
   }
-  const resMessage: IResponseMessage = {
-    statusCode: FORBIDDEN,
-    Message: `User password is NOT updated with username ${req.user.username}`,
-    dateTime: new Date(),
-    data: 0,
-  };
+  const msg = `User password is NOT updated with username ${req.user.username}`;
+  const resMessage: IResponseMessage = messageHelp.createFailureMessage(msg);
   return res.status(FORBIDDEN).json(resMessage);
 };
 
 export let deleteUser = async (req: Request, res: Response, next: NextFunction) => {
   req.assert("username", "username must be at least 4 characters long").len({ min: 4 });
   const errors = req.validationErrors();
+  const messageHelp = new MessageHelper();
   if (errors) {
-    console.log(errors);
+    debug(errors);
+    const resMessage: IResponseMessage = messageHelp.createRequiredFieldMessage(errors);
+    return res.status(BADREQUEST).json(resMessage);
   }
   const userHelp = new UserHelper();
   const exist = await promiseErrorHandler<boolean, UserDocument>(
     userHelp.deleteUserByUsername(req.params.username));
   if (exist === false) {
-    const resMessage: IResponseMessage = {
-      statusCode: FORBIDDEN,
-      Message: `User is not found with username ${req.params.username}`,
-      dateTime: new Date(),
-      data: 0,
-    };
+    const msg = `User is not found with username ${req.params.username}`;
+    const resMessage: IResponseMessage = messageHelp.createFailureMessage(msg);
     return res.status(FORBIDDEN).json(resMessage);
   }
   if (exist instanceof User1) {
-    const resMessage: IResponseMessage = {
-      statusCode: SUCCESSFUL,
-      Message: `User is delete with username ${exist.username}`,
-      dateTime: new Date(),
-      data: { username: exist.username },
-    };
+    const msg = `User is delete with username ${exist.username}`;
+    const resMessage: IResponseMessage =
+    messageHelp.createSuccessMessage(msg, { username: exist.username });
     return res.status(SUCCESSFUL).json(resMessage);
   }
 };
@@ -157,9 +136,11 @@ export let updateProfile = async (req: Request, res: Response, next: NextFunctio
   req.sanitize("email").normalizeEmail({ gmail_remove_dots: false });
 
   const errors = req.validationErrors();
-
+  const messageHelp = new MessageHelper();
   if (errors) {
     debug(errors);
+    const resMessage: IResponseMessage = messageHelp.createRequiredFieldMessage(errors);
+    return res.status(BADREQUEST).json(resMessage);
   }
   const userHelp = new UserHelper();
   const { email, firstName, lastName , gender, location, website } = req.body;
@@ -174,12 +155,8 @@ export let updateProfile = async (req: Request, res: Response, next: NextFunctio
   const newUser = await promiseErrorHandler<boolean, UserDocument>(
     userHelp.updateProfileByUsername(req.params.username, oldUser));
   if (newUser === false) {
-    const resMessage: IResponseMessage = {
-      statusCode: FORBIDDEN,
-      Message: `User is not found with username ${req.params.username}`,
-      dateTime: new Date(),
-      data: 0,
-    };
+    const msg = `User is not found with username ${req.params.username}`;
+    const resMessage: IResponseMessage = messageHelp.createFailureMessage(msg);
     return res.status(FORBIDDEN).json(resMessage);
   }
   if (newUser instanceof User1) {
@@ -196,12 +173,9 @@ export let updateProfile = async (req: Request, res: Response, next: NextFunctio
       user.website = newUser.profile.website === undefined ? undefined : newUser.profile.website;
       user.picture = newUser.profile.picture === undefined ? undefined : newUser.profile.picture;
     }
-    const resMessage: IResponseMessage = {
-      statusCode: SUCCESSFUL,
-      Message: `User is updated with username ${newUser.username}`,
-      dateTime: new Date(),
-      data: { user },
-    };
+    const msg = `User is updated with username ${newUser.username}`;
+    const resMessage: IResponseMessage =
+    messageHelp.createSuccessMessage(msg, { user });
     return res.status(SUCCESSFUL).json(resMessage);
   }
 };
@@ -211,9 +185,11 @@ export let register = async (req: Request, res: Response, next: NextFunction) =>
   req.sanitize("email").normalizeEmail({ gmail_remove_dots: false });
 
   const errors = req.validationErrors();
-
+  const messageHelp = new MessageHelper();
   if (errors) {
-    console.log(errors);
+    debug(errors);
+    const resMessage: IResponseMessage = messageHelp.createRequiredFieldMessage(errors);
+    return res.status(BADREQUEST).json(resMessage);
   }
   const userHelp = new UserHelper();
   const exist = await promiseErrorHandler<boolean, UserDocument>(
@@ -231,23 +207,17 @@ export let register = async (req: Request, res: Response, next: NextFunction) =>
     if (exitEmail) {
       errMessage += `email ${req.body.email}`;
     }
-    const resMessage: IResponseMessage = {
-      statusCode: PRECONDITIONFAILED,
-      Message: `New User is cannot be created with ${errMessage}`,
-      dateTime: new Date(),
-      data: 0,
-    };
+    const msg = `New User is cannot be created with ${errMessage}`;
+    const resMessage: IResponseMessage = messageHelp
+    .createFailureMessage(msg, 0, PRECONDITIONFAILED);
     return res.status(PRECONDITIONFAILED).json(resMessage);
   }
   const id = await promiseErrorHandler<boolean, ObjectId>(
     userHelp.createUser(req.body));
   if (id) {
-    const resMessage: IResponseMessage = {
-      statusCode: CREATED,
-      Message: `New User is created with Username ${req.body.username}`,
-      dateTime: new Date(),
-      data: { username: req.body.username },
-    };
+    const msg = `New User is created with Username ${req.body.username}`;
+    const resMessage: IResponseMessage =
+    messageHelp.createSuccessMessage(msg, { username: req.body.username }, CREATED);
     return res.status(CREATED).json(resMessage);
   }
 };

@@ -4,17 +4,49 @@ import { ObjectID } from "bson";
 import { WriteError } from "mongodb";
 import promiseErrorHandler from "../middlewares/promise.error-handler";
 export class UserHelper implements IUserHelper {
-  getAllUser(): Promise<UserDocument[]> {
-    throw new Error("Method not implemented.");
+  getAllUser(): Promise<boolean | UserDocument[]> {
+    return new Promise<boolean | UserDocument[]>((resolve, reject) => {
+      User1.find({}, (err, existingUser) => {
+        if (err) { return reject(err); }
+        if (existingUser) {
+          resolve(existingUser);
+        }
+        resolve(false);
+      });
+    });
   }
   unLockUser(username: string): Promise<boolean> {
-    throw new Error("Method not implemented.");
+    return new Promise<boolean | boolean>(async (resolve, reject) => {
+      const query = { username };
+      const update = {
+        lock: false,
+      };
+      const userDoc = await promiseErrorHandler<boolean, UserDocument>(this.update(query, update));
+      const val = userDoc ? true : false;
+      return resolve(val);
+    });
   }
   lockUser(username: string): Promise<boolean> {
-    throw new Error("Method not implemented.");
+    return new Promise<boolean | boolean>(async (resolve, reject) => {
+      const query = { username };
+      const update = {
+        lock: true,
+      };
+      const userDoc = await promiseErrorHandler<boolean, UserDocument>(this.update(query, update));
+      const val = userDoc ? true : false;
+      return resolve(val);
+    });
   }
   activeUser(username: string): Promise<boolean> {
-    throw new Error("Method not implemented.");
+    return new Promise<boolean | boolean>(async (resolve, reject) => {
+      const query = { username };
+      const update = {
+        active: true,
+      };
+      const userDoc = await promiseErrorHandler<boolean, UserDocument>(this.update(query, update));
+      const val = userDoc ? true : false;
+      return resolve(val);
+    });
   }
   createUser(user: IUserRegister): Promise<ObjectID | boolean> {
     return new Promise<ObjectID | boolean>((resolve, reject) => {
@@ -64,8 +96,16 @@ export class UserHelper implements IUserHelper {
       else { resolve(false); }
     });
   }
-  updateEmail(userId: ObjectID, newEmail: string): string {
-    throw new Error("Method not implemented.");
+  updateEmail(userId: ObjectID, newEmail: string): Promise<boolean> {
+    return new Promise<boolean | boolean>(async (resolve, reject) => {
+      const query = { _id : userId };
+      const update = {
+        email: newEmail,
+      };
+      const userDoc = await promiseErrorHandler<boolean, UserDocument>(this.update(query, update));
+      const val = userDoc ? true : false;
+      return resolve(val);
+    });
   }
   updateProfileByUserID(userId: ObjectID, newProfile: IUser)
   : Promise<boolean | UserDocument> {
