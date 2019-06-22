@@ -47,4 +47,5 @@ const loggerSchema = new mongoose.Schema({
   timestamps: true,
 });
 
+// tslint:disable-next-line:variable-name
 export const Token = mongoose.model<LoggerDocument>(TOKEN, loggerSchema);
