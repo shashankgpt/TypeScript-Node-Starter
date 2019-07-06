@@ -20,7 +20,7 @@
     "test": "jest -c jest.config.js --forceExit --coverage --verbose",
     "unit-test": "jest -c jest.unit.config.js --forceExit --coverage --verbose",
     "watch-test": "npm run test -- --watchAll",
-    "watch-unit-test": "npm run watch-test -- --watchAll",
+    "watch-unit-test": "npm run unit-test -- --watchAll",
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
     "build-sass": "node-sass src/public/css/main.scss dist/public/css/main.css",
