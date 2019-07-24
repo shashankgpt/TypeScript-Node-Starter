@@ -12,9 +12,10 @@ export function mongooseInit(app: any) {
   process.on("SIGINT", cleanup);
   process.on("SIGTERM", cleanup);
   process.on("SIGHUP", cleanup);
-
+  // const  databaseName = process.env.JEST_WORKER_ID ? "test" : "codesnooper_dev";
+  const  databaseName = "codesnooper_dev";
   (<any>mongoose).Promise = bluebird;
-  mongoose.connect(mongoUrl, { useNewUrlParser: true , dbName: "codesnooper_dev" }).then(
+  mongoose.connect(mongoUrl, { useNewUrlParser: true , dbName: databaseName }).then(
   () => { /** ready to use. The `mongoose.connect()` promise resolves to undefined. */ },
 ).catch((err) => {
   console.log(`MongoDB connection error. Please make sure MongoDB is running. ${err}`);
