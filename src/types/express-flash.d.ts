@@ -7,8 +7,7 @@ declare namespace Express {
 }
 
 interface Flash {
-    flash(type: string, message: any): void;
+  flash(type: string, message: any): void;
 }
 
 declare module "express-flash";
-

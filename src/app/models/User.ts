@@ -1,33 +1,36 @@
-import bcrypt from "bcrypt-nodejs";
+import bcryptNodejs from "bcrypt-nodejs";
 import crypto from "crypto";
 import mongoose from "mongoose";
-
+import { USER } from "../../config/util/collection-name";
 export type UserDocument = mongoose.Document & {
+  username: string
   email: string,
   password: string,
   passwordResetToken: string,
   passwordResetExpires: Date,
-
-  facebook: string,
-  tokens: AuthToken[],
+  role: number,
+  active: boolean,
+  lock: boolean,
 
   profile: {
     name: string,
     gender: string,
     location: string,
     website: string,
-    picture: string
+    picture: string,
   },
 
   comparePassword: comparePasswordFunction,
-  gravatar: (size: number) => string
+  gravatar: (size: number) => string,
 };
 
-type comparePasswordFunction = (candidatePassword: string, cb: (err: any, isMatch: any) => {}) => void;
+type comparePasswordFunction = (candidatePassword: string,
+                                cb: (err: any, isMatch: any) =>
+  {}) => void;
 
 export type AuthToken = {
   accessToken: string,
-  kind: string
+  kind: string,
 };
 
 const userSchema = new mongoose.Schema({
@@ -46,19 +49,21 @@ const userSchema = new mongoose.Schema({
     gender: String,
     location: String,
     website: String,
-    picture: String
-  }
-}, { timestamps: true });
+    picture: String,
+  },
+},                                     { timestamps: true });
 
 /**
  * Password hash middleware.
  */
 userSchema.pre("save", function save(next) {
-  const user = this;
+// tslint:disable-next-line: no-this-assignment
+  const thisRef = this;
+  const user: any = thisRef;
   if (!user.isModified("password")) { return next(); }
-  bcrypt.genSalt(10, (err, salt) => {
+  bcryptNodejs.genSalt(10, (err, salt) => {
     if (err) { return next(err); }
-    bcrypt.hash(user.password, salt, undefined, (err: mongoose.Error, hash) => {
+    bcryptNodejs.hash(user.password, salt, undefined, (err: mongoose.Error, hash) => {
       if (err) { return next(err); }
       user.password = hash;
       next();
@@ -67,9 +72,10 @@ userSchema.pre("save", function save(next) {
 });
 
 const comparePassword: comparePasswordFunction = function (candidatePassword, cb) {
-  bcrypt.compare(candidatePassword, this.password, (err: mongoose.Error, isMatch: boolean) => {
-    cb(err, isMatch);
-  });
+  bcryptNodejs.compare(candidatePassword,
+                       this.password, (err: mongoose.Error, isMatch: boolean) => {
+                         cb(err, isMatch);
+                       });
 };
 
 userSchema.methods.comparePassword = comparePassword;
@@ -77,7 +83,7 @@ userSchema.methods.comparePassword = comparePassword;
 /**
  * Helper method for getting user's gravatar.
  */
-userSchema.methods.gravatar = function (size: number = 200) {
+userSchema.methods.gravatar = function (size: number= 200) {
   if (!this.email) {
     return `https://gravatar.com/avatar/?s=${size}&d=retro`;
   }
@@ -85,4 +91,5 @@ userSchema.methods.gravatar = function (size: number = 200) {
   return `https://gravatar.com/avatar/${md5}?s=${size}&d=retro`;
 };
 
-export const User = mongoose.model<UserDocument>("User", userSchema);
+// tslint:disable-next-line: variable-name
+export const User = mongoose.model<UserDocument>(USER, userSchema);

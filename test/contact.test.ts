@@ -1,3 +1,4 @@
+// tslint:disable-next-line: import-name
 import request from "supertest";
 import app from "../src/app";
 
@@ -11,13 +12,12 @@ describe("GET /contact", () => {
   });
 });
 
-
 describe("POST /contact", () => {
   it("should return false from assert when no message is found", (done) => {
     request(app).post("/contact")
       .field("name", "John Doe")
       .field("email", "john@me.com")
-      .end(function(err, res) {
+      .end(function (err, res) {
         expect(res.error).to.be.false;
         done();
       })
