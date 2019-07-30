@@ -29,7 +29,7 @@ export class MessageHelper implements IMessageHelper {
       Message: message,
       dateTime: new Date(),
     };
-    this.log.errorLogger("", 1, message, data, (`${message}  ${data}`));
+    this.log.noticeLogger("", 1, message, data, (`${message}  ${data}`));
     return resMessage;
   }
   createRequiredFieldMessage(message: any, data: any= 0, statusCode: number= BADREQUEST)
