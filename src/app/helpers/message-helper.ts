@@ -4,8 +4,13 @@ import { SUCCESSFUL,
          BADREQUEST,
          UNAUTHORIZED,
                     } from "../../config/util/response-code";
+import { LoggerHelper } from "../helpers/logger-helper";
 
 export class MessageHelper implements IMessageHelper {
+  log: LoggerHelper;
+  constructor() {
+    this.log = new LoggerHelper();
+  }
   createSuccessMessage(message: string, data: any= 0, statusCode: number= SUCCESSFUL)
   : IResponseMessage {
     const resMessage: IResponseMessage = {
@@ -24,6 +29,7 @@ export class MessageHelper implements IMessageHelper {
       Message: message,
       dateTime: new Date(),
     };
+    this.log.errorLogger("", 1, message, data, (`${message}  ${data}`));
     return resMessage;
   }
   createRequiredFieldMessage(message: any, data: any= 0, statusCode: number= BADREQUEST)
@@ -34,6 +40,7 @@ export class MessageHelper implements IMessageHelper {
       Message: this.createMessage(message),
       dateTime: new Date(),
     };
+    this.log.noticeLogger("", 1, message, data, (`${message}  ${data}`));
     return resMessage;
   }
   createMessage(data: any[] | string | IValidationError[]): string {
@@ -54,6 +61,7 @@ export class MessageHelper implements IMessageHelper {
       Message: message,
       dateTime: new Date(),
     };
+    this.log.warningLogger("", 1, message, data, (`${message}  ${data}`));
     return resMessage;
   }
 }

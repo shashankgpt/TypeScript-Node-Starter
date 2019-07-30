@@ -1,7 +1,7 @@
 import bcryptNodejs from "bcrypt-nodejs";
 import crypto from "crypto";
 import mongoose from "mongoose";
-import { USER1, TOKEN } from "../../config/util/collection-name";
+import { USER1, LOGGER } from "../../config/util/collection-name";
 import { ObjectId } from "mongodb";
 import { User1 } from "./user-collection";
 import { token } from "morgan";
@@ -21,7 +21,6 @@ export type LoggerDocument = mongoose.Document & {
 const loggerSchema = new mongoose.Schema({
   username: {
     type: String,
-    required: true,
   },
   warnType: {
     type: Number,
@@ -48,4 +47,4 @@ const loggerSchema = new mongoose.Schema({
 });
 
 // tslint:disable-next-line:variable-name
-export const Token = mongoose.model<LoggerDocument>(TOKEN, loggerSchema);
+export const Logger = mongoose.model<LoggerDocument>(LOGGER, loggerSchema);

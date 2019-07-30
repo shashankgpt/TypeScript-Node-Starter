@@ -16,7 +16,8 @@ dotenv.config({ path: ".env.example" });
 
 // Create Express server
 const app = express();
-
+const cors = require("cors");
+app.use(cors());
 // Connect to MongoDB
 
 // Express configuration

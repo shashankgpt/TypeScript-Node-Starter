@@ -14,10 +14,10 @@ import { SUCCESSFUL, CREATED, PRECONDITIONFAILED } from "../../config/util/respo
 import promiseErrorHandler from "../middlewares/promise.error-handler";
 import { MessageHelper } from "../helpers/message-helper";
 import "../../config/passport";
-export let authentication = (req: Request, res: Response, next: NextFunction) => {
+export const authentication = (req: Request, res: Response, next: NextFunction) => {
   return passport.authenticate("bearer", { session: true })(req, res, next);
 };
-export let login =  (req: Request, res: Response, next: NextFunction) => {
+export const login =  (req: Request, res: Response, next: NextFunction) => {
   passport.authenticate("basic", async (err: Error, user: UserDocument, info: IVerifyOptions) => {
     if (err) { return next(err); }
     const messageHelp = new MessageHelper();
