@@ -2,6 +2,8 @@ import { Request, Response, NextFunction } from "express";
 import { User1, UserDocument, AuthToken } from "../models/user-collection";
 import { WriteError, ObjectId } from "mongodb";
 import { UserHelper } from "../helpers/user-helper";
+import { Email } from "../helpers/email-helper";
+
 import { MessageHelper } from "../helpers/message-helper";
 import { IResponseMessage , IUser , IValidationError } from "../data-types/interfaces";
 import promiseErrorHandler from "../middlewares/promise.error-handler";
@@ -12,6 +14,7 @@ import { FORBIDDEN,
         BADREQUEST                    } from "../../config/util/response-code";
 import "../../config/passport";
 import * as Debug from "debug";
+
 const debug = Debug.debug("app:controller");
 
 export const getUser = async (req: Request, res: Response, next: NextFunction) => {
@@ -64,6 +67,8 @@ export const getLoggedUserProfile = async (req: Request, res: Response, next: Ne
       username : exist.username,
       roleName : "User",
     };
+    const mail = new Email();
+    mail.sendThankYouEmail("shashankgpt270@gmail.com", "shashankgpt270@hotmail.com", "test123");
     if (exist.profile) {
       user.firstName = exist.profile.firstName === undefined ? undefined : exist.profile.firstName;
       user.lastName = exist.profile.lastName === undefined ? undefined : exist.profile.lastName;

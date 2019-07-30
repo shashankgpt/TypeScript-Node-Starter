@@ -44,6 +44,8 @@
     "cors": "^2.8.5",
     "debug": "^4.1.1",
     "dotenv": "^8.0.0",
+    "ejs": "^2.6.2",
+    "email-templates": "^6.0.0",
     "errorhandler": "^1.5.1",
     "express": "^4.17.1",
     "express-flash": "0.0.2",
