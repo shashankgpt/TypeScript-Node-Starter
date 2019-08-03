@@ -8,24 +8,24 @@ import { FORBIDDEN,
 import { IUser, IUserRegister } from "../src/app/data-types/interfaces";
 import { UserHelper } from "../src/app/helpers/user-helper";
 
-describe("GET /user/shashankgpt270", () => {
+describe("GET /user/username/shashankgpt270", () => {
   it("should return 200 OK", () => {
-    return supertest(app).get("/user/shashankgpt270")
-    .set("Authorization", "bearer " + "7a76b68a070e31cd336999057af2abb7")
+    return supertest(app).get("/user/username/shashankgpt270")
+    .set("Authorization", "bearer " + "2f35dc2a3e50a9454cab22cfeee07429")
     .expect(SUCCESSFUL);
   });
   it("should return 400 UNAUTHORIZED", () => {
-    return supertest(app).get("/user/shashankgpt270").expect(UNAUTHORIZED);
+    return supertest(app).get("/user/username/shashankgpt270").expect(UNAUTHORIZED);
   });
   it("should return 401 BADREQUEST", () => {
-    return supertest(app).get("/user/sha")
-    .set("Authorization", "bearer " + "a3e11382012070132400affbb2abdaf4")
+    return supertest(app).get("/user/username/sha")
+    .set("Authorization", "bearer " + "2f35dc2a3e50a9454cab22cfeee07429")
     .expect(BADREQUEST);
   });
 
   it("should return 403 FORBIDDEN", () => {
-    return supertest(app).get("/user/shasghajhgku")
-    .set("Authorization", "bearer " + "a3e11382012070132400affbb2abdaf4")
+    return supertest(app).get("/user/username/shasghajhgku")
+    .set("Authorization", "bearer " + "2f35dc2a3e50a9454cab22cfeee07429")
     .expect(FORBIDDEN);
   });
 

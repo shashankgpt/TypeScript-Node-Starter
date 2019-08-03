@@ -48,6 +48,17 @@ export class UserHelper implements IUserHelper {
       return resolve(val);
     });
   }
+  deactivateUser(username: string): Promise<boolean> {
+    return new Promise<boolean | boolean>(async (resolve, reject) => {
+      const query = { username };
+      const update = {
+        active: false,
+      };
+      const userDoc = await promiseErrorHandler<boolean, UserDocument>(this.update(query, update));
+      const val = userDoc ? true : false;
+      return resolve(val);
+    });
+  }
   createUser(user: IUserRegister): Promise<ObjectID | boolean> {
     return new Promise<ObjectID | boolean>((resolve, reject) => {
       const userModel = new User1({
@@ -189,6 +200,17 @@ export class UserHelper implements IUserHelper {
   async findUser(query: any): Promise < boolean | UserDocument > {
     return new Promise<boolean | UserDocument>((resolve, reject) => {
       User1.findOne(query, (err, existingUser) => {
+        if (err) { return reject(err); }
+        if (existingUser) {
+          resolve(existingUser);
+        }
+        resolve(false);
+      });
+    });
+  }
+  async findAllUser(query: any): Promise < boolean | UserDocument[] > {
+    return new Promise<boolean | UserDocument[]>((resolve, reject) => {
+      User1.find(query, (err, existingUser) => {
         if (err) { return reject(err); }
         if (existingUser) {
           resolve(existingUser);

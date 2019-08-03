@@ -52,6 +52,21 @@ export const getUser = async (req: Request, res: Response, next: NextFunction) =
     return res.status(SUCCESSFUL).json(resMessage);
   }
 };
+
+export const getAllUser = async (req: Request, res: Response, next: NextFunction) => {
+  const userHelp = new UserHelper();
+  const exist = await promiseErrorHandler<boolean , UserDocument[]>(
+    userHelp.findAllUser({}));
+  const messageHelp = new MessageHelper();
+  if (exist === false) {
+    const msg = "No User is found";
+    const resMessage: IResponseMessage = messageHelp.createFailureMessage(msg);
+    return res.status(FORBIDDEN).json(resMessage);
+  }
+  const msg = "All users";
+  const resMessage: IResponseMessage = messageHelp.createSuccessMessage(msg, { users: exist });
+  return res.status(SUCCESSFUL).json(resMessage);
+};
 export const getLoggedUserProfile = async (req: Request, res: Response, next: NextFunction) => {
   const errors = req.validationErrors();
   const messageHelp = new MessageHelper();
@@ -105,6 +120,131 @@ export const updatePassword = async (req: Request, res: Response, next: NextFunc
   return res.status(FORBIDDEN).json(resMessage);
 };
 
+export const forgotPassword = async (req: Request, res: Response, next: NextFunction) => {
+  req.assert("reqHash", "reqHash must be at least 4 characters long").len({ min: 4 });
+  // TO DO: Implement reqHash Check
+  req.assert("oldPassword", "old password must be at least 4 characters long").len({ min: 4 });
+  req.assert("newPassword", "new password must be at least 4 characters long").len({ min: 4 });
+  const errors = req.validationErrors();
+  const messageHelp = new MessageHelper();
+  if (errors) {
+    debug(errors);
+    const resMessage: IResponseMessage = messageHelp.createRequiredFieldMessage(errors);
+    return res.status(BADREQUEST).json(resMessage);
+  }
+  const userHelp = new UserHelper();
+  const { oldPassword , newPassword } = req.body;
+  const updated = await promiseErrorHandler<boolean, boolean>(
+    userHelp.updatePassword(req.user._id, oldPassword, newPassword));
+  if (updated) {
+    const msg = `User password is updated with username ${req.user.username}`;
+    const resMessage: IResponseMessage = messageHelp.createSuccessMessage(msg);
+    return res.status(SUCCESSFUL).json(resMessage);
+  }
+  const msg = `User password is NOT updated with username ${req.user.username}`;
+  const resMessage: IResponseMessage = messageHelp.createFailureMessage(msg);
+  return res.status(FORBIDDEN).json(resMessage);
+};
+
+export const lockUser = async (req: Request, res: Response, next: NextFunction) => {
+  req.assert("username", "username must be at least 4 characters long").len({ min: 4 });
+  const errors = req.validationErrors();
+  const messageHelp = new MessageHelper();
+  if (errors) {
+    debug(errors);
+    const resMessage: IResponseMessage = messageHelp.createRequiredFieldMessage(errors);
+    return res.status(BADREQUEST).json(resMessage);
+  }
+  const userHelp = new UserHelper();
+  const exist = await promiseErrorHandler<boolean, UserDocument>(
+    userHelp.lockUser(req.params.username));
+  if (exist === false) {
+    const msg = `Unable to lock User with username ${req.params.username}`;
+    const resMessage: IResponseMessage = messageHelp.createFailureMessage(msg);
+    return res.status(FORBIDDEN).json(resMessage);
+  }
+
+  const msg = `lock the user with username ${req.params.username}`;
+  const resMessage: IResponseMessage =
+    messageHelp.createSuccessMessage(msg, { username: req.params.username });
+  return res.status(SUCCESSFUL).json(resMessage);
+
+};
+
+export const unlockUser = async (req: Request, res: Response, next: NextFunction) => {
+  req.assert("username", "username must be at least 4 characters long").len({ min: 4 });
+  const errors = req.validationErrors();
+  const messageHelp = new MessageHelper();
+  if (errors) {
+    debug(errors);
+    const resMessage: IResponseMessage = messageHelp.createRequiredFieldMessage(errors);
+    return res.status(BADREQUEST).json(resMessage);
+  }
+  const userHelp = new UserHelper();
+  const exist = await promiseErrorHandler<boolean, UserDocument>(
+    userHelp.unLockUser(req.params.username));
+  if (exist === false) {
+    const msg = `Unable to unlock User with username ${req.params.username}`;
+    const resMessage: IResponseMessage = messageHelp.createFailureMessage(msg);
+    return res.status(FORBIDDEN).json(resMessage);
+  }
+
+  const msg = `unlock the user with username ${req.params.username}`;
+  const resMessage: IResponseMessage =
+    messageHelp.createSuccessMessage(msg, { username: req.params.username });
+  return res.status(SUCCESSFUL).json(resMessage);
+
+};
+
+export const activateUser = async (req: Request, res: Response, next: NextFunction) => {
+  req.assert("username", "username must be at least 4 characters long").len({ min: 4 });
+  const errors = req.validationErrors();
+  const messageHelp = new MessageHelper();
+  if (errors) {
+    debug(errors);
+    const resMessage: IResponseMessage = messageHelp.createRequiredFieldMessage(errors);
+    return res.status(BADREQUEST).json(resMessage);
+  }
+  const userHelp = new UserHelper();
+  const exist = await promiseErrorHandler<boolean, UserDocument>(
+    userHelp.activeUser(req.params.username));
+  if (exist === false) {
+    const msg = `Unable to activate User with username ${req.params.username}`;
+    const resMessage: IResponseMessage = messageHelp.createFailureMessage(msg);
+    return res.status(FORBIDDEN).json(resMessage);
+  }
+
+  const msg = `activate the user with username ${req.params.username}`;
+  const resMessage: IResponseMessage =
+    messageHelp.createSuccessMessage(msg, { username: req.params.username });
+  return res.status(SUCCESSFUL).json(resMessage);
+
+};
+
+export const deactivateUser = async (req: Request, res: Response, next: NextFunction) => {
+  req.assert("username", "username must be at least 4 characters long").len({ min: 4 });
+  const errors = req.validationErrors();
+  const messageHelp = new MessageHelper();
+  if (errors) {
+    debug(errors);
+    const resMessage: IResponseMessage = messageHelp.createRequiredFieldMessage(errors);
+    return res.status(BADREQUEST).json(resMessage);
+  }
+  const userHelp = new UserHelper();
+  const exist = await promiseErrorHandler<boolean, UserDocument>(
+    userHelp.deactivateUser(req.params.username));
+  if (exist === false) {
+    const msg = `Unable to deactivate User with username ${req.params.username}`;
+    const resMessage: IResponseMessage = messageHelp.createFailureMessage(msg);
+    return res.status(FORBIDDEN).json(resMessage);
+  }
+
+  const msg = `deactivate the user with username ${req.params.username}`;
+  const resMessage: IResponseMessage =
+    messageHelp.createSuccessMessage(msg, { username: req.params.username });
+  return res.status(SUCCESSFUL).json(resMessage);
+
+};
 export const deleteUser = async (req: Request, res: Response, next: NextFunction) => {
   req.assert("username", "username must be at least 4 characters long").len({ min: 4 });
   const errors = req.validationErrors();
