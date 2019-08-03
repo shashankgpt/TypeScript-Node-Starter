@@ -28,7 +28,7 @@ export class SendMail implements ISendMailer {
     this.transporter.sendMail(mailOptions, this.logEmailResponse);
     return true;
   }
-  sendHtmlMail(to: string, cc: string, subject: string, htmlBody: string): boolean {
+  sendHtmlMail(to: string, subject: string, htmlBody: string, cc: string = ""): boolean {
     const mailOptions: IMailer = {
       to,
       cc,
@@ -38,7 +38,7 @@ export class SendMail implements ISendMailer {
     };
     return this.send(mailOptions);
   }
-  sendTextMail(to: string, cc: string, subject: string, body: string): boolean {
+  sendTextMail(to: string, subject: string, body: string, cc: string = ""): boolean {
     const mailOptions: IMailer = {
       to,
       cc,

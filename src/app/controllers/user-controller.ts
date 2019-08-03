@@ -67,8 +67,6 @@ export const getLoggedUserProfile = async (req: Request, res: Response, next: Ne
       username : exist.username,
       roleName : "User",
     };
-    const mail = new Email();
-    mail.sendThankYouEmail("shashankgpt270@gmail.com", "shashankgpt270@hotmail.com", "test123");
     if (exist.profile) {
       user.firstName = exist.profile.firstName === undefined ? undefined : exist.profile.firstName;
       user.lastName = exist.profile.lastName === undefined ? undefined : exist.profile.lastName;
@@ -214,6 +212,9 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
     if (exitEmail) {
       errMessage += `email ${req.body.email}`;
     }
+    const mail = new Email();
+    const user = { username: req.body.username };
+    mail.registerUserEmail(req.body.email, user);
     const msg = `New User is cannot be created with ${errMessage}`;
     const resMessage: IResponseMessage = messageHelp
     .createFailureMessage(msg, 0, PRECONDITIONFAILED);
