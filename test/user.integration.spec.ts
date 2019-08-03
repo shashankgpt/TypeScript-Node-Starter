@@ -11,7 +11,7 @@ import { UserHelper } from "../src/app/helpers/user-helper";
 describe("GET /user/shashankgpt270", () => {
   it("should return 200 OK", () => {
     return supertest(app).get("/user/shashankgpt270")
-    .set("Authorization", "bearer " + "e1daee0f076c58cd64b89ccb9a8461d1")
+    .set("Authorization", "bearer " + "7a76b68a070e31cd336999057af2abb7")
     .expect(SUCCESSFUL);
   });
   it("should return 400 UNAUTHORIZED", () => {
@@ -19,13 +19,13 @@ describe("GET /user/shashankgpt270", () => {
   });
   it("should return 401 BADREQUEST", () => {
     return supertest(app).get("/user/sha")
-    .set("Authorization", "bearer " + "e1daee0f076c58cd64b89ccb9a8461d1")
+    .set("Authorization", "bearer " + "a3e11382012070132400affbb2abdaf4")
     .expect(BADREQUEST);
   });
 
   it("should return 403 FORBIDDEN", () => {
     return supertest(app).get("/user/shasghajhgku")
-    .set("Authorization", "bearer " + "e1daee0f076c58cd64b89ccb9a8461d1")
+    .set("Authorization", "bearer " + "a3e11382012070132400affbb2abdaf4")
     .expect(FORBIDDEN);
   });
 
@@ -34,7 +34,7 @@ describe("GET /user/shashankgpt270", () => {
 describe("GET /user", () => {
   it("should return 200 OK", () => {
     return supertest(app).get("/user")
-    .set("Authorization", "bearer " + "e1daee0f076c58cd64b89ccb9a8461d1")
+    .set("Authorization", "bearer " + "a3e11382012070132400affbb2abdaf4")
     .expect(SUCCESSFUL);
   });
 
@@ -52,7 +52,7 @@ describe("PATCH user/updatePassword", () => {
         newPassword: "Anilgupta",
       },
     )
-    .set("Authorization", "bearer " + "5e34b94e09ea520d73a3ec867301322e")
+    .set("Authorization", "bearer " + "a3e11382012070132400affbb2abdaf4")
     .expect(SUCCESSFUL);
   });
 
@@ -62,7 +62,7 @@ describe("PATCH user/updatePassword", () => {
         oldPassword : "Anilgupta",
       },
     )
-    .set("Authorization", "bearer " + "5e34b94e09ea520d73a3ec867301322e")
+    .set("Authorization", "bearer " + "a3e11382012070132400affbb2abdaf4")
     .expect(BADREQUEST);
   });
 
@@ -73,7 +73,7 @@ describe("PATCH user/updatePassword", () => {
         newPassword: "Anilgupta",
       },
     )
-    .set("Authorization", "bearer " + "5e34b94e09ea520d73a3ec867301322e")
+    .set("Authorization", "bearer " + "a3e11382012070132400affbb2abdaf4")
     .expect(FORBIDDEN);
   });
 
@@ -94,7 +94,7 @@ describe("PUT user/shashankgpt270", () => {
       lastName: "gupta",
     };
     return supertest(app).put("/user/shashankgpt270").send(user)
-    .set("Authorization", "bearer " + "5e34b94e09ea520d73a3ec867301322e")
+    .set("Authorization", "bearer " + "a3e11382012070132400affbb2abdaf4")
     .expect(SUCCESSFUL);
   });
   it("should return 401 UNAUTHORIZED", () => {
@@ -120,7 +120,7 @@ describe("PUT user/shashankgpt270", () => {
       lastName: undefined,
     };
     return supertest(app).put("/user/shashankgpt270").send(user)
-    .set("Authorization", "bearer " + "5e34b94e09ea520d73a3ec867301322e")
+    .set("Authorization", "bearer " + "a3e11382012070132400affbb2abdaf4")
     .expect(BADREQUEST);
   });
 
@@ -134,7 +134,7 @@ describe("PUT user/shashankgpt270", () => {
       lastName: "gupta",
     };
     return supertest(app).put("/user/shashankgpt270i").send(user)
-    .set("Authorization", "bearer " + "5e34b94e09ea520d73a3ec867301322e")
+    .set("Authorization", "bearer " + "a3e11382012070132400affbb2abdaf4")
     .expect(FORBIDDEN);
   });
 
@@ -154,7 +154,7 @@ describe("DELETE user/shashankgpt270", () => {
 
   it("should return 200 OK", () => {
     return supertest(app).delete("/user/shashanjiooi4")
-    .set("Authorization", "bearer " + "5e34b94e09ea520d73a3ec867301322e")
+    .set("Authorization", "bearer " + "a3e11382012070132400affbb2abdaf4")
     .expect(SUCCESSFUL);
   });
 
@@ -165,13 +165,13 @@ describe("DELETE user/shashankgpt270", () => {
 
   it("should return 403 FORBIDDEN", () => {
     return supertest(app).delete("/user/shashanjiooi7")
-    .set("Authorization", "bearer " + "5e34b94e09ea520d73a3ec867301322e")
+    .set("Authorization", "bearer " + "a3e11382012070132400affbb2abdaf4")
     .expect(FORBIDDEN);
   });
 
   it("should return 400 BADREQUEST", () => {
     return supertest(app).delete("/user/sha")
-    .set("Authorization", "bearer " + "5e34b94e09ea520d73a3ec867301322e")
+    .set("Authorization", "bearer " + "a3e11382012070132400affbb2abdaf4")
     .expect(BADREQUEST);
   });
 
