@@ -3,7 +3,7 @@ import passportLocal from "passport-local";
 import passportFacebook from "passport-facebook";
 import lodash from "lodash";
 import * as local from "./strategies/local";
-import * as facebook from "./strategies/facebook";
+// import * as facebook from "./strategies/facebook";
 import * as basic from "./strategies/basic";
 import * as bearer from "./strategies/bearer";
 // import { User, UserType } from '../models/User';
@@ -46,7 +46,7 @@ bearer.initBearerStrategy();
 /**
  * Sign in with Facebook.
  */
-facebook.initFacebookStrategy();
+// facebook.initFacebookStrategy();
 /**
  * Login Required middleware.
  */
