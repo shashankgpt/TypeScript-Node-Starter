@@ -14,6 +14,9 @@ import { FORBIDDEN,
         BADREQUEST                    } from "../../config/util/response-code";
 import "../../config/passport";
 import * as Debug from "debug";
+import { IEmailLog } from "../data-types/interfaces/IEmailLog";
+import { AuthRequestHelper } from "../helpers/authRequest-helper";
+import { authRequest } from "../data-types/data-structure/authRequest-info";
 
 const debug = Debug.debug("app:controller");
 
@@ -352,9 +355,6 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
     if (exitEmail) {
       errMessage += `email ${req.body.email}`;
     }
-    const mail = new Email();
-    const user = { username: req.body.username };
-    mail.registerUserEmail(req.body.email, user);
     const msg = `New User is cannot be created with ${errMessage}`;
     const resMessage: IResponseMessage = messageHelp
     .createFailureMessage(msg, 0, PRECONDITIONFAILED);
@@ -363,6 +363,23 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
   const id = await promiseErrorHandler<boolean, ObjectId>(
     userHelp.createUser(req.body));
   if (id) {
+
+    const mailLog: IEmailLog = {
+      username: req.body.username,
+      subject: "",
+      body: "",
+      templateId: "",
+      to: req.body.email,
+      cc: "",
+      enabled: 1,
+      response: "",
+    };
+    const mail = new Email(mailLog);
+    const authReq = new AuthRequestHelper();
+    const token = await promiseErrorHandler<boolean, string>(
+      authReq.saveRequestAuth(req.body.username, authRequest.activeUser));
+    const user = { token, username: req.body.username };
+    mail.registerUserEmail(req.body.email, user);
     const msg = `New User is created with Username ${req.body.username}`;
     const resMessage: IResponseMessage =
     messageHelp.createSuccessMessage(msg, { username: req.body.username }, CREATED);
