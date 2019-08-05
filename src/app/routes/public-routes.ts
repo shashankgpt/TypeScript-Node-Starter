@@ -7,5 +7,6 @@ const router = express.Router();
 /* GET users listing. */
 router.post("/register", userController.register);
 router.post("/login", authenticationController.login);
+router.patch("/activateUser/:username", userController.activateUser);
 
 export { router };

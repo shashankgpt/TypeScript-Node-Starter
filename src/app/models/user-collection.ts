@@ -2,6 +2,7 @@ import bcryptNodejs from "bcrypt-nodejs";
 import crypto from "crypto";
 import mongoose from "mongoose";
 import { USER1 } from "../../config/util/collection-name";
+import { roleNum } from "../data-types/data-structure/role-info";
 export type UserDocument = mongoose.Document & {
   username: string,
   email: string,
@@ -46,6 +47,7 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: Number,
+    enum: roleNum,
     required: true,
     default: 1,
   },
