@@ -13,7 +13,6 @@ router.get("/logout", userController.logout);
 // router.get("/listOfUser", userController.getAllUser);
 // router.get("/:username", userController.getUser);
 router.patch("/updatePassword", userController.updatePassword);
-router.patch("/forgotPassword", userController.forgotPassword);
 // router.patch("/lockUser/:username", userController.lockUser);
 // router.patch("/unlockUser/:username", userController.unlockUser);
 // router.patch("/deactivateUser/:username", userController.deactivateUser);

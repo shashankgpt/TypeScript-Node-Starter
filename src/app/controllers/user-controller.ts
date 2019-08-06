@@ -126,8 +126,6 @@ export const updatePassword = async (req: Request, res: Response, next: NextFunc
 
 export const forgotPassword = async (req: Request, res: Response, next: NextFunction) => {
   req.assert("reqHash", "reqHash must be at least 4 characters long").len({ min: 4 });
-  // TO DO: Implement reqHash Check
-  // req.assert("oldPassword", "old password must be at least 4 characters long").len({ min: 4 });
   req.assert("newPassword", "new password must be at least 4 characters long").len({ min: 4 });
   const errors = req.validationErrors();
   const messageHelp = new MessageHelper();
@@ -137,19 +135,56 @@ export const forgotPassword = async (req: Request, res: Response, next: NextFunc
     return res.status(BADREQUEST).json(resMessage);
   }
   const userHelp = new UserHelper();
-  const { oldPassword , newPassword } = req.body;
-  const updated = await promiseErrorHandler<boolean, boolean>(
-    userHelp.forgotPassword(req.user._id, oldPassword, newPassword));
-  if (updated) {
-    const msg = `User password is updated with username ${req.user.username}`;
-    const resMessage: IResponseMessage = messageHelp.createSuccessMessage(msg);
-    return res.status(SUCCESSFUL).json(resMessage);
+  const { reqHash , newPassword } = req.body;
+  const user = await promiseErrorHandler<boolean, UserDocument>(
+    userHelp.findUserByResetToken(req.body.reqHash));
+  if (user instanceof User1) {
+    const deleteToken = await promiseErrorHandler<boolean, boolean>(
+      userHelp.deleteToken(user._id));
+    if (deleteToken) {
+      const updated = await promiseErrorHandler<boolean, boolean>(
+    userHelp.forgotPassword(user._id, reqHash, newPassword));
+      if (updated) {
+        const msg = `User password is updated with username ${user.username}`;
+        const resMessage: IResponseMessage = messageHelp.createSuccessMessage(msg);
+        return res.status(SUCCESSFUL).json(resMessage);
+      }
+    }
   }
   const msg = `User password is NOT updated with username ${req.user.username}`;
   const resMessage: IResponseMessage = messageHelp.createFailureMessage(msg);
   return res.status(FORBIDDEN).json(resMessage);
 };
-
+export const forgotPasswordReq = async (req: Request, res: Response, next: NextFunction) => {
+  req.assert("username", "username must be at least 4 characters long").len({ min: 4 });
+  req.assert("email", "email must be at least 4 characters long").len({ min: 4 });
+  const errors = req.validationErrors();
+  const messageHelp = new MessageHelper();
+  if (errors) {
+    debug(errors);
+    const resMessage: IResponseMessage = messageHelp.createRequiredFieldMessage(errors);
+    return res.status(BADREQUEST).json(resMessage);
+  }
+  const userHelp = new UserHelper();
+  const tokenHelp = new TokenHelper();
+  const { username , email } = req.body;
+  const user = await promiseErrorHandler<boolean, UserDocument>(
+    userHelp.findUserByUsername(username));
+  const token = tokenHelp.createToken();
+  if (user instanceof User1 && user.email === email && token) {
+    const updated = await promiseErrorHandler<boolean, UserDocument>(
+      userHelp.createPasswordToken(username, token));
+    if (updated) {
+      const msg = `User password token ${token} created for username ${username}`;
+      const resMessage: IResponseMessage = messageHelp
+      .createSuccessMessage(msg, { resetToken : token }, CREATED);
+      return res.status(CREATED).json(resMessage);
+    }
+  }
+  const msg = `Unable to created token for username ${username}`;
+  const resMessage: IResponseMessage = messageHelp.createFailureMessage(msg);
+  return res.status(FORBIDDEN).json(resMessage);
+};
 export const lockUser = async (req: Request, res: Response, next: NextFunction) => {
   req.assert("username", "username must be at least 4 characters long").len({ min: 4 });
   const errors = req.validationErrors();
