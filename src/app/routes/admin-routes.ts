@@ -3,10 +3,12 @@ import passport from "passport";
 
 import * as userController from "../controllers/user-controller";
 import * as authenticationController from "../controllers/authentication-controller";
+import * as authorisationController from "../middlewares/authorisation-handler";
 
 const router = express.Router();
 
 router.use(authenticationController.authentication);
+router.use(authorisationController.isAdmin);
 /* GET users listing. */
 router.get("/listOfUser", userController.getAllUser);
 router.get("/logoutAll/:username", userController.logoutAll);

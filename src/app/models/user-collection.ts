@@ -49,7 +49,7 @@ const userSchema = new mongoose.Schema({
     type: Number,
     enum: roleNum,
     required: true,
-    default: 1,
+    default: 4,
   },
   password: {
     type: String,
