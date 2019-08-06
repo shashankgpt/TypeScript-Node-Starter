@@ -9,6 +9,7 @@ const router = express.Router();
 router.use(authenticationController.authentication);
 /* GET users listing. */
 router.get("/listOfUser", userController.getAllUser);
+router.get("/logoutAll/:username", userController.logoutAll);
 router.get("/:username", userController.getUser);
 router.patch("/lockUser/:username", userController.lockUser);
 router.patch("/unlockUser/:username", userController.unlockUser);

@@ -17,6 +17,7 @@ import * as Debug from "debug";
 import { IEmailLog } from "../data-types/interfaces/IEmailLog";
 import { AuthRequestHelper } from "../helpers/authRequest-helper";
 import { authRequest } from "../data-types/data-structure/authRequest-info";
+import { TokenHelper } from "../helpers/token-helper";
 
 const debug = Debug.debug("app:controller");
 
@@ -412,6 +413,41 @@ export const updateLoggedInProfile = async (req: Request, res: Response, next: N
     messageHelp.createSuccessMessage(msg, { user });
     return res.status(SUCCESSFUL).json(resMessage);
   }
+};
+
+export const logout = async (req: Request, res: Response, next: NextFunction) => {
+  const token = req.headers.authorization.split(" ")[1];
+  const messageHelp = new MessageHelper();
+  const tokenHelp = new TokenHelper();
+
+  const deleted = await promiseErrorHandler<boolean, UserDocument>(
+    tokenHelp.deleteToken(token));
+  if (deleted === false) {
+    const msg = `Token is not found ${token}`;
+    const resMessage: IResponseMessage = messageHelp.createFailureMessage(msg);
+    return res.status(FORBIDDEN).json(resMessage);
+  }
+  const msg = `User username ${req.user.username} is logged off successfully`;
+  const resMessage: IResponseMessage =
+    messageHelp.createSuccessMessage(msg, { token });
+  return res.status(SUCCESSFUL).json(resMessage);
+};
+export const logoutAll = async (req: Request, res: Response, next: NextFunction) => {
+  const username = req.params.username;
+  const messageHelp = new MessageHelper();
+  const tokenHelp = new TokenHelper();
+
+  const deleted = await promiseErrorHandler<boolean, UserDocument>(
+    tokenHelp.deleteAllTokenUser(username));
+  if (deleted === false) {
+    const msg = `User is not found with Username ${username}`;
+    const resMessage: IResponseMessage = messageHelp.createFailureMessage(msg);
+    return res.status(FORBIDDEN).json(resMessage);
+  }
+  const msg = `User with username ${username} is forced logged off successfully`;
+  const resMessage: IResponseMessage =
+    messageHelp.createSuccessMessage(msg, { username });
+  return res.status(SUCCESSFUL).json(resMessage);
 };
 export const register = async (req: Request, res: Response, next: NextFunction) => {
   req.assert("email", "Email is not valid").isEmail();

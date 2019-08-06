@@ -9,9 +9,17 @@ import { ObjectId } from "bson";
 const LEN = 16;
 
 export class TokenHelper implements ITokenHelper {
-  deleteAllTokenUser(username: string): Promise<boolean | ObjectId> {
-    return new Promise((resolve, reject) => {
+  deleteAllTokenUser(username: string): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
       Token.deleteMany({ username }, (err) => {
+        return reject(err);
+      });
+      return resolve(true);
+    });
+  }
+  deleteToken(token: string) {
+    return new Promise<boolean>((resolve, reject) => {
+      Token.deleteOne({ hash: token }, (err) => {
         return reject(err);
       });
       return resolve(true);
