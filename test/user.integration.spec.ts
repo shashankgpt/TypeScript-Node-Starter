@@ -1,105 +1,130 @@
 import supertest from "supertest";
 import app from "../src/app";
-import { FORBIDDEN,
-  SUCCESSFUL,
-  CREATED,
-  PRECONDITIONFAILED,
-  BADREQUEST, UNAUTHORIZED, NOTFOUND                   } from "../src/config/util/response-code";
+import {
+    FORBIDDEN,
+    SUCCESSFUL,
+    CREATED,
+    PRECONDITIONFAILED,
+    BADREQUEST, UNAUTHORIZED, NOTFOUND
+} from "../src/config/util/response-code";
 import { IUser, IUserRegister } from "../src/app/data-types/interfaces";
 import { UserHelper } from "../src/app/helpers/user-helper";
-
+import promiseErrorHandler from "../src/app/middlewares/promise.error-handler";
+const usernameCheck = "shashankhhg";
+const passwordCheck = "Anilgupta";
+let token = "aecbd5f68e005ae90f31d62978043bbe";
 describe("GET /user/username/shashankgpt270", () => {
-  it("should return 200 OK", () => {
-    return supertest(app).get("/user/shashankgpt270")
-    .set("Authorization", "bearer " + "0a315870ff78c5ac8f6b8a338fb31ff2")
-    .expect(SUCCESSFUL);
-  });
-  it("should return 400 UNAUTHORIZED", () => {
-    return supertest(app).get("/user/shashankgpt270").expect(UNAUTHORIZED);
-  });
-  it("should return 401 BADREQUEST", () => {
-    return supertest(app).get("/user/sha")
-    .set("Authorization", "bearer " + "0a315870ff78c5ac8f6b8a338fb31ff2")
-    .expect(BADREQUEST);
-  });
+    beforeAll(async (done) => {
+        const res = await supertest(app).post("/public/register").send({
+            username: usernameCheck,
+            email: "shashankhhg34@gmail.com",
+            password: passwordCheck,
+        });
+        const auth = Buffer.from(usernameCheck + ":" + passwordCheck).toString("base64");
+        const res2 = await supertest(app).post("/public/login").send({})
+            .set("Authorization", "Basic " + auth);
+        token = res2.body.data.token;
+        done();
+    });
+    it("should return 200 OK", (done) => {
+        supertest(app).get("/user/shashankhhg")
+            .set("Authorization", "bearer " + token)
+            .expect(SUCCESSFUL);
+        done();
+    });
+    it("should return 400 UNAUTHORIZED", () => {
+        return supertest(app).get("/user/shashankhhg").expect(UNAUTHORIZED);
+    });
+    it("should return 401 BADREQUEST", (done) => {
+        supertest(app).get("/user/sha")
+            .set("Authorization", "bearer " + token)
+            .expect(BADREQUEST);
+        done();
+    });
 
-  it("should return 403 FORBIDDEN", () => {
-    return supertest(app).get("/user/shasghajhgku")
-    .set("Authorization", "bearer " + "0a315870ff78c5ac8f6b8a338fb31ff2")
-    .expect(FORBIDDEN);
-  });
+    it("should return 403 FORBIDDEN", (done) => {
+        supertest(app).get("/user/shasghajhgku")
+            .set("Authorization", "bearer " + token)
+            .expect(FORBIDDEN);
+        done();
+    });
 
 });
 
 describe("GET /user", () => {
-  it("should return 200 OK", () => {
-    return supertest(app).get("/user")
-    .set("Authorization", "bearer " + "a3e11382012070132400affbb2abdaf4")
-    .expect(SUCCESSFUL);
-  });
+    it("should return 200 OK", (done) => {
+        supertest(app).get("/user")
+            .set("Authorization", "bearer " + token)
+            .expect(SUCCESSFUL);
+        done();
+    });
 
-  it("should return 401 UNAUTHORIZED", () => {
-    return supertest(app).get("/user")
-    .expect(UNAUTHORIZED);
-  });
+    it("should return 401 UNAUTHORIZED", () => {
+        return supertest(app).get("/user")
+            .expect(UNAUTHORIZED);
+    });
 });
 
 describe("PATCH user/updatePassword", () => {
-  it("should return 200 OK", () => {
-    return supertest(app).patch("/user/updatePassword").send(
-      {
-        oldPassword : "Anilgupta",
-        newPassword: "Anilgupta",
-      },
-    )
-    .set("Authorization", "bearer " + "a3e11382012070132400affbb2abdaf4")
-    .expect(SUCCESSFUL);
-  });
+    it("should return 200 OK", (done) => {
+        supertest(app).patch("/user/updatePassword").send(
+            {
+                oldPassword: "Anilgupta",
+                newPassword: "Anilgupta",
+            },
+        )
+            .set("Authorization", "bearer " + token)
+            .expect(SUCCESSFUL);
+        done();
+    });
 
-  it("should return 400 BADREQUEST", () => {
-    return supertest(app).patch("/user/updatePassword").send(
-      {
-        oldPassword : "Anilgupta",
-      },
-    )
-    .set("Authorization", "bearer " + "a3e11382012070132400affbb2abdaf4")
-    .expect(BADREQUEST);
-  });
+    it("should return 400 BADREQUEST", (done) => {
+        supertest(app).patch("/user/updatePassword").send(
+            {
+                oldPassword: "Anilgupta",
+            },
+        )
+            .set("Authorization", "bearer " + token)
+            .expect(BADREQUEST);
+        done();
+    });
 
-  it("should return 403 FORBIDDEN", () => {
-    return supertest(app).patch("/user/updatePassword").send(
-      {
-        oldPassword : "Anilgupta2",
-        newPassword: "Anilgupta",
-      },
-    )
-    .set("Authorization", "bearer " + "a3e11382012070132400affbb2abdaf4")
-    .expect(FORBIDDEN);
-  });
+    it("should return 403 FORBIDDEN", (done) => {
+      supertest(app).patch("/user/updatePassword").send(
+            {
+                oldPassword: "Anilgupta2",
+                newPassword: "Anilgupta",
+            },
+        )
+            .set("Authorization", "bearer " + "a3e11382012070132400affbb2abdaf4")
+            .expect(FORBIDDEN);
+        done();
+    });
 
   it("should return 401 UNAUTHORIZED", () => {
-    return supertest(app).patch("/user/updatePassword")
-    .expect(UNAUTHORIZED);
-  });
+      return supertest(app).patch("/user/updatePassword")
+            .expect(UNAUTHORIZED);
+    });
 });
 
-describe("PUT user/shashankgpt270", () => {
-  it("should return 200 OK", () => {
-    const user: IUser = {
-      email : "shashankgpt270@gmail.com",
-      firstName: "shashank",
-      gender: "male",
-      location: "ghaziabad",
-      website: "ggg.com",
-      lastName: "gupta",
-    };
-    return supertest(app).put("/user/shashankgpt270").send(user)
-    .set("Authorization", "bearer " + "a3e11382012070132400affbb2abdaf4")
-    .expect(SUCCESSFUL);
-  });
+describe(`PUT user/${usernameCheck}`, () => {
+  it("should return 200 OK", (done) => {
+      const user: IUser = {
+          email: "shashankgpt270@gmail.com",
+          firstName: "shashank",
+          gender: "male",
+          location: "ghaziabad",
+          website: "ggg.com",
+          lastName: "gupta",
+        };
+      supertest(app).put(`user/${usernameCheck}`).send(user)
+            .set("Authorization", "bearer " + token)
+            .expect(SUCCESSFUL);
+      done();
+    });
   it("should return 401 UNAUTHORIZED", () => {
     const user: IUser = {
-      email : "shashankgpt270@gmail.com",
+      email: "shashankgpt270@gmail.com",
       firstName: "shashank",
       gender: "male",
       location: "ghaziabad",
@@ -107,35 +132,37 @@ describe("PUT user/shashankgpt270", () => {
       lastName: "gupta",
     };
     return supertest(app).put("/user/shashankgpt270").send(user)
-    .expect(UNAUTHORIZED);
+            .expect(UNAUTHORIZED);
   });
 
-  it("should return 400 BADREQUEST", () => {
+  it("should return 400 BADREQUEST", (done) => {
     const user: IUser = {
-      email : "shashankgpt270@gmail.com",
+      email: "shashankgpt270@gmail.com",
       firstName: "shashank",
       gender: "male",
       location: undefined,
       website: undefined,
       lastName: undefined,
     };
-    return supertest(app).put("/user/shashankgpt270").send(user)
-    .set("Authorization", "bearer " + "a3e11382012070132400affbb2abdaf4")
-    .expect(BADREQUEST);
+    supertest(app).put(`user/${usernameCheck}`).send(user)
+            .set("Authorization", "bearer " + token)
+            .expect(BADREQUEST);
+    done();
   });
 
-  it("should return 403 FORBIDDEN", () => {
+  it("should return 403 FORBIDDEN", (done) => {
     const user: IUser = {
-      email : "shashankgpt270@gmail.com",
+      email: "shashankgpt270@gmail.com",
       firstName: "shashank",
       gender: "male",
       location: "ghaziabad",
       website: "ggg.com",
       lastName: "gupta",
     };
-    return supertest(app).put("/user/shashankgpt270i").send(user)
-    .set("Authorization", "bearer " + "a3e11382012070132400affbb2abdaf4")
-    .expect(FORBIDDEN);
+    supertest(app).put("/user/shashankgpt270i").send(user)
+            .set("Authorization", "bearer " + token)
+            .expect(FORBIDDEN);
+    done();
   });
 
 });
@@ -152,27 +179,31 @@ describe("DELETE user/shashankgpt270", () => {
     });
   });
 
-  it("should return 200 OK", () => {
-    return supertest(app).delete("/user/shashanjiooi4")
-    .set("Authorization", "bearer " + "a3e11382012070132400affbb2abdaf4")
-    .expect(SUCCESSFUL);
+  it("should return 200 OK", (done) => {
+    supertest(app).delete("/user/shashanjiooi4")
+            .set("Authorization", "bearer " + token)
+            .expect(SUCCESSFUL);
+    done();
   });
 
-  it("should return 401 UNAUTHORIZED", () => {
-    return supertest(app).delete("/user/shashanjiooi4")
-    .expect(UNAUTHORIZED);
+  it("should return 401 UNAUTHORIZED", (done) => {
+    supertest(app).delete("/user/shashanjiooi4")
+            .expect(UNAUTHORIZED);
+    done();
   });
 
-  it("should return 403 FORBIDDEN", () => {
-    return supertest(app).delete("/user/shashanjiooi7")
-    .set("Authorization", "bearer " + "a3e11382012070132400affbb2abdaf4")
-    .expect(FORBIDDEN);
+  it("should return 403 FORBIDDEN", (done) => {
+    supertest(app).delete("/user/shashanjiooi7")
+            .set("Authorization", "bearer " + token)
+            .expect(FORBIDDEN);
+    done();
   });
 
-  it("should return 400 BADREQUEST", () => {
-    return supertest(app).delete("/user/sha")
-    .set("Authorization", "bearer " + "a3e11382012070132400affbb2abdaf4")
-    .expect(BADREQUEST);
+  it("should return 400 BADREQUEST", (done) => {
+    supertest(app).delete("/user/sha")
+            .set("Authorization", "bearer " + token)
+            .expect(BADREQUEST);
+    done();
   });
 
 });
