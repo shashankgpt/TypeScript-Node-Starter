@@ -5,3 +5,5 @@ export * from "./IUser";
 export * from "./IMessageHelper";
 export * from "./IValidationError";
 export * from "./ILoggerHelper";
+export * from "./IBlog";
+export * from "./IBlogHelper";

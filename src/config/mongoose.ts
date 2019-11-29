@@ -19,7 +19,8 @@ export function mongooseInit(app: any) {
   (<any>mongoose).Promise = bluebird;
   mongoose.connect(mongoUrl, { useNewUrlParser: true , dbName: databaseName }).then(
   () => {
-    console.log(`Connected with db name ${databaseName}`); },
+    console.log(`Connected with db name ${databaseName}`);
+  },
 ).catch((err) => {
   console.log(`MongoDB connection error. Please make sure MongoDB is running. ${err}`);
   const log  = new LoggerHelper();
