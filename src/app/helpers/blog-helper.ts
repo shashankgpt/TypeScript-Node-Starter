@@ -3,6 +3,7 @@ import { IBlogHelper, IBlogRegister, IBlog } from "../data-types/interfaces";
 import { ObjectID } from "bson";
 import { WriteError } from "mongodb";
 import promiseErrorHandler from "../middlewares/promise.error-handler";
+
 export class BlogHelper implements IBlogHelper {
   deleteBlogByAuthor(author: string): Promise<boolean | BlogDocument> {
     return new Promise<boolean | BlogDocument>(async (resolve, reject) => {
@@ -140,10 +141,10 @@ export class BlogHelper implements IBlogHelper {
       });
     });
   }
-  async findBlogByAuthor(author: string): Promise<BlogDocument | boolean > {
-    return new Promise<boolean | BlogDocument>(async (resolve, reject) => {
+  async findBlogByAuthor(author: string): Promise<BlogDocument[] | boolean > {
+    return new Promise<boolean | BlogDocument[]>(async (resolve, reject) => {
       const query = { author };
-      const blogDoc = await promiseErrorHandler<boolean, BlogDocument>(this.findBlog(query));
+      const blogDoc = await promiseErrorHandler<boolean, BlogDocument[]>(this.findAllBlog(query));
       return resolve(blogDoc);
     });
   }
@@ -157,6 +158,17 @@ export class BlogHelper implements IBlogHelper {
   async findBlog(query: any): Promise < boolean | BlogDocument > {
     return new Promise<boolean | BlogDocument>((resolve, reject) => {
       Blog.findOne(query, (err, existingBlog) => {
+        if (err) { return reject(err); }
+        if (existingBlog) {
+          resolve(existingBlog);
+        }
+        resolve(false);
+      });
+    });
+  }
+  async findAllBlog(query: any): Promise < boolean | BlogDocument[] > {
+    return new Promise<boolean | BlogDocument[]>((resolve, reject) => {
+      Blog.find(query, (err, existingBlog) => {
         if (err) { return reject(err); }
         if (existingBlog) {
           resolve(existingBlog);

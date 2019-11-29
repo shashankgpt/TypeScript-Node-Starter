@@ -14,7 +14,7 @@ export interface IBlogHelper {
   deleteBlog(query: any): Promise<boolean | BlogDocument>;
   findBlogByBlogId(blogId: string): Promise<BlogDocument | boolean>;
   findBlogById(id: ObjectID): Promise<BlogDocument | boolean>;
-  findBlogByAuthor(author: string): Promise<BlogDocument | boolean>;
+  findBlogByAuthor(author: string): Promise<BlogDocument[] | boolean>;
 
   findBlogById(id: ObjectID): Promise<BlogDocument | boolean>;
   findBlog(query: any): Promise<BlogDocument | boolean>;
