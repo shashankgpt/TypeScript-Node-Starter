@@ -119,7 +119,8 @@ export const getAllByAuthor = async (req: Request, res: Response, next: NextFunc
   const blogHelp = new BlogHelper();
   const messageHelp = new MessageHelper();
   const author = req.params.author;
-  const exist = await promiseErrorHandler<boolean, BlogDocument[]>(blogHelp.findBlogByAuthor(author));
+  const exist = await
+  promiseErrorHandler<boolean, BlogDocument[]>(blogHelp.findBlogByAuthor(author));
   if (exist === false) {
     const msg = `No Blog Found`;
     const resMessage: IResponseMessage = messageHelp
