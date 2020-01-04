@@ -59,6 +59,17 @@ export class UserHelper implements IUserHelper {
       return resolve(val);
     });
   }
+  changeRole(username: string, role: number): Promise<boolean> {
+    return new Promise<boolean | boolean>(async (resolve, reject) => {
+      const query = { username };
+      const update = {
+        role,
+      };
+      const userDoc = await promiseErrorHandler<boolean, UserDocument>(this.update(query, update));
+      const val = userDoc ? true : false;
+      return resolve(val);
+    });
+  }
   createUser(user: IUserRegister): Promise<ObjectID | boolean> {
     return new Promise<ObjectID | boolean>((resolve, reject) => {
       const userModel = new User1({
@@ -105,6 +116,40 @@ export class UserHelper implements IUserHelper {
         });
       }
       else { resolve(false); }
+    });
+  }
+
+  forgotPassword(userId: ObjectID, reqHash: string, newPassword: string)
+  : Promise<boolean> {
+    return new Promise<boolean>(async (resolve, reject) => {
+      const user = await promiseErrorHandler<boolean, UserDocument>(this.findUserByUserID(userId));
+      if (user instanceof User1) {
+      //  user.comparePassword(reqHash, (err: Error, isMatch: boolean) => {
+         // if (err) { return reject(err); }
+          // if (isMatch) {
+        user.password = newPassword;
+        user.save((err: WriteError) => {
+          if (err) { return reject(err); }
+              // delete all active session for a user
+          resolve(true);
+        });
+          // }
+          // else { resolve(false); }
+       // });
+      }
+      else { resolve(false); }
+    });
+  }
+  deleteToken(userId: ObjectID): Promise<boolean> {
+    return new Promise<boolean | boolean>(async (resolve, reject) => {
+      const query = { _id: userId };
+      const update = {
+        passwordResetToken: "",
+        passwordResetExpires: "",
+      };
+      const userDoc = await promiseErrorHandler<boolean, UserDocument>(this.update(query, update));
+      const val = userDoc ? true : false;
+      return resolve(val);
     });
   }
   updateEmail(userId: ObjectID, newEmail: string): Promise<boolean> {
@@ -183,9 +228,26 @@ export class UserHelper implements IUserHelper {
       return resolve(userDoc);
     });
   }
+  async createPasswordToken(userName: string, token: string): Promise<UserDocument | boolean > {
+    return new Promise<boolean | UserDocument>(async (resolve, reject) => {
+      const query = { username : userName };
+      const now = new Date();
+      const newDate = now.setDate(now.getDate() + 1);
+      const update = { passwordResetToken: token, passwordResetExpires: newDate  };
+      const userDoc = await promiseErrorHandler<boolean, UserDocument>(this.update(query, update));
+      return resolve(userDoc);
+    });
+  }
   async findUserByEmail(mail: string): Promise< UserDocument | boolean > {
     return new Promise<boolean | UserDocument>(async (resolve, reject) => {
       const query = { email : mail };
+      const userDoc = await promiseErrorHandler<boolean, UserDocument>(this.findUser(query));
+      return resolve(userDoc);
+    });
+  }
+  async findUserByResetToken(token: string): Promise< UserDocument | boolean > {
+    return new Promise<boolean | UserDocument>(async (resolve, reject) => {
+      const query = { passwordResetToken: token };
       const userDoc = await promiseErrorHandler<boolean, UserDocument>(this.findUser(query));
       return resolve(userDoc);
     });

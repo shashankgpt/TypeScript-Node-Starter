@@ -5,6 +5,8 @@ import { resolve, reject } from "bluebird";
 import { IUserRegister } from "../data-types/interfaces";
 import { error } from "shelljs";
 import { ObjectID, ObjectId } from "bson";
+const usernameCheck = "shashankhhg";
+const emailCheck = "shashankhhg34@gmail.com";
 
 describe("check for getAllUser function", () => {
   it("get All user with fake Promise with false to verify time", (done) => {
@@ -49,9 +51,10 @@ describe("check for unlockUser", () => {
       done();
     });
   });
-  it("unLockUser real", (done) => {
+  it.skip("unLockUser real", (done) => {
     const userHelp = new UserHelper();
-    userHelp.unLockUser("shashankgpt2706").then(data => {
+    userHelp.unLockUser(usernameCheck).then(data => {
+      console.log(data);
       expect(data).toBe(true);
       done();
     });
@@ -82,9 +85,9 @@ describe("check for lockUser", () => {
       done();
     });
   });
-  it("LockUser real", (done) => {
+  it.skip("LockUser real", (done) => {
     const userHelp = new UserHelper();
-    userHelp.lockUser("shashankgpt2706").then(data => {
+    userHelp.lockUser(usernameCheck).then(data => {
       expect(data).toBe(true);
       done();
     });
@@ -115,9 +118,9 @@ describe("check for activateUser to verify time", () => {
       done();
     });
   });
-  it("activateUser real", (done) => {
+  it.skip("activateUser real", (done) => {
     const userHelp = new UserHelper();
-    userHelp.activeUser("shashankgpt2706").then(data => {
+    userHelp.activeUser(usernameCheck).then(data => {
       expect(data).toBe(true);
       done();
     });
@@ -201,9 +204,9 @@ describe("check for activateUser", () => {
       done();
     });
   });
-  it("activateUser real", (done) => {
+  it.skip("activateUser real", (done) => {
     const userHelp = new UserHelper();
-    userHelp.activeUser("shashankgpt2706").then(data => {
+    userHelp.activeUser(usernameCheck).then(data => {
       expect(data).toBe(true);
       done();
     });
@@ -537,14 +540,6 @@ describe("check for updatePassword", () => {
     userHelp.updatePassword(new ObjectId("507f1f77bcf86cd799439011"),
                             "shashanjiooi@gmail3.com", "shashanjiooi@gmail4.com").then(data => {
                               expect(data).toBe(false);
-                              done();
-                            });
-  });
-  it("updatePassword real", (done) => {
-    const userHelp = new UserHelper();
-    userHelp.updatePassword(new ObjectId("5d0e0e74b5fd5e5881d262c8"),
-                            "shashanjiooi@gmail4.com", "shashanjiooi@gmail4.com").then(data => {
-                              expect(data).toBe(true);
                               done();
                             });
   });

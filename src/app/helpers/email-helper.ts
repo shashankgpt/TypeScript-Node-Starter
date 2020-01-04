@@ -4,23 +4,37 @@ import { EmailTemplateHelper } from "./email.template-helper";
 import { EmailRespond } from "../data-types/interfaces/IEmailTemplate";
 import { EmailTemp, EmailTemplateDocument } from "../models/emailTemplate-collection";
 import promiseErrorHandler from "../middlewares/promise.error-handler";
+import { IEmailLog } from "../data-types/interfaces/IEmailLog";
 
 const ejs = require("ejs");
 export class Email implements IEmail {
   async sendThankYouEmail(to: string, tempObj: Object, cc: string= ""): Promise<boolean> {
     const mailObj = await this.makeTemplate("thank.mail", tempObj);
     const { subject, body } = mailObj;
-    return this.sendMail.sendHtmlMail(to, subject, body, cc);
+    this.mailLog.templateId = "thank.mail";
+    this.mailLog.body = body;
+    this.mailLog.subject = subject;
+    this.mailLog.to = to;
+    this.mailLog.cc = cc;
+    const sendMail = new SendMail(this.mailLog);
+    return sendMail.sendHtmlMail(to, subject, body, cc);
   }
   async registerUserEmail(to: string, tempObj: Object, cc: string= ""): Promise<boolean> {
     const mailObj = await this.makeTemplate("register.mail", tempObj);
     const { subject, body } = mailObj;
-    return this.sendMail.sendHtmlMail(to, subject, body, cc);
+    this.mailLog.templateId = "register.mail";
+    this.mailLog.body = body;
+    this.mailLog.subject = subject;
+    this.mailLog.to = to;
+    this.mailLog.cc = cc;
+    const sendMail = new SendMail(this.mailLog);
+    return sendMail.sendHtmlMail(to, subject, body, cc);
   }
   async forgotPasswordEmail(to: string, tempObj: Object, cc: string): Promise<boolean> {
     const mailObj = await this.makeTemplate("forgot.password.mail", tempObj);
     const { subject, body } = mailObj;
-    return this.sendMail.sendHtmlMail(to, subject, body, cc);
+    const sendMail = new SendMail(this.mailLog);
+    return sendMail.sendHtmlMail(to, subject, body, cc);
   }
   async makeTemplate(templateId: string, tempObj: Object): Promise<EmailRespond> {
     return new Promise(async (resolve, reject) => {
@@ -39,9 +53,9 @@ export class Email implements IEmail {
       return reject(mail);
     });
   }
-  sendMail: SendMail;
-  constructor() {
-    this.sendMail = new SendMail();
+  mailLog: IEmailLog;
+  constructor(mailLog: IEmailLog) {
+    this.mailLog = mailLog;
   }
 
 }
