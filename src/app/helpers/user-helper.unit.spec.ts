@@ -51,9 +51,10 @@ describe("check for unlockUser", () => {
       done();
     });
   });
-  it("unLockUser real", (done) => {
+  it.skip("unLockUser real", (done) => {
     const userHelp = new UserHelper();
     userHelp.unLockUser(usernameCheck).then(data => {
+      console.log(data);
       expect(data).toBe(true);
       done();
     });
@@ -84,7 +85,7 @@ describe("check for lockUser", () => {
       done();
     });
   });
-  it("LockUser real", (done) => {
+  it.skip("LockUser real", (done) => {
     const userHelp = new UserHelper();
     userHelp.lockUser(usernameCheck).then(data => {
       expect(data).toBe(true);
@@ -117,7 +118,7 @@ describe("check for activateUser to verify time", () => {
       done();
     });
   });
-  it("activateUser real", (done) => {
+  it.skip("activateUser real", (done) => {
     const userHelp = new UserHelper();
     userHelp.activeUser(usernameCheck).then(data => {
       expect(data).toBe(true);
@@ -203,7 +204,7 @@ describe("check for activateUser", () => {
       done();
     });
   });
-  it("activateUser real", (done) => {
+  it.skip("activateUser real", (done) => {
     const userHelp = new UserHelper();
     userHelp.activeUser(usernameCheck).then(data => {
       expect(data).toBe(true);
