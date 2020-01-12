@@ -10,6 +10,7 @@ router.use(authenticationController.authentication);
 /* GET users listing. */
 router.post("/", blogController.createBlog);
 router.get("/", blogController.getAll);
+router.post("/existBlogName", blogController.checkName);
 router.get("/:blogId", blogController.getAllByID);
 router.get("/user/:userID", blogController.getAllByUserID);
 router.patch("/activate/:blogId", blogController.activeByBlogID);

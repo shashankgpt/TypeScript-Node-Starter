@@ -155,6 +155,19 @@ export class BlogHelper implements IBlogHelper {
       return resolve(blogDoc);
     });
   }
+
+  async checkBlogName(id: string, name: string): Promise< BlogDocument | boolean > {
+    return new Promise<boolean | BlogDocument>(async (resolve, reject) => {
+      const query = { blogId : id };
+      const query1 = { blogName : name };
+      const blogDoc = await promiseErrorHandler<boolean, BlogDocument>(this.findBlog(query));
+      const blogDoc1 = await promiseErrorHandler<boolean, BlogDocument>(this.findBlog(query1));
+      if (blogDoc || blogDoc1) {
+        return resolve(false);
+      }
+      resolve(true);
+    });
+  }
   async findBlog(query: any): Promise < boolean | BlogDocument > {
     return new Promise<boolean | BlogDocument>((resolve, reject) => {
       Blog.findOne(query, (err, existingBlog) => {

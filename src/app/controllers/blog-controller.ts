@@ -185,6 +185,28 @@ export const activeByBlogID = async (req: Request, res: Response, next: NextFunc
   return res.status(SUCCESSFUL).json(resMessage);
 };
 
+export const checkName = async (req: Request, res: Response, next: NextFunction) => {
+  req.assert("blogId", "blogId must be at least 4 characters long").len({ min: 4 });
+  req.assert("blogName", "blogName must be at least 4 characters long").len({ min: 4 });
+
+  const blogHelp = new BlogHelper();
+  const messageHelp = new MessageHelper();
+  const blogId = req.body.blogId;
+  const blogName = req.body.blogName;
+  const exist = await promiseErrorHandler<boolean, BlogDocument>(
+    blogHelp.checkBlogName(blogId, blogName));
+  if (exist) {
+    const msg = `You can create a Blog with ID ${blogId}`;
+    const resMessage: IResponseMessage =
+      messageHelp.createSuccessMessage(msg, { }, SUCCESSFUL);
+    return res.status(SUCCESSFUL).json(resMessage);
+  }
+  const msg = `Name exists ${blogId}`;
+  const resMessage: IResponseMessage = messageHelp
+    .createFailureMessage(msg, 0, PRECONDITIONFAILED);
+  return res.status(PRECONDITIONFAILED).json(resMessage);
+};
+
 export const deActiveByBlogID = async (req: Request, res: Response, next: NextFunction) => {
   req.assert("blogId", "blogId must be at least 4 characters long").len({ min: 4 });
   const blogHelp = new BlogHelper();

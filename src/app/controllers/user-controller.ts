@@ -363,10 +363,10 @@ export const updateProfile = async (req: Request, res: Response, next: NextFunct
   const oldUser: IUser = {
     email,
     firstName,
-    gender:genderVal,
     location,
     website,
     lastName,
+    gender: genderVal,
   };
   const newUser = await promiseErrorHandler<boolean, UserDocument>(
     userHelp.updateProfileByUsername(req.params.username, oldUser));
@@ -414,14 +414,14 @@ export const updateLoggedInProfile = async (req: Request, res: Response, next: N
   }
   const userHelp = new UserHelper();
   const { email, firstName, lastName , gender, location, website } = req.body;
-  const genderVal = Number(gender)
+  const genderVal = Number(gender);
   const oldUser: IUser = {
     email,
     firstName,
-    gender :genderVal,
     location,
     website,
     lastName,
+    gender : genderVal,
   };
   const username = req.user.username;
   const newUser = await promiseErrorHandler<boolean, UserDocument>(
