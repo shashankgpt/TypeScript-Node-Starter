@@ -345,7 +345,7 @@ export const updateProfile = async (req: Request, res: Response, next: NextFunct
   req.assert("email", "Email is not valid").isEmail();
   req.assert("username", "username must be at least 4 characters long").len({ min: 4 });
   req.assert("firstName", "firstName must be at least 4 characters long").len({ min: 4 });
-  req.assert("gender", "gender must be at least 4 characters long").len({ min: 4 });
+  req.assert("gender", "gender must be at least 1 characters long").len({ min: 1 });
   req.assert("location", "location must be at least 4 characters long").len({ min: 4 });
   req.assert("website", "website must be at least 4 characters long").len({ min: 4 });
   req.sanitize("email").normalizeEmail({ gmail_remove_dots: false });
@@ -359,10 +359,11 @@ export const updateProfile = async (req: Request, res: Response, next: NextFunct
   }
   const userHelp = new UserHelper();
   const { email, firstName, lastName , gender, location, website } = req.body;
+  const genderVal = Number(gender);
   const oldUser: IUser = {
     email,
     firstName,
-    gender,
+    gender:genderVal,
     location,
     website,
     lastName,
@@ -399,7 +400,7 @@ export const updateLoggedInProfile = async (req: Request, res: Response, next: N
   // console.log(req.headers.authorization);
   req.assert("email", "Email is not valid").isEmail();
   req.assert("firstName", "firstName must be at least 4 characters long").len({ min: 4 });
-  req.assert("gender", "gender must be at least 4 characters long").len({ min: 4 });
+  req.assert("gender", "gender must be at least 1 characters long").len({ min: 1 });
   req.assert("location", "location must be at least 4 characters long").len({ min: 4 });
   req.assert("website", "website must be at least 4 characters long").len({ min: 4 });
   req.sanitize("email").normalizeEmail({ gmail_remove_dots: false });
@@ -413,10 +414,11 @@ export const updateLoggedInProfile = async (req: Request, res: Response, next: N
   }
   const userHelp = new UserHelper();
   const { email, firstName, lastName , gender, location, website } = req.body;
+  const genderVal = Number(gender)
   const oldUser: IUser = {
     email,
     firstName,
-    gender,
+    gender :genderVal,
     location,
     website,
     lastName,

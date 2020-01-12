@@ -7,7 +7,7 @@ export interface IUserRegister {
 export class IUserProfile {
   firstName: string;
   lastName: string;
-  gender: string;
+  gender: number;
   location: string;
   website: string;
   picture: string;
@@ -15,7 +15,7 @@ export class IUserProfile {
 export class IUser {
   firstName?: string;
   lastName?: string;
-  gender?: string;
+  gender?: number;
   location?: string;
   website?: string;
   picture?: string;
