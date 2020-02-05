@@ -14,60 +14,60 @@ const usernameCheck = "shashankhhg";
 const passwordCheck = "Anilgupta";
 let token = "aecbd5f68e005ae90f31d62978043bbe";
 describe("GET /user/username/shashankgpt270", () => {
-    beforeAll(async (done) => {
-        const res = await supertest(app).post("/public/register").send({
+  beforeAll(async (done) => {
+    const res = await supertest(app).post("/public/register").send({
             username: usernameCheck,
             email: "shashankhhg34@gmail.com",
             password: passwordCheck,
         });
-        const auth = Buffer.from(usernameCheck + ":" + passwordCheck).toString("base64");
-        const res2 = await supertest(app).post("/public/login").send({})
+    const auth = Buffer.from(usernameCheck + ":" + passwordCheck).toString("base64");
+    const res2 = await supertest(app).post("/public/login").send({})
             .set("Authorization", "Basic " + auth);
-        token = res2.body.data.token;
-        done();
-    });
-    it("should return 200 OK", (done) => {
-        supertest(app).get("/user/shashankhhg")
+    token = res2.body.data.token;
+    done();
+  });
+  it("should return 200 OK", (done) => {
+    supertest(app).get("/user/shashankhhg")
             .set("Authorization", "bearer " + token)
             .expect(SUCCESSFUL);
-        done();
-    });
-    it("should return 400 UNAUTHORIZED", () => {
-        return supertest(app).get("/user/shashankhhg").expect(UNAUTHORIZED);
-    });
-    it("should return 401 BADREQUEST", (done) => {
-        supertest(app).get("/user/sha")
+    done();
+  });
+  it("should return 400 UNAUTHORIZED", () => {
+    return supertest(app).get("/user/shashankhhg").expect(UNAUTHORIZED);
+  });
+  it("should return 401 BADREQUEST", (done) => {
+    supertest(app).get("/user/sha")
             .set("Authorization", "bearer " + token)
             .expect(BADREQUEST);
-        done();
-    });
+    done();
+  });
 
-    it("should return 403 FORBIDDEN", (done) => {
-        supertest(app).get("/user/shasghajhgku")
+  it("should return 403 FORBIDDEN", (done) => {
+    supertest(app).get("/user/shasghajhgku")
             .set("Authorization", "bearer " + token)
             .expect(FORBIDDEN);
-        done();
-    });
+    done();
+  });
 
 });
 
 describe("GET /user", () => {
-    it("should return 200 OK", (done) => {
-        supertest(app).get("/user")
+  it("should return 200 OK", (done) => {
+    supertest(app).get("/user")
             .set("Authorization", "bearer " + token)
             .expect(SUCCESSFUL);
-        done();
-    });
+    done();
+  });
 
-    it("should return 401 UNAUTHORIZED", () => {
-        return supertest(app).get("/user")
+  it("should return 401 UNAUTHORIZED", () => {
+    return supertest(app).get("/user")
             .expect(UNAUTHORIZED);
-    });
+  });
 });
 
 describe("PATCH user/updatePassword", () => {
-    it("should return 200 OK", (done) => {
-        supertest(app).patch("/user/updatePassword").send(
+  it("should return 200 OK", (done) => {
+    supertest(app).patch("/user/updatePassword").send(
             {
                 oldPassword: "Anilgupta",
                 newPassword: "Anilgupta",
@@ -75,22 +75,22 @@ describe("PATCH user/updatePassword", () => {
         )
             .set("Authorization", "bearer " + token)
             .expect(SUCCESSFUL);
-        done();
-    });
+    done();
+  });
 
-    it("should return 400 BADREQUEST", (done) => {
-        supertest(app).patch("/user/updatePassword").send(
+  it("should return 400 BADREQUEST", (done) => {
+    supertest(app).patch("/user/updatePassword").send(
             {
                 oldPassword: "Anilgupta",
             },
         )
             .set("Authorization", "bearer " + token)
             .expect(BADREQUEST);
-        done();
-    });
+    done();
+  });
 
-    it("should return 403 FORBIDDEN", (done) => {
-      supertest(app).patch("/user/updatePassword").send(
+  it("should return 403 FORBIDDEN", (done) => {
+    supertest(app).patch("/user/updatePassword").send(
             {
                 oldPassword: "Anilgupta2",
                 newPassword: "Anilgupta",
@@ -98,35 +98,35 @@ describe("PATCH user/updatePassword", () => {
         )
             .set("Authorization", "bearer " + "a3e11382012070132400affbb2abdaf4")
             .expect(FORBIDDEN);
-        done();
-    });
+    done();
+  });
 
   it("should return 401 UNAUTHORIZED", () => {
-      return supertest(app).patch("/user/updatePassword")
+    return supertest(app).patch("/user/updatePassword")
             .expect(UNAUTHORIZED);
-    });
+  });
 });
 
 describe(`PUT user/${usernameCheck}`, () => {
   it("should return 200 OK", (done) => {
-      const user: IUser = {
-          email: "shashankgpt270@gmail.com",
-          firstName: "shashank",
-          gender: "male",
-          location: "ghaziabad",
-          website: "ggg.com",
-          lastName: "gupta",
-        };
-      supertest(app).put(`user/${usernameCheck}`).send(user)
+    const user: IUser = {
+      email: "shashankgpt270@gmail.com",
+      firstName: "shashank",
+      gender: 1,
+      location: "ghaziabad",
+      website: "ggg.com",
+      lastName: "gupta",
+    };
+    supertest(app).put(`user/${usernameCheck}`).send(user)
             .set("Authorization", "bearer " + token)
             .expect(SUCCESSFUL);
-      done();
-    });
+    done();
+  });
   it("should return 401 UNAUTHORIZED", () => {
     const user: IUser = {
       email: "shashankgpt270@gmail.com",
       firstName: "shashank",
-      gender: "male",
+      gender: 1,
       location: "ghaziabad",
       website: "ggg.com",
       lastName: "gupta",
@@ -139,7 +139,7 @@ describe(`PUT user/${usernameCheck}`, () => {
     const user: IUser = {
       email: "shashankgpt270@gmail.com",
       firstName: "shashank",
-      gender: "male",
+      gender: 1,
       location: undefined,
       website: undefined,
       lastName: undefined,
@@ -154,7 +154,7 @@ describe(`PUT user/${usernameCheck}`, () => {
     const user: IUser = {
       email: "shashankgpt270@gmail.com",
       firstName: "shashank",
-      gender: "male",
+      gender: 1,
       location: "ghaziabad",
       website: "ggg.com",
       lastName: "gupta",
