@@ -148,6 +148,13 @@ export class BlogHelper implements IBlogHelper {
       return resolve(blogDoc);
     });
   }
+  async findBlogByUsername(user: string): Promise<BlogDocument[] | boolean > {
+    return new Promise<boolean | BlogDocument[]>(async (resolve, reject) => {
+      const query = { user };
+      const blogDoc = await promiseErrorHandler<boolean, BlogDocument[]>(this.findAllBlog(query));
+      return resolve(blogDoc);
+    });
+  }
   async findBlogById(id: ObjectID): Promise< BlogDocument | boolean > {
     return new Promise<boolean | BlogDocument>(async (resolve, reject) => {
       const query = { _id : id };

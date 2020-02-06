@@ -114,6 +114,23 @@ export const getAll = async (req: Request, res: Response, next: NextFunction) =>
   return res.status(SUCCESSFUL).json(resMessage);
 };
 
+export const getAllUserBlog = async (req: Request, res: Response, next: NextFunction) => {
+  const blogHelp = new BlogHelper();
+  const messageHelp = new MessageHelper();
+  const exist = await
+   promiseErrorHandler<boolean, BlogDocument[]>(blogHelp.findBlogByUsername(req.user._id));
+  if (exist === false) {
+    const msg = `No Blog Found for username ${req.user.username}`;
+    const resMessage: IResponseMessage = messageHelp
+      .createFailureMessage(msg, 0, PRECONDITIONFAILED);
+    return res.status(PRECONDITIONFAILED).json(resMessage);
+  }
+  const msg = `All Blog for username ${req.user.username}`;
+  const resMessage: IResponseMessage =
+      messageHelp.createSuccessMessage(msg, { blogs: exist }, SUCCESSFUL);
+  return res.status(SUCCESSFUL).json(resMessage);
+};
+
 export const getAllByAuthor = async (req: Request, res: Response, next: NextFunction) => {
   req.assert("author", "author must be at least 4 characters long").len({ min: 4 });
   const blogHelp = new BlogHelper();

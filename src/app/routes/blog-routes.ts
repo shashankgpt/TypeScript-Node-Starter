@@ -12,6 +12,7 @@ router.use(authorisationController.isAdmin);
 /* GET users listing. */
 router.post("/", blogController.createBlog);
 router.get("/", blogController.getAll);
+router.get("/myBlog", blogController.getAllUserBlog);
 router.post("/existBlogName", blogController.checkName);
 router.get("/:blogId", blogController.getAllByID);
 router.get("/user/:userID", blogController.getAllByUserID);
