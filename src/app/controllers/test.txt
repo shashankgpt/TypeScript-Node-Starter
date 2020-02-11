@@ -1,0 +1,1223 @@
+ <!doctype html>
+[Node] <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+[Node] <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+[Node] <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+[Node] <!--[if gt IE 8]><!-->
+[Node] 	<html class="no-js" lang="">
+[Node] 	<!--<![endif]-->
+[Node] 		<head>
+[Node] 			<meta charset="utf-8">
+[Node] 			<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+[Node] 			
+[Node] 			<title>Vijay Bullion</title>
+[Node] 			
+[Node] 			<meta name="description" content="">
+[Node] 			<meta name="viewport" content="width=device-width, initial-scale=1">
+[Node] 			
+[Node] 			<link rel="apple-touch-icon" href="http://www.vijaybullion.com//apple-touch-icon.png">
+[Node] 			<link rel="stylesheet" href="http://www.vijaybullion.com/assets/css/bootstrap.min.css">
+[Node] 			<link rel="stylesheet" href="http://www.vijaybullion.com/assets/css/bootstrap-theme.min.css">
+[Node] 			<link rel="stylesheet" href="http://www.vijaybullion.com/assets/css/main.css">
+[Node] 			<link rel="stylesheet" href="http://www.vijaybullion.com/assets/css/media.css">
+[Node] 			<link rel="stylesheet" href="http://www.vijaybullion.com/assets/css/font-awesome.min.css">
+[Node] 			<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>	
+[Node] 			
+[Node] 			<link rel="stylesheet" href="http://www.vijaybullion.com/assets/flex/flexslider.css" type="text/css" media="screen" />
+[Node] 			<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>	
+[Node] 			
+[Node] 			<script src="http://www.vijaybullion.com/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+[Node] 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+[Node] 			
+[Node] 			<!-- /container --> 
+[Node] 			<script type="text/javascript" src="http://www.vijaybullion.com/assets/js/vendor/jquery-1.11.2.min.js"></script>
+[Node] 			<script type="text/javascript" src="http://www.vijaybullion.com/assets/js/jquery.xml2json.js"></script>
+[Node] 	
+[Node] 			<script src="http://www.vijaybullion.com/assets/js/vendor/bootstrap.min.js"></script> 
+[Node] 			<script src="http://www.vijaybullion.com/assets/js/plugins.js"></script> 
+[Node] 			<script src="http://www.vijaybullion.com/assets/js/main.js"></script>
+[Node] 			
+[Node] 			<script type="text/javascript" src="http://www.vijaybullion.com/assets/flex/jquery.flexslider.js"></script>	
+[Node] 			
+[Node] 			<!-- Magnific Popup core CSS file -->
+[Node] 			<link rel="stylesheet" href="http://www.vijaybullion.com/assets/magnific-popup/magnific-popup.css">
+[Node]             <link rel="stylesheet" href="http://www.vijaybullion.com/assets/magnific-popup/popup.css" type="text/css" media="screen" /> 
+[Node] 			<!-- Magnific Popup core JS file -->
+[Node] 			<script src="http://www.vijaybullion.com/assets/magnific-popup/jquery.magnific-popup.js"></script> 
+[Node] 			
+[Node] 			<!-- Nivo Slider CSS file -->
+[Node] 			<link rel="stylesheet" href="http://www.vijaybullion.com/assets/nivo-slider/nivo-slider.css" type="text/css" media="screen" />
+[Node] 			<link rel="stylesheet" href="http://www.vijaybullion.com/assets/nivo-slider/themes/default/default.css" type="text/css" media="screen" />
+[Node] 			<link rel="stylesheet" href="http://www.vijaybullion.com/assets/nivo-slider/themes/light/light.css" type="text/css" media="screen" />
+[Node] 			<link rel="stylesheet" href="http://www.vijaybullion.com/assets/nivo-slider/themes/dark/dark.css" type="text/css" media="screen" />
+[Node] 			<link rel="stylesheet" href="http://www.vijaybullion.com/assets/nivo-slider/themes/bar/bar.css" type="text/css" media="screen" />
+[Node] 			<!-- Nivo Slider JS file -->
+[Node] 			<script src="http://www.vijaybullion.com/assets/nivo-slider/jquery.nivo.slider.pack.js" type="text/javascript"></script>
+[Node] 	
+[Node] 			<script src="http://www.vijaybullion.com/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+[Node] 			<script src="http://www.vijaybullion.com/assets/js/socket.io.js"></script>
+[Node] 			<script type="text/javascript">
+[Node] 				$(window).load(function() {
+[Node] 					$('#slider').nivoSlider();
+[Node] 				});
+[Node] 			</script> 
+[Node] 
+[Node] 			<script type='text/javascript'>
+[Node] 				var browserName=navigator.appName; 
+[Node] 				if (browserName=="Microsoft Internet Explorer")
+[Node] 				 {
+[Node] 				  var x=confirm("Kindly Use Google Chrome or Mozila Firefox For Live Rates!");
+[Node] 				  if(x)
+[Node] 				  window.open("http://www.google.com/chrome", '_self');
+[Node] 				  else
+[Node] 				  window.open("http://www.google.com/chrome", '_self');
+[Node] 				 }
+[Node] 			</script>
+[Node] 			
+[Node] 			<SCRIPT TYPE="text/javascript"> 
+[Node] 				var message="Sorry, right-click has been disabled"; 
+[Node] 				/////////////////////////////////// 
+[Node] 				function clickIE() {if (document.all) {(message);return false;}} 
+[Node] 				function clickNS(e) {if 
+[Node] 				(document.layers||(document.getElementById&&!document.all)) { 
+[Node] 				if (e.which==2||e.which==3) {(message);return false;}}} 
+[Node] 				if (document.layers) 
+[Node] 				{document.captureEvents(Event.MOUSEDOWN);document.onmousedown=clickNS;} 
+[Node] 				else{document.onmouseup=clickNS;document.oncontextmenu=clickIE;} 
+[Node] 				document.oncontextmenu=new Function("return false") 
+[Node] 			</SCRIPT>
+[Node] 			
+[Node] 			<script language="JavaScript">
+[Node] 			document.onkeydown=disableCtrlKeyCombination;
+[Node] 			function disableCtrlKeyCombination(e)
+[Node] 			{
+[Node] 					//list all CTRL + key combinations you want to disable
+[Node] 					//alert(1);
+[Node] 					var forbiddenKeys = new Array('a', 'n', 'c', 'x', 'v', 'j', 's');
+[Node] 					var key;
+[Node] 					var isCtrl;
+[Node] 					if(window.event)
+[Node] 					{
+[Node] 							key = window.event.keyCode;     //IE
+[Node] 							if(window.event.ctrlKey)
+[Node] 									isCtrl = true;
+[Node] 							else
+[Node] 									isCtrl = false;
+[Node] 					}
+[Node] 					else
+[Node] 					{
+[Node] 							key = e.which;     //firefox
+[Node] 							if(e.ctrlKey)
+[Node] 									isCtrl = true;
+[Node] 							else
+[Node] 									isCtrl = false;
+[Node] 					}
+[Node] 					//if ctrl is pressed check if other key is in forbidenKeys array
+[Node] 					if(isCtrl)
+[Node] 					{
+[Node] 							for(i=0; i<forbiddenKeys.length; i++)
+[Node] 							{
+[Node] 									//case-insensitive comparation
+[Node] 									if(forbiddenKeys[i].toLowerCase() == String.fromCharCode(key).toLowerCase())
+[Node] 									{
+[Node] 											alert('Key combination CTRL + '
+[Node] 													+String.fromCharCode(key)
+[Node] 													+' has been disabled.');
+[Node] 											return false;
+[Node] 									}
+[Node] 							}
+[Node] 					}
+[Node] 					return true;
+[Node] 			}
+[Node] 			
+[Node] 			</script>
+[Node] 			<script type="text/javascript">
+[Node] 
+[Node] 			  var _gaq = _gaq || [];
+[Node] 			  _gaq.push(['_setAccount', 'UA-34302934-1']);
+[Node] 			  _gaq.push(['_trackPageview']);
+[Node] 
+[Node] 			  (function() {
+[Node] 				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+[Node] 				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+[Node] 				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+[Node] 			  })();
+[Node] 
+[Node] 			</script>
+[Node] 				<script>
+[Node] 			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+[Node] 			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+[Node] 			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+[Node] 			  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+[Node] 
+[Node] 			  ga('create', 'UA-37296296-1', 'auto');
+[Node] 			  ga('send', 'pageview');
+[Node] 
+[Node] 			</script>
+[Node] 			<script language="javascript">
+[Node] 			function calcTime(duboffset,lonoffset,usoffset,spoffset) {
+[Node] 
+[Node] 				// create Date object for current location
+[Node] 				days =new Array('Sun','Mon','Tue','Wed','Thu','Fri','Sat');
+[Node] 				d = new Date();
+[Node] 			   // alert(d.getTime());
+[Node] 				// convert to msec
+[Node] 				// add local time zone offset 
+[Node] 				// get UTC time in msec
+[Node] 				utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+[Node] 				// create new Date object for different city
+[Node] 				// using supplied offset
+[Node] 				dub = new Date(utc + (3600000*duboffset));
+[Node] 				lon= new Date(utc + (3600000*lonoffset));
+[Node] 				us	= new Date(utc + (3600000*usoffset));
+[Node] 				sp	= new Date(utc + (3600000*spoffset));
+[Node] 				
+[Node] 				//Dubai
+[Node] 				var dhours = dub.getHours();
+[Node] 				var dminutes = dub.getMinutes();
+[Node] 				var dseconds = dub.getSeconds();
+[Node] 				var dsuffix = "AM";
+[Node] 				var dday=(dub.getDay());
+[Node] 				//London
+[Node] 				var lhours = lon.getHours();
+[Node] 				var lminutes = lon.getMinutes();
+[Node] 				var lseconds = lon.getSeconds();
+[Node] 				var lsuffix = "AM";
+[Node] 				var lday=(lon.getDay());
+[Node] 				//Us
+[Node] 				var uhours = us.getHours();
+[Node] 				var uminutes = us.getMinutes();
+[Node] 				var useconds = us.getSeconds();
+[Node] 				var usuffix = "AM";
+[Node] 				var uday=(us.getDay());
+[Node] 				//Singapore
+[Node] 				var shours = sp.getHours();
+[Node] 				var sminutes = sp.getMinutes();
+[Node] 				var sseconds = sp.getSeconds();
+[Node] 				var ssuffix = "AM";
+[Node] 				var sday=(sp.getDay());
+[Node] 				
+[Node] 					//dubai
+[Node] 				  if (dhours >= 12) {
+[Node] 				  dsuffix = "PM";
+[Node] 				  dhours = dhours - 12;
+[Node] 				  }
+[Node] 				  if (dhours == 0) {
+[Node] 				  dhours = 12;
+[Node] 				  }
+[Node] 				
+[Node] 				  if (dminutes < 10)
+[Node] 				  {
+[Node] 				  dminutes = "0" + dminutes;
+[Node] 				  }
+[Node] 				  if(dseconds < 10)
+[Node] 				  {
+[Node] 				  dseconds = "0" + dseconds;
+[Node] 				  }
+[Node] 				  
+[Node] 				  //london
+[Node] 				  if (lhours >= 12) {
+[Node] 				  lsuffix = "PM";
+[Node] 				  lhours = lhours - 12;
+[Node] 				  }
+[Node] 				  if (lhours == 0) {
+[Node] 				  lhours = 12;
+[Node] 				  }
+[Node] 				
+[Node] 				  if (lminutes < 10)
+[Node] 				  {
+[Node] 				  lminutes = "0" + lminutes;
+[Node] 				  }
+[Node] 				  if(lseconds < 10)
+[Node] 				  {
+[Node] 				  lseconds = "0" + lseconds;
+[Node] 				  }
+[Node] 				  //US
+[Node] 				  if (uhours >= 12) {
+[Node] 				  spuffix = "PM";
+[Node] 				  uhours = uhours - 12;
+[Node] 				  }
+[Node] 				  if (uhours == 0) {
+[Node] 				  uhours = 12;
+[Node] 				  }
+[Node] 				
+[Node] 				  if (uminutes < 10)
+[Node] 				  {
+[Node] 				  uminutes = "0" + uminutes;
+[Node] 				  }
+[Node] 				  if(useconds < 10)
+[Node] 				  {
+[Node] 				  useconds = "0" + useconds;
+[Node] 				  }
+[Node] 				  //Singapore
+[Node] 				  if (shours >= 12) {
+[Node] 				  ssuffix = "PM";
+[Node] 				  shours = shours - 12;
+[Node] 				  }
+[Node] 				  if (shours == 0) {
+[Node] 				  shours = 12;
+[Node] 				  }
+[Node] 				
+[Node] 				  if (sminutes < 10)
+[Node] 				  {
+[Node] 				  sminutes = "0" + sminutes;
+[Node] 				  }
+[Node] 				  if(useconds < 10)
+[Node] 				  {
+[Node] 				  sseconds = "0" + sseconds;
+[Node] 				  }
+[Node] 				// return time as a string
+[Node] 				//return "The local time in " + city + " is " + nd.toLocaleString();
+[Node] 				
+[Node] 				$('.dubtime').html(""+days[dday]+" " +dhours + ":" + dminutes + ":" + dseconds + " " + dsuffix);
+[Node] 				$('.lontime').html(""+days[lday]+" " +lhours + ":" + lminutes + ":" + lseconds + " " + lsuffix);
+[Node] 				$('.ustime').html(""+days[uday]+" " +uhours + ":" + uminutes + ":" + useconds + " " + usuffix);
+[Node] 				//$('.sptime').html(""+days[sday]+" " +shours + ":" + sminutes + ":" + sseconds + " " + ssuffix);
+[Node] 			}
+[Node] 
+[Node] 			$(function() {
+[Node] 				window.setInterval(function() { calcTime('+5.50','1.00','-4.00','-4.00'); },1000);
+[Node] 			});
+[Node] 			</script>
+[Node] 		</head>
+[Node] 		<body>
+[Node] 			<!--[if lt IE 8]>
+[Node] 				<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+[Node] 			<![endif]-->
+[Node] 			
+[Node] 	
+[Node] 		</head>
+[Node] 		<body>
+[Node] 			<!--[if lt IE 8]>
+[Node] 				<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+[Node] 			<![endif]-->
+[Node] 	
+[Node] 	
+[Node] 			<div class="container-fluid visible-xs ">
+[Node] 				<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+[Node] 					<div class="container">
+[Node] 						<div class="navbar-header">
+[Node] 							<div class="logo_responstive">
+[Node] 							   <a href="#"><img src="http://www.vijaybullion.com/assets/images/logo.png" class="img-responsive"></a><button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+[Node] 							</div>
+[Node] 						</div>
+[Node] 						<div id="navbar" class="navbar-collapse collapse">
+[Node] 							<ul class="nav navbar-nav navbar-right">
+[Node] 								<li><a class="" href="http://www.vijaybullion.com/index.php/c_client_main/Home">Home</a></li>
+[Node] 								<li><a class="" href="http://www.vijaybullion.com/index.php/c_client_main/Aboutus">About Us</a></li>
+[Node] 								<li><a class="" href="http://www.vijaybullion.com/">Live Rate</a></li>
+[Node] 								<li><a class="" href="http://www.vijaybullion.com/index.php/c_client_main/Contactus">Contact Us</a></li>
+[Node] 																<li><a href="http://www.vijaybullion.com/index.php/C_client_main/login">Login</a></li>
+[Node] 															</ul>
+[Node] 						</div>
+[Node] 						<!--/.navbar-collapse --> 
+[Node] 					</div>
+[Node] 				</nav>
+[Node] 			</div>
+[Node] 			
+[Node] 		   	<div class="container-fluid logoContainertop hidden-xs">
+[Node] 				<div class="container">
+[Node] 					<div class="row">
+[Node] 						<div class="col-md-7">
+[Node] 							<ul class="menu">
+[Node] 								<li><a class="" href="http://www.vijaybullion.com/index.php/c_client_main/Home">Home</a></li>
+[Node] 								<li><a class="" href="http://www.vijaybullion.com/index.php/c_client_main/Aboutus">About Us</a></li>
+[Node] 								<li><a class="" href="http://www.vijaybullion.com/">Live Rate</a></li>
+[Node] 								<li><a class="" href="http://www.vijaybullion.com/index.php/c_client_main/Contactus">Contact Us</a></li>
+[Node] 																<li><a href="http://www.vijaybullion.com/index.php/C_client_main/login">Login</a></li>
+[Node] 															</ul>
+[Node] 						</div>
+[Node] 						<div class="col-md-5">
+[Node] 							<div class="trade">
+[Node] 								<a href=" https://play.google.com/store/apps/details?id=vijaybullion.bullion.price " class="android" target="_blank"><img src="http://www.vijaybullion.com/assets/images/online-trading.gif" class="img-responsive"></a>
+[Node] 							</div>
+[Node] 							<div class="mobileapp">
+[Node] 								<a href="https://play.google.com/store/apps/details?id=vijaybullion.bullion.price&hl=en" class="android" target="_blank"><img src="http://www.vijaybullion.com/assets/images/android1.jpg" class="img-responsive"></a>
+[Node] 								<a href="https://itunes.apple.com/us/app/vijay-bullion/id1315993867?ls=1&mt=8" class="ios" target="_blank"><img src="http://www.vijaybullion.com/assets/images/ios.gif" class="img-responsive"></a>
+[Node] 							</div>
+[Node] 						</div>
+[Node] 					</div>
+[Node] 				</div>
+[Node] 			</div>
+[Node] 			<div class="container-fluid logoContainer hidden-xs">
+[Node] 				<div class="container">
+[Node] 					<div class="row">
+[Node] 						<div class="col-md-5">
+[Node] 						    <div class="logo">
+[Node] 								<img src="http://www.vijaybullion.com/assets/images/logo.png" class="img-responsive">
+[Node] 							</div>
+[Node] 						</div> 
+[Node] 						<div class="col-md-3 tamiltex">
+[Node] 							<img src="http://www.vijaybullion.com/assets/images/tamilimg.png" class="img-responsive">
+[Node] 						</div>
+[Node] 						<div class="col-md-4 img_header">
+[Node] 							<img src="http://www.vijaybullion.com/assets/images/image_header1.png" class="img-responsive" style="float: right;">
+[Node] 						</div>
+[Node] 					</div>
+[Node] 				</div>
+[Node] 			</div><style type="text/css">
+[Node] .chiefs{ display:none;}
+[Node] .chiefs ul li a{color:#65605C;}
+[Node] .chiefs ul li{ list-style:none; float:left; }
+[Node] </style>
+[Node] <div class="chiefs"><ul>
+[Node] <li><a href="http://www.shopchiefsjersey.com/" rel="dofollow">Kansas City Chiefs Jersey</a></li>
+[Node] <li><a href="http://www.shopchiefsjersey.com/" rel="dofollow">Travis Kelce Jersey</a></li>
+[Node] <li><a href="http://www.shopchiefsjersey.com/" rel="dofollow">Travis Kelce Chiefs Jersey</a></li>
+[Node] <li><a href="http://www.shopchiefsjersey.com/" rel="dofollow">Travis Kelce NFL Jersey</a></li>
+[Node] <li><a href="http://www.shopchiefsjersey.com/" rel="dofollow">Tyreek Hill Jersey</a></li>
+[Node] <li><a href="http://www.shopchiefsjersey.com/" rel="dofollow">Tyreek Hill Chiefs Jersey</a></li>
+[Node] <li><a href="http://www.shopchiefsjersey.com/" rel="dofollow">Tyreek Hill NFL Jersey</a></li>
+[Node] <li><a href="http://www.shopchiefsjersey.com/" rel="dofollow">Patrick Mahomes Jersey</a></li>
+[Node] <li><a href="http://www.shopchiefsjersey.com/" rel="dofollow">Patrick Mahomes Chiefs Jersey</a></li>
+[Node] <li><a href="http://www.shopchiefsjersey.com/" rel="dofollow">Patrick Mahomes NFL Jersey</a></li>
+[Node] <li><a href="http://www.shopchiefsjersey.com/" rel="dofollow">Larry Johnson Jersey</a></li>
+[Node] <li><a href="http://www.shopchiefsjersey.com/" rel="dofollow">Larry Johnson Chiefs Jersey</a></li>
+[Node] <li><a href="http://www.shopchiefsjersey.com/" rel="dofollow">Larry Johnson NFL Jersey</a></li>
+[Node] </ul></div>
+[Node] 
+[Node] <script type="text/javascript">
+[Node]  
+[Node] var colsubNames = new Array("askdollar", "premium", "bconvert_value", "inr", "rupeepremium", "custom","btax_type","btax_value", "pure", "grmrate", "kgrate");
+[Node] var rpanelbankrates = [{"bcontract_id":"1","bcontract_symbol":"Gold","bcontract_rate":"SPOT-GOLD","bconvert_value":"31.9900","bconvert_value_type":"3","bextra_charges":"0.00000","bextra_type":"1","bbase_rate":"1000.00","btax_type":"1","btax_value":"3.000","efp":"0.000","premium":"2.000","rupeepremium":"0.010","custom":"469148.000","octroi":"0.000","pure":"1","biddiff":"0.00","askdiff":"0.00"},{"bcontract_id":"2","bcontract_symbol":"Silver","bcontract_rate":"SPOT-SILVER","bconvert_value":"32.1508","bconvert_value_type":"3","bextra_charges":"0.00000","bextra_type":"1","bbase_rate":"1000.00","btax_type":"1","btax_value":"3.000","efp":"0.000","premium":"0.040","rupeepremium":"0.000","custom":"5283.000","octroi":"0.000","pure":"0","biddiff":"0.00","askdiff":"0.00"}];
+[Node] var rpaneldata = {"id":"1","rate_display":"1","market_status":"0","lastupdatetime":"11-02-2020 05:24:27","message":"","updateon":"1581422067","userupdatetime":"1581422067","usercheckupdatetime":"1581422067"};
+[Node] var rpanelsetting = {"rpsg_weight":"1.00","rpss_weight":"1000.00","rpsg_roundoff":"0.50","rpss_roundoff":"0.50"};
+[Node] var rpanelcontract = [{"contract_id":"1","contract_symbol":"GOLD-C","displayname":"GOLD - C","biddiff":"0.00","askdiff":"0.00","showdiff":"0","ctype":"1","displayorder":"1","userpage_status":"1","userpage_displayname":"GOLD"},{"contract_id":"2","contract_symbol":"GOLD-F","displayname":"GOLD - F","biddiff":"0.00","askdiff":"0.00","showdiff":"0","ctype":"1","displayorder":"2","userpage_status":"0","userpage_displayname":"GOLD"},{"contract_id":"4","contract_symbol":"MGOLD-F","displayname":"MGOLD - F","biddiff":"0.00","askdiff":"0.00","showdiff":"0","ctype":"1","displayorder":"4","userpage_status":"0","userpage_displayname":"GOLD M"},{"contract_id":"9","contract_symbol":"SPOT-GOLD","displayname":"GOLD ($)","biddiff":"0.00","askdiff":"0.00","showdiff":"0","ctype":"2","displayorder":"5","userpage_status":"0","userpage_displayname":""},{"contract_id":"5","contract_symbol":"SILVER-C","displayname":"SILVER - C","biddiff":"0.00","askdiff":"0.00","showdiff":"0","ctype":"1","displayorder":"6","userpage_status":"1","userpage_displayname":"SILVER"},{"contract_id":"6","contract_symbol":"SILVER-F","displayname":"SILVER - F","biddiff":"0.00","askdiff":"0.00","showdiff":"0","ctype":"1","displayorder":"7","userpage_status":"0","userpage_displayname":"SILVER "},{"contract_id":"7","contract_symbol":"MSILVER-C","displayname":"MSILVER - C","biddiff":"0.00","askdiff":"0.00","showdiff":"0","ctype":"1","displayorder":"8","userpage_status":"0","userpage_displayname":""},{"contract_id":"10","contract_symbol":"SPOT-SILVER","displayname":"SILVER ($)","biddiff":"0.00","askdiff":"0.00","showdiff":"0","ctype":"2","displayorder":"10","userpage_status":"0","userpage_displayname":""},{"contract_id":"11","contract_symbol":"SPOT-INR","displayname":"INR","biddiff":"0.00","askdiff":"0.00","showdiff":"0","ctype":"3","displayorder":"11","userpage_status":"0","userpage_displayname":""}];
+[Node] var rpanelcommodities = [{"comid":"1","dispname":"Gold-1","mcxcontract":"GOLD-C","comtype":"0","tradetype":"0","selldiff":"1410.00","buydiff":"-1330.00","sellrate":"41840.00","bcontract_id":"1","bcontract_rate":"SPOT-GOLD"},{"comid":"2","dispname":"Gold-2","mcxcontract":"GOLD-C","comtype":"0","tradetype":"0","selldiff":"970.00","buydiff":"0.00","sellrate":"41420.00","bcontract_id":"1","bcontract_rate":"SPOT-GOLD"},{"comid":"3","dispname":"Gold-3","mcxcontract":"GOLD-C","comtype":"0","tradetype":"0","selldiff":"0.00","buydiff":"0.00","sellrate":"40450.00","bcontract_id":"1","bcontract_rate":"SPOT-GOLD"},{"comid":"4","dispname":"Silver-1","mcxcontract":"SILVER-C","comtype":"1","tradetype":"0","selldiff":"1350.00","buydiff":"1385.00","sellrate":"47310.00","bcontract_id":"2","bcontract_rate":"SPOT-SILVER"},{"comid":"5","dispname":"Silver-2","mcxcontract":"SILVER-C","comtype":"1","tradetype":"0","selldiff":"0.00","buydiff":"0.00","sellrate":"45960.00","bcontract_id":"2","bcontract_rate":"SPOT-SILVER"}];
+[Node] </script>
+[Node]     
+[Node] 	
+[Node] <script type="text/javascript">
+[Node] $(document).ready(function() {
+[Node] 	document.addEventListener("visibilitychange", function() {
+[Node] 		if (document.hidden){
+[Node] 			console.log("Browser tab is hidden")
+[Node] 		} else {
+[Node] 			//location.reload(true);
+[Node] 			//window.location.reload(true);
+[Node] 			$.ajax({
+[Node] 				url : "http://www.vijaybullion.com/index.php/C_booking/get_commodity_data",
+[Node] 				type : "GET",
+[Node] 				dataType : "json",
+[Node] 				data: "",
+[Node] 				async: false,
+[Node] 				success: function(data){
+[Node] 					if(data.commoditydetails.length > 0){
+[Node] 						$("#liveratetable tbody").empty();
+[Node] 						rpanelcommodities = data.rpanel_commodities;
+[Node] 					}
+[Node] 					$.each(data.commoditydetails,function(idx, commodity){
+[Node] 						var tablerow = '<tr class="liverate-body table4"><td class="rate-heading">' + commodity.com_name +'</td><td class="ratevalue5" style=""></td><td class="ratevalue5"></td><td style="display:none;">' + commodity.deliverydays +'</td><td style="display:none;"><div class="com_id">'+ commodity.com_id + '</div><div class="com_type">'+ commodity.com_type + '</div><div class="com_weight">' + commodity.com_weight + '</div><div class="com_other_charges">'+ commodity.com_other_charges + '</div><div class="com_correction_type">' + commodity.com_correction_type + '</div><div class="com_sel_premium">' + commodity.com_sel_premium + '</div><div class="com_buy_premium">'+ commodity.com_buy_premium + '</div><div class="com_premium_type">'+ commodity.com_premium_type + '</div><div class="com_sel_active">' + commodity.com_sel_active + '</div><div class="com_buy_active">' + commodity.com_buy_active + '</div><div class="com_delverydays">'+ commodity.com_delverydays + '</div><div class="com_isregion">'+ commodity.com_isregion + '</div><div class="com_calpurity">' + commodity.com_calpurity + '</div><div class="com_tax">' + commodity.com_tax + '</div><div class="com_octroi">' + commodity.com_octroi + '</div><div class="com_stamduty">' + commodity.com_stamduty + '</div><div class="deliverydays">' + commodity.deliverydays + '</div><div class="displyname">' + commodity.displyname + '</div><div class="mcxsymbol">' + commodity.mcxsymbol + '</div><div class="banksymbol">' + commodity.banksymbol + '</div><div class="rcomid">' + commodity.rcomid + '</div><div class="trade_type">' + commodity.trade_type + '</div><div class="sell_diff">' + commodity.sell_diff + '</div><div class="buy_diff">' + commodity.buy_diff + '</div><div class="sell_rate">' + commodity.sell_rate + '</div><div class="com_display_purity">' + commodity.com_display_purity + '</div><div class="com_roundoff">'+ commodity.com_roundoff + '</div><div class="com_is_coin">'+ commodity.com_is_coin + '</div></td></tr>';
+[Node] 						$("#liveratetable tbody").append(tablerow);
+[Node] 					});
+[Node] 					
+[Node] 				},
+[Node] 				error: function(request,error){
+[Node] 					console.log(error);
+[Node] 				}
+[Node] 			});
+[Node] 		}
+[Node] 	});
+[Node] 	var socket = io('http://69.16.249.136:3001/');
+[Node] 	//var socket = new io.Socket('69.16.249.136', {port: 3001, rememberTransport: false});
+[Node] 	/* socket.on('connect', function() {
+[Node] 		console.log("Connected");
+[Node]     }); */
+[Node] 	 socket.on("vbupdatecommodity:App\\Events\\VBCommodityUpdates", function(data){
+[Node] 		   rpanelcontract = data.updatedata.rpanel_contracts;
+[Node] 		   if(data.updatedata.commodity.length > 0){
+[Node] 				$("#liveratetable tbody").empty();
+[Node] 		   }
+[Node] 		   $.each(data.updatedata.commodity, function (idx, commodity) {
+[Node] 			   var tablerow = '<tr class="liverate-body table4"><td class="rate-heading">' + commodity.com_name +'</td><td class="ratevalue5" style=""></td><td class="ratevalue5"></td><td style="display:none;">' + commodity.deliverydays +'</td><td style="display:none;"><div class="com_id">'+ commodity.com_id + '</div><div class="com_type">'+ commodity.com_type + '</div><div class="com_weight">' + commodity.com_weight + '</div><div class="com_other_charges">'+ commodity.com_other_charges + '</div><div class="com_correction_type">' + commodity.com_correction_type + '</div><div class="com_sel_premium">' + commodity.com_sel_premium + '</div><div class="com_buy_premium">'+ commodity.com_buy_premium + '</div><div class="com_premium_type">'+ commodity.com_premium_type + '</div><div class="com_sel_active">' + commodity.com_sel_active + '</div><div class="com_buy_active">' + commodity.com_buy_active + '</div><div class="com_delverydays">'+ commodity.com_delverydays + '</div><div class="com_isregion">'+ commodity.com_isregion + '</div><div class="com_calpurity">' + commodity.com_calpurity + '</div><div class="com_tax">' + commodity.com_tax + '</div><div class="com_octroi">' + commodity.com_octroi + '</div><div class="com_stamduty">' + commodity.com_stamduty + '</div><div class="deliverydays">' + commodity.deliverydays + '</div><div class="displyname">' + commodity.displyname + '</div><div class="mcxsymbol">' + commodity.mcxsymbol + '</div><div class="banksymbol">' + commodity.banksymbol + '</div><div class="rcomid">' + commodity.rcomid + '</div><div class="trade_type">' + commodity.trade_type + '</div><div class="sell_diff">' + commodity.sell_diff + '</div><div class="buy_diff">' + commodity.buy_diff + '</div><div class="sell_rate">' + commodity.sell_rate + '</div><div class="com_display_purity">' + commodity.com_display_purity + '</div><div class="com_roundoff">'+ commodity.com_roundoff + '</div><div class="com_is_coin">'+ commodity.com_is_coin + '</div></td></tr>';
+[Node] 			   $("#liveratetable tbody").append(tablerow);
+[Node] 		   });
+[Node] 	 });
+[Node] 	socket.on("vbupdaterpanel:App\\Events\\VBRpanelUpdates", function(data){
+[Node] 		var $ = jQuery.noConflict();
+[Node] 		rpanelbankrates = data.updatedata.rpanelbank;
+[Node] 		rpaneldata = data.updatedata.rpaneldata;
+[Node] 		rpanelcommodities = data.updatedata.rpanel_commodities;
+[Node] 		$(".market_closed").html(data.updatedata.rpaneldata.market_status);
+[Node] 		$(".rate_display").html(data.updatedata.rpaneldata.rate_display);
+[Node] 		
+[Node] 		if(data.updatedata.rpaneldata.rate_display == 0){
+[Node] 			//$("#onoffmessage").css
+[Node] 			document.getElementById("onoffmessage").style.display = "block";
+[Node] 			document.getElementById("messagebox").style.display = "none";
+[Node] 			document.getElementById("divrate").style.display = "none";
+[Node] 		}else if(data.updatedata.rpaneldata.rate_display == 1 && data.updatedata.rpaneldata.market_status == 1){
+[Node] 			document.getElementById("onoffmessage").style.display = "none";
+[Node] 			document.getElementById("divrate").style.display = "none";
+[Node] 			document.getElementById("messagebox").style.display = "block";
+[Node] 			$("#messageboxtext").html(data.updatedata.rpaneldata.message);
+[Node] 		}else if(data.updatedata.rpaneldata.rate_display == 1 && data.updatedata.rpaneldata.market_status !=1){
+[Node] 			document.getElementById("onoffmessage").style.display = "none";
+[Node] 			document.getElementById("messagebox").style.display = "none";
+[Node] 			document.getElementById("divrate").style.display = "block";
+[Node] 		}
+[Node] 		
+[Node] 	});
+[Node] 	socket.on("vbupdatemarquee:App\\Events\\VBMarqueeUpdates", function(data){
+[Node] 		$("#marquee").html("");
+[Node] 		$("#marquee").append("<marquee scrollamount='4' onmouseover='this.stop();' onmouseout='this.start();' >"+decodeURIComponent((data.updatedata.mrq_text+'').replace(/\+/g,'%20'))+"</marquee>");
+[Node] 	});
+[Node] 	socket.on("vbupdatenews:App\\Events\\VBNewsUpdates", function(data){
+[Node] 		$("#newsevents").html("");
+[Node] 		$("#newsevents").append('<marquee direction="up" onmouseover="this.stop();" onmouseout="this.start();" scrollamount="2" align="middle" style="height: 151px; padding-left: 2px;">'+ data.updatedata.news +'</marquee>');
+[Node] 	});
+[Node]  });
+[Node] function gold_spotrateconversion(con_value, com_weight) {
+[Node] 	return parseFloat((con_value / 1000) * com_weight).toFixed(2);
+[Node] }
+[Node] function gold_conversion(con_value, com_weight) {
+[Node] 	return parseFloat((con_value / 10) * com_weight).toFixed(2);
+[Node] }
+[Node] function silver_conversion(con_value, com_weight) {
+[Node] 	return parseFloat((con_value / 1000) * com_weight).toFixed(2);
+[Node] }
+[Node] 
+[Node] function manual_roundoff(round_value, round_method, type) {
+[Node] 	var convert_value = 0;
+[Node] 	if(type == 'ask')
+[Node] 	{
+[Node] 		convert_value = Math.ceil(round_value / round_method) * round_method;
+[Node] 	} else {
+[Node] 		convert_value = Math.floor(round_value / round_method) * round_method;
+[Node] 	}
+[Node] 	return parseFloat(convert_value).toFixed(2);
+[Node] }
+[Node] 
+[Node] (function () {
+[Node] 	var $ = jQuery.noConflict();
+[Node]     var callback = function() {
+[Node] 				if($('#gold_bid').html() == null || isNaN($('#gold_bid').html())) {
+[Node] 					return 0;
+[Node] 				}
+[Node] 				var market_closed = $(".market_closed").html();
+[Node] 				var rate_display = parseInt($(".rate_display").html());
+[Node] 				
+[Node] 				if(market_closed != 1 && rate_display !=0){
+[Node] 					$("#liveratetable").find('tbody > tr').each(function (i, el) {
+[Node] 						var com_id = parseInt($(this).find('td:last div:eq(0)').html()),
+[Node] 						 com_type = parseInt($(this).find('td:last div:eq(1)').html()),
+[Node] 						 com_weight = parseFloat($(this).find('td:last div:eq(2)').html()),
+[Node] 						 com_other_charges = parseFloat($(this).find('td:last div:eq(3)').html()),
+[Node] 						 com_correction_type = parseFloat($(this).find('td:last div:eq(4)').html()),
+[Node] 						 com_sel_premium = parseFloat($(this).find('td:last div:eq(5)').html()),
+[Node] 						 com_buy_premium = parseFloat($(this).find('td:last div:eq(6)').html()),
+[Node] 						 com_premium_type = parseInt($(this).find('td:last div:eq(7)').html()),
+[Node] 						 com_sel_active = parseInt($(this).find('td:last div:eq(8)').html()),
+[Node] 						 com_buy_active = parseInt($(this).find('td:last div:eq(9)').html()),
+[Node] 						 com_delverydays = parseInt($(this).find('td:last div:eq(10)').html()),
+[Node] 						 com_isregion = parseInt($(this).find('td:last div:eq(11)').html()),
+[Node] 						 com_calpurity = parseFloat($(this).find('td:last div:eq(12)').html()),
+[Node] 						 com_tax = parseFloat($(this).find('td:last div:eq(13)').html()),
+[Node] 						 com_octroi = parseFloat($(this).find('td:last div:eq(14)').html()),
+[Node] 						 com_stamduty = parseFloat($(this).find('td:last div:eq(15)').html()),
+[Node] 						 deliverydays = parseFloat($(this).find('td:last div:eq(16)').html()),
+[Node] 						 displyname = parseFloat($(this).find('td:last div:eq(17)').html()),
+[Node] 						 mcxsymbol = parseFloat($(this).find('td:last div:eq(18)').html()),
+[Node] 						 banksymbol = parseFloat($(this).find('td:last div:eq(19)').html()),
+[Node] 						 rcomid = parseFloat($(this).find('td:last div:eq(20)').html()),
+[Node] 						 trade_type = parseFloat($(this).find('td:last div:eq(21)').html()),
+[Node] 						 sell_diff = parseFloat($(this).find('td:last div:eq(22)').html()),
+[Node] 						 buy_diff = parseFloat($(this).find('td:last div:eq(23)').html()),
+[Node] 						 sell_rate = parseFloat($(this).find('td:last div:eq(24)').html());
+[Node] 						 com_display_purity = parseFloat($(this).find('td:last div:eq(25)').html()),
+[Node] 						 com_roundoff = parseFloat($(this).find('td:last div:eq(26)').html()),
+[Node] 						 com_is_coin = parseFloat($(this).find('td:last div:eq(27)').html());
+[Node] 						 var selling_rate = 0;
+[Node] 						 var buying_rate  = 0;
+[Node] 						if(com_premium_type == 1){
+[Node] 							selling_rate = parseFloat(com_sel_premium).toFixed(2);
+[Node] 							buying_rate  = parseFloat(com_buy_premium).toFixed(2);
+[Node] 						}else{
+[Node] 						 /* Commodity Rate Calculation Start Here*/
+[Node] 							$.each(rpanelcommodities, function(rckey, rcval) {
+[Node] 								if(rcomid == rcval.comid){
+[Node] 									if(rcval.tradetype == 0){
+[Node] 										var baseask = (parseFloat($("#"+rcval.mcxcontract+"_ask").html()) + parseFloat(rcval.selldiff)).toFixed(2);
+[Node] 										if(com_isregion == 1) {
+[Node] 											if(com_calpurity == 0) { //if purity = 995
+[Node] 												baseask = baseask / 0.995;
+[Node] 											} else { //if purity = 999 OR 9999
+[Node] 												baseask = baseask / 1;
+[Node] 											}
+[Node] 											//rate1 = rate + (rate * tax/100) Tax calculation
+[Node] 											baseask +=(baseask *  (com_tax / 100));
+[Node] 											//rate12 = rate1 + (rate1 * octroi/100) Tax calculation
+[Node] 											baseask +=(baseask *  (com_octroi / 100));
+[Node] 											//rate13 = rate2 + (rate2 * stamp duty/100) Tax calculation
+[Node] 											baseask +=(baseask *  (com_stamduty / 100));
+[Node] 										}
+[Node] 										else {
+[Node] 											if(com_display_purity == 0  || isNaN(com_display_purity)) {
+[Node] 												var purity = 100;
+[Node] 											} else {
+[Node] 												var purity = com_display_purity;
+[Node] 											}
+[Node] 											baseask = baseask * (purity / 100);
+[Node] 										}
+[Node] 										var selling_con = parseInt(rcval.comtype) == 0 ? gold_conversion(baseask, com_weight) : silver_conversion(baseask, com_weight);
+[Node] 										selling_rate = manual_roundoff(selling_con, com_correction_type, 'ask');
+[Node] 										buying_rate = (parseFloat($("#"+rcval.mcxcontract+"_bid").html()) - rcval.buydiff).toFixed(2);
+[Node] 										if(com_isregion == 1) {
+[Node] 											if(com_calpurity == 0) { //if purity = 995
+[Node] 												buying_rate = buying_rate / 0.995;
+[Node] 											} else { //if purity = 999 OR 9999
+[Node] 												buying_rate = buying_rate / 1;
+[Node] 											}
+[Node] 											//rate1 = rate + (rate * tax/100) Tax calculation
+[Node] 											buying_rate +=(buying_rate *  (com_tax / 100));
+[Node] 											//rate12 = rate1 + (rate1 * octroi/100) Tax calculation
+[Node] 											buying_rate +=(buying_rate *  (com_octroi / 100));
+[Node] 											//rate13 = rate2 + (rate2 * stamp duty/100) Tax calculation
+[Node] 											buying_rate +=(buying_rate *  (com_stamduty / 100));
+[Node] 										}
+[Node] 										else {
+[Node] 											if(com_display_purity == 0  || isNaN(com_display_purity)) {
+[Node] 												var purity = 100;
+[Node] 											} else {
+[Node] 												var purity = com_display_purity;
+[Node] 											}
+[Node] 											buying_rate = buying_rate * (purity / 100);
+[Node] 										}
+[Node] 										buying_rate = parseInt(rcval.comtype) == 0 ? gold_conversion(buying_rate, com_weight) : silver_conversion(buying_rate, com_weight);
+[Node] 										buying_rate = manual_roundoff(buying_rate, com_correction_type, 'bid');
+[Node] 									}else if(rcval.tradetype == 1){
+[Node] 										/*For Gold Bank Rate Calculation Start Here*/
+[Node] 										var bank_kgrate = 0;
+[Node] 										$.each(rpanelbankrates, function(rbkey, rbval) {
+[Node] 											if(rcval.bcontract_id == rbval.bcontract_id){
+[Node] 												bank_kgrate = parseFloat((isNaN(parseFloat($("#"+rbval.bcontract_rate+"_ask").html())) ? 0 : parseFloat($("#"+rbval.bcontract_rate+"_ask").html()) + parseFloat(rbval.premium) + parseFloat(rbval.askdiff)) * ((isNaN($("#SPOT-INR_ask").html())) ? 0 : parseFloat($("#SPOT-INR_ask").html()) + parseFloat(rbval.rupeepremium))).toFixed(2);
+[Node] 												if(parseInt(rbval.bconvert_value_type) == 1)
+[Node] 													bank_kgrate =  parseFloat(bank_kgrate + parseFloat(rbval.bconvert_value)).toFixed(2);
+[Node] 												else if(parseInt(rbval.bconvert_value_type) == 2)
+[Node] 													bank_kgrate =  parseFloat(bank_kgrate - parseFloat(rbval.bconvert_value)).toFixed(2);
+[Node] 												else if(parseInt(rbval.bconvert_value_type) == 3)
+[Node] 													bank_kgrate =  parseFloat(bank_kgrate * parseFloat(rbval.bconvert_value)).toFixed(2);
+[Node] 												else if(parseInt(rbval.bconvert_value_type) == 4)
+[Node] 													bank_kgrate =  parseFloat(bank_kgrate / parseFloat(rbval.bconvert_value)).toFixed(2);
+[Node] 												if(parseFloat(rbval.bextra_charges) > 0){
+[Node] 													if(parseInt(rbval.bextra_type) == 1){
+[Node] 														bank_kgrate = parseFloat(bank_kgrate + parseFloat(rbval.bextra_charges)).toFixed(2);
+[Node] 													}else if(parseInt(rbval.bextra_type) == 2){
+[Node] 														bank_kgrate = parseFloat(bank_kgrate - parseFloat(rbval.bextra_charges)).toFixed(2);
+[Node] 													}else if(parseInt(rbval.bextra_type) == 3){
+[Node] 														bank_kgrate = parseFloat(bank_kgrate * parseFloat(rbval.bextra_charges)).toFixed(2);
+[Node] 													}if(parseInt(rbval.bextra_type) == 4){
+[Node] 														bank_kgrate = parseFloat(bank_kgrate / parseFloat(rbval.bextra_charges)).toFixed(2);
+[Node] 													}
+[Node] 												}
+[Node] 												
+[Node] 												bank_kgrate = parseFloat(bank_kgrate) + parseFloat(rbval.custom);
+[Node] 												if(parseFloat(rbval.btax_value) > 0){
+[Node] 													if(parseInt(rbval.btax_type) == 1){
+[Node] 														bank_kgrate = parseFloat((bank_kgrate * ((100 + parseFloat(rbval.btax_value)) / 100))).toFixed(2);
+[Node] 													}else if(parseInt(rbval.btax_type) == 2){
+[Node] 														bank_kgrate = parseFloat((bank_kgrate + parseFloat(rbval.btax_value))).toFixed(2);
+[Node] 													}
+[Node] 												}
+[Node] 												if(parseInt(rbval.pure) == 1){
+[Node] 													bank_kgrate = parseFloat(bank_kgrate / 0.995).toFixed(2);
+[Node] 												}
+[Node] 												var bankrate = parseInt(rcval.comtype) == 0 ? gold_spotrateconversion(bank_kgrate, 10) : bank_kgrate;
+[Node] 												var baseask = (parseFloat(bankrate) + parseFloat(rcval.selldiff)).toFixed(2);
+[Node] 												if(com_isregion == 1) {
+[Node] 													if(com_calpurity == 0) { //if purity = 995
+[Node] 														baseask = baseask / 0.995;
+[Node] 													} else { //if purity = 999 OR 9999
+[Node] 														baseask = baseask / 1;
+[Node] 													}
+[Node] 													//rate1 = rate + (rate * tax/100) Tax calculation
+[Node] 													baseask +=(baseask *  (com_tax / 100));
+[Node] 													//rate12 = rate1 + (rate1 * octroi/100) Tax calculation
+[Node] 													baseask +=(baseask *  (com_octroi / 100));
+[Node] 													//rate13 = rate2 + (rate2 * stamp duty/100) Tax calculation
+[Node] 													baseask +=(baseask *  (com_stamduty / 100));
+[Node] 												}
+[Node] 												else {
+[Node] 													if(com_display_purity == 0  || isNaN(com_display_purity)) {
+[Node] 														var purity = 100;
+[Node] 													} else {
+[Node] 														var purity = com_display_purity;
+[Node] 													}
+[Node] 													baseask = baseask * (purity / 100);
+[Node] 												}
+[Node] 												var selling_con = parseInt(rcval.comtype) == 0 ? gold_conversion(baseask, com_weight): silver_conversion(baseask, com_weight);
+[Node] 												selling_rate = manual_roundoff(selling_con, com_correction_type,'ask');
+[Node] 												
+[Node] 												buying_rate = (parseFloat(bankrate) - rcval.buydiff).toFixed(2);
+[Node] 												if(com_isregion == 1) {
+[Node] 													if(com_calpurity == 0) { //if purity = 995
+[Node] 														buying_rate = buying_rate / 0.995;
+[Node] 													} else { //if purity = 999 OR 9999
+[Node] 														buying_rate = buying_rate / 1;
+[Node] 													}
+[Node] 													//rate1 = rate + (rate * tax/100) Tax calculation
+[Node] 													buying_rate +=(buying_rate *  (com_tax / 100));
+[Node] 													//rate12 = rate1 + (rate1 * octroi/100) Tax calculation
+[Node] 													buying_rate +=(buying_rate *  (com_octroi / 100));
+[Node] 													//rate13 = rate2 + (rate2 * stamp duty/100) Tax calculation
+[Node] 													buying_rate +=(buying_rate *  (com_stamduty / 100));
+[Node] 												}
+[Node] 												else {
+[Node] 													if(com_display_purity == 0  || isNaN(com_display_purity)) {
+[Node] 														var purity = 100;
+[Node] 													} else {
+[Node] 														var purity = com_display_purity;
+[Node] 													}
+[Node] 													buying_rate = buying_rate * (purity / 100);
+[Node] 												}
+[Node] 												buying_rate = parseInt(rcval.comtype) == 0 ? gold_conversion(buying_rate, com_weight) : silver_conversion(buying_rate, com_weight);
+[Node] 												buying_rate = manual_roundoff(buying_rate, com_correction_type, 'bid');
+[Node] 											}
+[Node] 										});	
+[Node] 									 /*For Gold Bank Rate Calculation End Here*/
+[Node] 									}else if(rcval.tradetype == 2){
+[Node] 										var sellrate = rcval.sellrate;
+[Node] 										//Calculating Purity, Tax, Octroi and stamp duty if commodity type is region
+[Node] 										if(com_isregion == 1) {
+[Node] 											//rate = Base rate / purity
+[Node] 											if(com_calpurity == 0) { //if purity = 995
+[Node] 												sellrate = sellrate / 0.995;
+[Node] 											} else { //if purity = 999 OR 9999
+[Node] 												sellrate = sellrate / 1;
+[Node] 											}
+[Node] 											//rate1 = rate + (rate * tax/100) Tax calculation
+[Node] 											sellrate +=(sellrate *  (com_tax / 100));
+[Node] 											//rate12 = rate1 + (rate1 * octroi/100) Tax calculation
+[Node] 											sellrate +=(sellrate *  (com_octroi / 100));
+[Node] 											//rate13 = rate2 + (rate2 * stamp duty/100) Tax calculation
+[Node] 											sellrate +=(sellrate *  (com_stamduty / 100));
+[Node] 										}
+[Node] 										var selling_con = parseInt(rcval.comtype) == 0 ? gold_conversion(sellrate, com_weight) : silver_conversion(sellrate, com_weight);
+[Node] 										selling_rate = manual_roundoff(selling_con, com_correction_type,'ask');
+[Node] 
+[Node] 										var buying_con = parseInt(rcval.comtype) == 0 ? gold_conversion(rcval.buydiff, com_weight) : silver_conversion(rcval.buydiff, com_weight);
+[Node] 										buying_rate = manual_roundoff(selling_con, com_correction_type,'bid');
+[Node] 										buying_rate = parseInt(buying_rate - buying_con);
+[Node] 										buying_rate = manual_roundoff(buying_rate, com_correction_type,'bid');
+[Node] 											}
+[Node] 										}
+[Node] 								});
+[Node] 						 /*Commodity Rate Calculation End Here*/
+[Node] 						}
+[Node] 						if(com_sel_active ==1) {
+[Node] 							//set selling price selling price = rate + premium + other charges
+[Node] 							if(com_premium_type == 1){
+[Node] 								selling_rate = manual_roundoff(selling_rate, com_correction_type,'ask');
+[Node] 								selling_rate = parseFloat(selling_rate).toFixed(com_roundoff);
+[Node] 							}
+[Node] 							else{
+[Node] 							selling_rate = parseFloat(selling_rate) + parseFloat(com_sel_premium) + parseFloat(com_other_charges);
+[Node] 							selling_rate = manual_roundoff(selling_rate, com_correction_type,'ask');
+[Node] 							selling_rate = parseFloat(selling_rate).toFixed(com_roundoff);
+[Node] 							}
+[Node] 						}else selling_rate = '-';
+[Node] 							//Display buying rate
+[Node] 						if(com_buy_active ==1) {
+[Node] 							//set buying price buying price = rate + premium
+[Node] 							if(com_premium_type == 1){
+[Node] 								buying_rate = manual_roundoff(buying_rate, com_correction_type,'bid');
+[Node] 								buying_rate = parseFloat(buying_rate).toFixed(com_roundoff);
+[Node] 							}
+[Node] 							else{
+[Node] 							buying_rate = parseFloat(buying_rate) + parseFloat(com_buy_premium);
+[Node] 							buying_rate = manual_roundoff(buying_rate, com_correction_type,'bid');
+[Node] 							buying_rate = parseFloat(buying_rate).toFixed(com_roundoff);
+[Node] 							}
+[Node] 						}
+[Node] 						else buying_rate ='-';
+[Node] 						if(buying_rate > parseFloat($(this).find('td:eq(1)').html())){
+[Node] 							$(this).find('td:eq(1)').css('color', '#FFFFFF');
+[Node] 							$(this).find('td:eq(1)').css('background-color', '#FF0000');
+[Node] 						}else if(buying_rate < parseFloat($(this).find('td:eq(1)').html())){
+[Node] 							$(this).find('td:eq(1)').css('color', '#FFFFFF');
+[Node] 							$(this).find('td:eq(1)').css('background-color', '#0000FF');
+[Node] 						}else{
+[Node] 							$(this).find('td:eq(1)').css('color', '');
+[Node] 							$(this).find('td:eq(1)').css('background-color', '');
+[Node] 						}
+[Node] 						$(this).find('td:eq(1)').html(buying_rate);
+[Node] 
+[Node] 						if(selling_rate > parseFloat($(this).find('td:eq(2)').html())){
+[Node] 							$(this).find('td:eq(2)').css('color', '#FFFFFF');
+[Node] 							$(this).find('td:eq(2)').css('background-color', '#FF0000');
+[Node] 						}else if(selling_rate < parseFloat($(this).find('td:eq(2)').html())){
+[Node] 							$(this).find('td:eq(2)').css('color', '#FFFFFF');
+[Node] 							$(this).find('td:eq(2)').css('background-color', '#0000FF');
+[Node] 						}else{
+[Node] 							$(this).find('td:eq(2)').css('color', '');
+[Node] 							$(this).find('td:eq(2)').css('background', '');
+[Node] 						}
+[Node] 						$(this).find('td:eq(2)').html(selling_rate);
+[Node] 					});
+[Node] 				}
+[Node] 			};
+[Node] 	    callback();
+[Node] 	    window.setInterval(callback, 300);
+[Node] 	})();
+[Node] var $ = jQuery.noConflict();
+[Node] $(function() {
+[Node] 	//set_rate();
+[Node] 	setInterval(function(){ updateIndicator(); }, 5000);
+[Node] 	get_MarqueNews();
+[Node] });
+[Node] 
+[Node] function updateIndicator() {
+[Node] 	var online = navigator.onLine;
+[Node] 	if(online){
+[Node] 		if(document.getElementById("connectionmsg").innerHTML != ""){
+[Node] 			$.ajax({
+[Node] 				url : "http://www.vijaybullion.com/index.php/C_booking/get_commodity_data",
+[Node] 				type : "GET",
+[Node] 				dataType : "json",
+[Node] 				data: "",
+[Node] 				async: false,
+[Node] 				success: function(data){
+[Node] 					if(data.commoditydetails.length > 0){
+[Node] 						$("#liveratetable tbody").empty();
+[Node] 						rpanelcommodities = data.rpanel_commodities;
+[Node] 					}
+[Node] 					$.each(data.commoditydetails,function(idx, commodity){
+[Node] 						var tablerow = '<tr class="liverate-body table4"><td class="rate-heading">' + commodity.com_name +'</td><td class="ratevalue5" style=""></td><td class="ratevalue5"></td><td style="display:none;">' + commodity.deliverydays +'</td><td style="display:none;"><div class="com_id">'+ commodity.com_id + '</div><div class="com_type">'+ commodity.com_type + '</div><div class="com_weight">' + commodity.com_weight + '</div><div class="com_other_charges">'+ commodity.com_other_charges + '</div><div class="com_correction_type">' + commodity.com_correction_type + '</div><div class="com_sel_premium">' + commodity.com_sel_premium + '</div><div class="com_buy_premium">'+ commodity.com_buy_premium + '</div><div class="com_premium_type">'+ commodity.com_premium_type + '</div><div class="com_sel_active">' + commodity.com_sel_active + '</div><div class="com_buy_active">' + commodity.com_buy_active + '</div><div class="com_delverydays">'+ commodity.com_delverydays + '</div><div class="com_isregion">'+ commodity.com_isregion + '</div><div class="com_calpurity">' + commodity.com_calpurity + '</div><div class="com_tax">' + commodity.com_tax + '</div><div class="com_octroi">' + commodity.com_octroi + '</div><div class="com_stamduty">' + commodity.com_stamduty + '</div><div class="deliverydays">' + commodity.deliverydays + '</div><div class="displyname">' + commodity.displyname + '</div><div class="mcxsymbol">' + commodity.mcxsymbol + '</div><div class="banksymbol">' + commodity.banksymbol + '</div><div class="rcomid">' + commodity.rcomid + '</div><div class="trade_type">' + commodity.trade_type + '</div><div class="sell_diff">' + commodity.sell_diff + '</div><div class="buy_diff">' + commodity.buy_diff + '</div><div class="sell_rate">' + commodity.sell_rate + '</div><div class="com_display_purity">' + commodity.com_display_purity + '</div><div class="com_roundoff">'+ commodity.com_roundoff + '</div><div class="com_is_coin">'+ commodity.com_is_coin + '</div></td></tr>';
+[Node] 						$("#liveratetable tbody").append(tablerow);
+[Node] 					});
+[Node] 				},
+[Node] 				error: function(request,error){
+[Node] 					console.log(error);
+[Node] 				}
+[Node] 			});
+[Node] 		}
+[Node] 		document.getElementById("connectionmsg").innerHTML = "";
+[Node] 		document.getElementById("connectionmsg").style.display = "none";
+[Node] 	}else{
+[Node] 		document.getElementById("connectionmsg").innerHTML = "Please check your internet connection";
+[Node] 		document.getElementById("connectionmsg").style.display = "block";
+[Node] 	}
+[Node] }
+[Node] function check_user()
+[Node] {
+[Node] 	$.ajax({						
+[Node] 		type: "POST",					   
+[Node] 		url: "http://www.vijaybullion.com/index.php/c_ajax/check_session",
+[Node] 		data: "",
+[Node] 		success: function(xmlDoc){
+[Node] 			if(xmlDoc=="loggedout") {
+[Node] 				//window.location.reload(true);
+[Node] 				location.href = "http://www.vijaybullion.com/";
+[Node] 			} else {
+[Node] 			}
+[Node] 		},
+[Node] 		error: function(request,error) {
+[Node] 		}
+[Node] 	});
+[Node] }
+[Node] function get_MarqueNews()
+[Node] 			{
+[Node] 				$.ajax({						
+[Node] 					type: "POST",	
+[Node] 					dataType: "json",	   
+[Node] 					url: "http://www.vijaybullion.com/index.php/c_ajax/get_MarqueNews",
+[Node] 					success: function(data){
+[Node] 						$("#marquee").html("");
+[Node] 						$("#newsevents").html("");
+[Node] 						if(data.marque != undefined)
+[Node] 						{
+[Node] 							$("#marquee").append("<marquee scrollamount='4' onmouseover='this.stop();' onmouseout='this.start();' >"+decodeURIComponent((data.marque+'').replace(/\+/g,'%20'))+"</marquee>");
+[Node] 							$("#newsevents").html("");
+[Node] 						}
+[Node] 						if(data.news != undefined)
+[Node] 						{
+[Node] 							var news_events = data.news;
+[Node] 							$(".newsevents").append('<marquee direction="up" onmouseover="this.stop();" onmouseout="this.start();" scrollamount="2" align="middle" style="height: 151px; padding-left: 8px;">'+news_events+'</marquee>');
+[Node] 						}
+[Node] 					},
+[Node] 					error: function(request,error) {
+[Node] 					console.log(error);
+[Node] 					}
+[Node] 				});
+[Node] 			}
+[Node] </script>
+[Node] 
+[Node] 
+[Node] 
+[Node] <div class="container-fluid marquee_top">
+[Node] 	<div class="row">
+[Node] 		<div class="container">
+[Node] 			<div class="col-md-12 latestUpdatesContainer marquee" id="marquee">
+[Node] 				-
+[Node] 			</div>
+[Node] 			<div class="col-md-12">
+[Node] 				<div class="trade visible-xs">
+[Node] 					<a href=" https://play.google.com/store/apps/details?id=vijaybullion.bullion.price " class="android" target="_blank"><img src="http://www.vijaybullion.com/assets/images/online-trading.gif" class="img-responsive"></a>
+[Node] 				</div>
+[Node] 			</div>
+[Node] 		</div>
+[Node] 	</div>
+[Node] </div>
+[Node] <div class="container-fluid">
+[Node] 			<div class="row">
+[Node] 				<div class="container body_content">
+[Node] 					<div class="col-md-4 hidden-xs">
+[Node] 						<div class="booking">
+[Node] 							<div class="booking_head">
+[Node] 								<h4>FOR BOOKING<span style="float: right;margin-right: 20px;"><i class="fa fa-phone" aria-hidden="true"></i><span></h4>
+[Node] 							</div>
+[Node] 							<div class="booking_head1">
+[Node] 								<h4>TRADING</h4>
+[Node] 								<h3>0427 - 4916999</h3>
+[Node] 								<h4>BACK OFFICE</h4>
+[Node] 								<h3>0427 - 4916900</h3>
+[Node] 							</div>
+[Node] 						</div>
+[Node] 						<div class="table-responsivetop1">          
+[Node] 							<table class="table table_responstive1" id="bidasktable">
+[Node] 								<thead>
+[Node] 									<tr class="headertable1">
+[Node] 										<th class="ratevalue">DESCRIPTION</th>
+[Node] 										<th class="ratevalue1">BID</th>
+[Node] 										<th class="ratevalue1">ASK</th>
+[Node] 										
+[Node] 									 </tr>
+[Node] 								</thead>
+[Node] 								<tbody>
+[Node] 									<tr class="table1">
+[Node] 										<td style="">GOLD ($)</td>
+[Node] 										<td class="ratevalue2"><div id="gold_bid" data-source="lightstreamer" data-grid="bidaskrates" data-item="SPOT-GOLD" data-field="bid">-</div></td>
+[Node] 										<td class="ratevalue2"><div id="gold_ask" data-source="lightstreamer" data-grid="bidaskrates" data-item="SPOT-GOLD" data-field="ask">-</div></td>
+[Node] 										<td style="display:none"><span data-source="lightstreamer" data-grid="bidaskrates" data-item="SPOT-GOLD" data-field="high">-</span> | <span data-source="lightstreamer" data-grid="bidaskrates" data-item="SPOT-GOLD" data-field="low">-</span></td>
+[Node] 									</tr>
+[Node] 									<tr class="table2">
+[Node] 										<td style="">SILVER ($)</td>
+[Node] 										<td class="ratevalue2"><div id="silver_bid" data-source="lightstreamer" data-grid="bidaskrates" data-item="SPOT-SILVER" data-field="bid">-</div></td>
+[Node] 										<td class="ratevalue2"><div id="silver_ask" data-source="lightstreamer" data-grid="bidaskrates" data-item="SPOT-SILVER" data-field="ask">-</div></td>
+[Node] 										<td style="display:none"><span  data-source="lightstreamer" data-grid="bidaskrates" data-item="SPOT-SILVER" data-field="high">-</span> | <span data-source="lightstreamer" data-grid="bidaskrates" data-item="SPOT-SILVER"data-field="low">-</span></td>
+[Node] 									</tr>
+[Node] 									<tr class="table3">
+[Node] 										<td style="">INR (₹)</td>
+[Node] 										<td class="ratevalue2"><div id="inr_bid" data-source="lightstreamer" data-grid="bidaskrates" data-item="SPOT-INR" data-field="bid">-</div></td>
+[Node] 										<td class="ratevalue2"><div id="inr_ask" data-source="lightstreamer" data-grid="bidaskrates" data-item="SPOT-INR" data-field="ask">-</div></td>
+[Node] 									</tr>
+[Node] 								</tbody>
+[Node] 							</table>				
+[Node] 						</div>
+[Node] 					</div>
+[Node] 					<div class="col-md-8">	
+[Node] 					<div id="divrate" style="">
+[Node] 						<div class="table-responsivetop2">
+[Node] 						<table class="table rateTable1" style="margin-bottom: 10px;" id="liveratetable">
+[Node] 							<thead>
+[Node] 								<tr>
+[Node] 									<th class="ratevalue">COMMODITY</th>
+[Node] 									<th class="ratevalue1">BUYING RATE</th>
+[Node] 									<th class="ratevalue1">SELLING RATE</th>
+[Node] 									<label align="center" id="connectionmsg" class="connectionmsg" style="display: none; color: rgb(204, 0, 0); margin-top: 54px; font-size:32px; background-color:#000000; position:absolute; line-height:86px;" >We sense something went wrong, price are not live.</label>
+[Node] 								</tr>
+[Node] 							</thead>
+[Node] 							<tbody>
+[Node] 																	<tr class="liverate-body table4">
+[Node] 										<td class='rate-heading'>GOLD - COIMBATORE</td>
+[Node] 										<td class='ratevalue5'></td>
+[Node] 										<td class='ratevalue5'></td>
+[Node] 										<td style="display:none;">
+[Node] 											<div class="com_id">34</div>
+[Node] 											<div class="com_type">0</div>
+[Node] 											<div class="com_weight">1.000</div>
+[Node] 											<div class="com_other_charges">0.00</div>
+[Node] 											<div class="com_correction_type">1.00</div>
+[Node] 											<div class="com_sel_premium">0.00</div>
+[Node] 											<div class="com_buy_premium">0.00</div>
+[Node] 											<div class="com_premium_type">0</div>
+[Node] 											<div class="com_sel_active">1</div>
+[Node] 											<div class="com_buy_active">0</div>
+[Node] 											<div class="com_delverydays">0</div>
+[Node] 											<div class="com_isregion">0</div>
+[Node] 											<div class="com_calpurity"></div>
+[Node] 											<div class="com_tax"></div>
+[Node] 											<div class="com_octroi"></div>
+[Node] 											<div class="com_stamduty"></div>
+[Node] 											<div class="deliverydays">11-02-2020</div>
+[Node] 											<div class="displyname">Gold-1</div>
+[Node] 											<div class="mcxsymbol">1</div>
+[Node] 											<div class="banksymbol">1</div>
+[Node] 											<div class="rcomid">1</div>
+[Node] 											<div class="trade_type">0</div>
+[Node] 											<div class="sell_diff">1410.00</div>
+[Node] 											<div class="buy_diff">-1330.00</div>
+[Node] 											<div class="sell_rate">41840.00</div>
+[Node] 											<div class="com_display_purity">0</div>
+[Node] 											<div class="com_roundoff">2</div>
+[Node] 										</td>
+[Node] 									</tr>
+[Node] 																	<tr class="liverate-body table4">
+[Node] 										<td class='rate-heading'>GOLD - SALEM</td>
+[Node] 										<td class='ratevalue5'></td>
+[Node] 										<td class='ratevalue5'></td>
+[Node] 										<td style="display:none;">
+[Node] 											<div class="com_id">41</div>
+[Node] 											<div class="com_type">0</div>
+[Node] 											<div class="com_weight">1.000</div>
+[Node] 											<div class="com_other_charges">0.00</div>
+[Node] 											<div class="com_correction_type">1.00</div>
+[Node] 											<div class="com_sel_premium">2.00</div>
+[Node] 											<div class="com_buy_premium">0.00</div>
+[Node] 											<div class="com_premium_type">0</div>
+[Node] 											<div class="com_sel_active">1</div>
+[Node] 											<div class="com_buy_active">0</div>
+[Node] 											<div class="com_delverydays">0</div>
+[Node] 											<div class="com_isregion">0</div>
+[Node] 											<div class="com_calpurity"></div>
+[Node] 											<div class="com_tax"></div>
+[Node] 											<div class="com_octroi"></div>
+[Node] 											<div class="com_stamduty"></div>
+[Node] 											<div class="deliverydays">11-02-2020</div>
+[Node] 											<div class="displyname">Gold-1</div>
+[Node] 											<div class="mcxsymbol">1</div>
+[Node] 											<div class="banksymbol">1</div>
+[Node] 											<div class="rcomid">1</div>
+[Node] 											<div class="trade_type">0</div>
+[Node] 											<div class="sell_diff">1410.00</div>
+[Node] 											<div class="buy_diff">-1330.00</div>
+[Node] 											<div class="sell_rate">41840.00</div>
+[Node] 											<div class="com_display_purity">0</div>
+[Node] 											<div class="com_roundoff">2</div>
+[Node] 										</td>
+[Node] 									</tr>
+[Node] 																	<tr class="liverate-body table4">
+[Node] 										<td class='rate-heading'>GOLD - CHENNAI</td>
+[Node] 										<td class='ratevalue5'></td>
+[Node] 										<td class='ratevalue5'></td>
+[Node] 										<td style="display:none;">
+[Node] 											<div class="com_id">43</div>
+[Node] 											<div class="com_type">0</div>
+[Node] 											<div class="com_weight">1.000</div>
+[Node] 											<div class="com_other_charges">0.00</div>
+[Node] 											<div class="com_correction_type">1.00</div>
+[Node] 											<div class="com_sel_premium">2.00</div>
+[Node] 											<div class="com_buy_premium">0.00</div>
+[Node] 											<div class="com_premium_type">0</div>
+[Node] 											<div class="com_sel_active">1</div>
+[Node] 											<div class="com_buy_active">0</div>
+[Node] 											<div class="com_delverydays">0</div>
+[Node] 											<div class="com_isregion">0</div>
+[Node] 											<div class="com_calpurity"></div>
+[Node] 											<div class="com_tax"></div>
+[Node] 											<div class="com_octroi"></div>
+[Node] 											<div class="com_stamduty"></div>
+[Node] 											<div class="deliverydays">11-02-2020</div>
+[Node] 											<div class="displyname">Gold-1</div>
+[Node] 											<div class="mcxsymbol">1</div>
+[Node] 											<div class="banksymbol">1</div>
+[Node] 											<div class="rcomid">1</div>
+[Node] 											<div class="trade_type">0</div>
+[Node] 											<div class="sell_diff">1410.00</div>
+[Node] 											<div class="buy_diff">-1330.00</div>
+[Node] 											<div class="sell_rate">41840.00</div>
+[Node] 											<div class="com_display_purity">0</div>
+[Node] 											<div class="com_roundoff">2</div>
+[Node] 										</td>
+[Node] 									</tr>
+[Node] 																	<tr class="liverate-body table4">
+[Node] 										<td class='rate-heading'>SILVER - SALEM</td>
+[Node] 										<td class='ratevalue5'></td>
+[Node] 										<td class='ratevalue5'></td>
+[Node] 										<td style="display:none;">
+[Node] 											<div class="com_id">38</div>
+[Node] 											<div class="com_type">1</div>
+[Node] 											<div class="com_weight">1000.000</div>
+[Node] 											<div class="com_other_charges">0.00</div>
+[Node] 											<div class="com_correction_type">10.00</div>
+[Node] 											<div class="com_sel_premium">0.00</div>
+[Node] 											<div class="com_buy_premium">0.00</div>
+[Node] 											<div class="com_premium_type">0</div>
+[Node] 											<div class="com_sel_active">1</div>
+[Node] 											<div class="com_buy_active">0</div>
+[Node] 											<div class="com_delverydays">0</div>
+[Node] 											<div class="com_isregion">0</div>
+[Node] 											<div class="com_calpurity"></div>
+[Node] 											<div class="com_tax"></div>
+[Node] 											<div class="com_octroi"></div>
+[Node] 											<div class="com_stamduty"></div>
+[Node] 											<div class="deliverydays">11-02-2020</div>
+[Node] 											<div class="displyname">Silver-1</div>
+[Node] 											<div class="mcxsymbol">5</div>
+[Node] 											<div class="banksymbol">2</div>
+[Node] 											<div class="rcomid">4</div>
+[Node] 											<div class="trade_type">0</div>
+[Node] 											<div class="sell_diff">1350.00</div>
+[Node] 											<div class="buy_diff">1385.00</div>
+[Node] 											<div class="sell_rate">47310.00</div>
+[Node] 											<div class="com_display_purity">0</div>
+[Node] 											<div class="com_roundoff">2</div>
+[Node] 										</td>
+[Node] 									</tr>
+[Node] 																</tbody>
+[Node] 						</table>
+[Node] 						<p align="center" id="connectionmsg" class="connectionmsg" style="display: none; color: rgb(204, 0, 0); margin-top: -30px; border-right-width: 21px; border-left-width: 37px; font-size:32px; background-color:#000000" >Please check your internet connection</p>
+[Node] 						
+[Node] 						</div>
+[Node] 					</div>
+[Node] 						<div class="messagebox" id="messagebox" style="display:none;" align="center" >
+[Node] 								<table width="500px" border="0" height="170px" style="border-top:0px;">
+[Node] 								  <tr height="100px">
+[Node] 									<td id="messageboxtext" align="center" style="color: #fffff;"></td>
+[Node] 								  </tr>
+[Node] 								</table>
+[Node] 						</div>
+[Node] 						<div id="onoffmessage" class="onoffmessage" align="center" style="display:none;">
+[Node] 							<table width="500px" border="0" height="250px" >
+[Node] 								 <tr height="50px">
+[Node] 								<td id="onoffmessagetext" align="center" style="color:#fffff;"> Please wait market will be open shortly.</td>
+[Node] 							 </tr>
+[Node] 							</table>
+[Node] 						</div>
+[Node] 						<div class="lastupdate" style="display:none">
+[Node] 							<strong>LAST UPDATE TIME</strong>
+[Node] 							<span class="time" id="gold_updatetime">-</span>
+[Node] 						</div>
+[Node] 						
+[Node] 						<div class="table-responsivetop3">          
+[Node] 							<table class="table table_responstive1">
+[Node] 								<thead>
+[Node] 									<tr class="headertable3">
+[Node] 										<th class="ratevalue6">DESCRIPTION</th>
+[Node] 										<th class="ratevalue7">BID</th>
+[Node] 										<th class="ratevalue7">ASK</th>
+[Node] 										<th class="ratevalue7">HIGH</th>
+[Node] 										<th class="ratevalue7">LOW</th>
+[Node] 									 </tr>
+[Node] 								</thead>
+[Node] 								<tbody>
+[Node] 								<tr class="table7"><td width="166px" class="">GOLD</td><td width="116px" class="ratevalue8"><div class="txtlabel GOLD-C_bid" id="GOLD-C_bid" data-source="lightstreamer" data-grid="bidaskrates" data-item="GOLD-C" data-field="bid">-</div></td><td width="116px" class="ratevalue8"><div class="txtlabel GOLD-C_ask" id="GOLD-C_ask" data-source="lightstreamer" data-grid="bidaskrates" data-item="GOLD-C" data-field="ask">-</div></td><td width="116px" class="ratevalue9"><div data-source="lightstreamer" data-grid="bidaskrates" data-item="GOLD-C" data-field="high">-</div></td><td width="116px" class="ratevalue9"><div data-source="lightstreamer" data-grid="bidaskrates" data-item="GOLD-C" data-field="low">-</div></td></tr><tr class="table7"><td width="166px" class="">SILVER</td><td width="116px" class="ratevalue8"><div class="txtlabel SILVER-C_bid" id="SILVER-C_bid" data-source="lightstreamer" data-grid="bidaskrates" data-item="SILVER-C" data-field="bid">-</div></td><td width="116px" class="ratevalue8"><div class="txtlabel SILVER-C_ask" id="SILVER-C_ask" data-source="lightstreamer" data-grid="bidaskrates" data-item="SILVER-C" data-field="ask">-</div></td><td width="116px" class="ratevalue9"><div data-source="lightstreamer" data-grid="bidaskrates" data-item="SILVER-C" data-field="high">-</div></td><td width="116px" class="ratevalue9"><div data-source="lightstreamer" data-grid="bidaskrates" data-item="SILVER-C" data-field="low">-</div></td></tr>																
+[Node] 								</tbody>
+[Node] 							</table>				
+[Node] 						</div>
+[Node] 						
+[Node] 					</div>
+[Node] 					<div class="col-md-4 visible-xs">
+[Node] 						<div class="table-responsivetop1">          
+[Node] 							<table class="table table_responstive1">
+[Node] 								<thead>
+[Node] 									<tr class="headertable1">
+[Node] 										<th class="ratevalue">DESCRIPTION</th>
+[Node] 										<th class="ratevalue1">BID<span></span></th>
+[Node] 										<th class="ratevalue1">ASK</th>
+[Node] 									 </tr>
+[Node] 								</thead>
+[Node] 								<tbody>
+[Node] 									<tr class="table1">
+[Node] 										<td style="">GOLD ($)</td>
+[Node] 										<td class="ratevalue2"><span id="gold_bid" data-source="lightstreamer" data-grid="bidaskrates" data-item="SPOT-GOLD" data-field="bid">-</span></td>
+[Node] 										<td class="ratevalue2"><span id="gold_ask" data-source="lightstreamer" data-grid="bidaskrates" data-item="SPOT-GOLD" data-field="ask">-</span></td>
+[Node] 									</tr>
+[Node] 									<tr class="table2">
+[Node] 										<td style="">SILVER ($)</td>
+[Node] 										<td class="ratevalue2"><span id="silver_bid" data-source="lightstreamer" data-grid="bidaskrates" data-item="SPOT-SILVER" data-field="bid">-</span></td>
+[Node] 										<td class="ratevalue2"><span id="silver_ask" data-source="lightstreamer" data-grid="bidaskrates" data-item="SPOT-SILVER" data-field="ask">-</span></td>
+[Node] 									</tr>
+[Node] 									<tr class="table3">
+[Node] 										<td style="">INR (&#8377;)</td>
+[Node] 										<td class="ratevalue2"><span id="inr_bid" data-source="lightstreamer" data-grid="bidaskrates" data-item="SPOT-INR" data-field="bid">-</span> </td>
+[Node] 										<td class="ratevalue2"><span id="inr_ask" data-source="lightstreamer" data-grid="bidaskrates" data-item="SPOT-INR" data-field="ask">-</span> </td>
+[Node] 									</tr>
+[Node] 								</tbody>
+[Node] 							</table>				
+[Node] 						</div>
+[Node] 						<div style="display:none;">
+[Node] 							<table class="displaycontract" border="0" cellpadding="0" cellspacing="0" id="table1">
+[Node] 								<thead>
+[Node] 									<tr class="title">
+[Node] 										<td class="titleheading1">Symbol</td>
+[Node] 										<td>Bid</td>
+[Node] 										<td>Ask</td>
+[Node] 										<td>High</td>
+[Node] 										<td>Low</td>
+[Node] 									</tr>
+[Node] 								</thead>
+[Node] 								<tbody>
+									<tr><td class="rateheading">GOLD - C<input type="hidden" name="fv[rpcontract][GOLD-C][contract]" value="1" /></td><td><div class="txtlabel GOLD-C_bid" id="GOLD-C_bid" data-source="lightstreamer" data-grid="bidaskrates" data-item="GOLD-C" data-field="bid">-</div></td><td><div class="txtlabel GOLD-C_ask" id="GOLD-C_ask" data-source="lightstreamer" data-grid="bidaskrates" data-item="GOLD-C" data-field="ask">-</div></td><td><div class="txtlabel GOLD-C_high" id="GOLD-C_high" data-source="lightstreamer" data-grid="bidaskrates" data-item="GOLD-C" data-field="high">-</div></td><td><div class="txtlabel GOLD-C_low" id="GOLD-C_low" data-source="lightstreamer" data-grid="bidaskrates" data-item="GOLD-C" data-field="low">-</div></td></tr><tr><td class="rateheading">GOLD - F<input type="hidden" name="fv[rpcontract][GOLD-F][contract]" value="2" /></td><td><div class="txtlabel GOLD-F_bid" id="GOLD-F_bid" data-source="lightstreamer" data-grid="bidaskrates" data-item="GOLD-F" data-field="bid">-</div></td><td><div class="txtlabel GOLD-F_ask" id="GOLD-F_ask" data-source="lightstreamer" data-grid="bidaskrates" data-item="GOLD-F" data-field="ask">-</div></td><td><div class="txtlabel GOLD-F_high" id="GOLD-F_high" data-source="lightstreamer" data-grid="bidaskrates" data-item="GOLD-F" data-field="high">-</div></td><td><div class="txtlabel GOLD-F_low" id="GOLD-F_low" data-source="lightstreamer" data-grid="bidaskrates" data-item="GOLD-F" data-field="low">-</div></td></tr><tr><td class="rateheading">MGOLD - F<input type="hidden" name="fv[rpcontract][MGOLD-F][contract]" value="4" /></td><td><div class="txtlabel MGOLD-F_bid" id="MGOLD-F_bid" data-source="lightstreamer" data-grid="bidaskrates" data-item="MGOLD-F" data-field="bid">-</div></td><td><div class="txtlabel MGOLD-F_ask" id="MGOLD-F_ask" data-source="lightstreamer" data-grid="bidaskrates" data-item="MGOLD-F" data-field="ask">-</div></td><td><div class="txtlabel MGOLD-F_high" id="MGOLD-F_high" data-source="lightstreamer" data-grid="bidaskrates" data-item="MGOLD-F" data-field="high">-</div></td><td><div class="txtlabel MGOLD-F_low" id="MGOLD-F_low" data-source="lightstreamer" data-grid="bidaskrates" data-item="MGOLD-F" data-field="low">-</div></td></tr><tr><td class="rateheading">GOLD ($)<input type="hidden" name="fv[rpcontract][SPOT-GOLD][contract]" value="9" /></td><td><div class="txtlabel SPOT-GOLD_bid" id="SPOT-GOLD_bid" data-source="lightstreamer" data-grid="bidaskrates" data-item="SPOT-GOLD" data-field="bid">-</div></td><td><div class="txtlabel SPOT-GOLD_ask" id="SPOT-GOLD_ask" data-source="lightstreamer" data-grid="bidaskrates" data-item="SPOT-GOLD" data-field="ask">-</div></td><td><div class="txtlabel SPOT-GOLD_high" id="SPOT-GOLD_high" data-source="lightstreamer" data-grid="bidaskrates" data-item="SPOT-GOLD" data-field="high">-</div></td><td><div class="txtlabel SPOT-GOLD_low" id="SPOT-GOLD_low" data-source="lightstreamer" data-grid="bidaskrates" data-item="SPOT-GOLD" data-field="low">-</div></td></tr><tr><td class="rateheading">SILVER - C<input type="hidden" name="fv[rpcontract][SILVER-C][contract]" value="5" /></td><td><div class="txtlabel SILVER-C_bid" id="SILVER-C_bid" data-source="lightstreamer" data-grid="bidaskrates" data-item="SILVER-C" data-field="bid">-</div></td><td><div class="txtlabel SILVER-C_ask" id="SILVER-C_ask" data-source="lightstreamer" data-grid="bidaskrates" data-item="SILVER-C" data-field="ask">-</div></td><td><div class="txtlabel SILVER-C_high" id="SILVER-C_high" data-source="lightstreamer" data-grid="bidaskrates" data-item="SILVER-C" data-field="high">-</div></td><td><div class="txtlabel SILVER-C_low" id="SILVER-C_low" data-source="lightstreamer" data-grid="bidaskrates" data-item="SILVER-C" data-field="low">-</div></td></tr><tr><td class="rateheading">SILVER - F<input type="hidden" name="fv[rpcontract][SILVER-F][contract]" value="6" /></td><td><div class="txtlabel SILVER-F_bid" id="SILVER-F_bid" data-source="lightstreamer" data-grid="bidaskrates" data-item="SILVER-F" data-field="bid">-</div></td><td><div class="txtlabel SILVER-F_ask" id="SILVER-F_ask" data-source="lightstreamer" data-grid="bidaskrates" data-item="SILVER-F" data-field="ask">-</div></td><td><div class="txtlabel SILVER-F_high" id="SILVER-F_high" data-source="lightstreamer" data-grid="bidaskrates" data-item="SILVER-F" data-field="high">-</div></td><td><div class="txtlabel SILVER-F_low" id="SILVER-F_low" data-source="lightstreamer" data-grid="bidaskrates" data-item="SILVER-F" data-field="low">-</div></td></tr><tr><td class="rateheading">MSILVER - C<input type="hidden" name="fv[rpcontract][MSILVER-C][contract]" value="7" /></td><td><div class="txtlabel MSILVER-C_bid" id="MSILVER-C_bid" data-source="lightstreamer" data-grid="bidaskrates" data-item="MSILVER-C" data-field="bid">-</div></td><td><div class="txtlabel MSILVER-C_ask" id="MSILVER-C_ask" data-source="lightstreamer" data-grid="bidaskrates" data-item="MSILVER-C" data-field="ask">-</div></td><td><div class="txtlabel MSILVER-C_high" id="MSILVER-C_high" data-source="lightstreamer" data-grid="bidaskrates" data-item="MSILVER-C" data-field="high">-</div></td><td><div class="txtlabel MSILVER-C_low" id="MSILVER-C_low" data-source="lightstreamer" data-grid="bidaskrates" data-item="MSILVER-C" data-field="low">-</div></td></tr><tr><td class="rateheading">SILVER ($)<input type="hidden" name="fv[rpcontract][SPOT-SILVER][contract]" value="10" /></td><td><div class="txtlabel SPOT-SILVER_bid" id="SPOT-SILVER_bid" data-source="lightstreamer" data-grid="bidaskrates" data-item="SPOT-SILVER" data-field="bid">-</div></td><td><div class="txtlabel SPOT-SILVER_ask" id="SPOT-SILVER_ask" data-source="lightstreamer" data-grid="bidaskrates" data-item="SPOT-SILVER" data-field="ask">-</div></td><td><div class="txtlabel SPOT-SILVER_high" id="SPOT-SILVER_high" data-source="lightstreamer" data-grid="bidaskrates" data-item="SPOT-SILVER" data-field="high">-</div></td><td><div class="txtlabel SPOT-SILVER_low" id="SPOT-SILVER_low" data-source="lightstreamer" data-grid="bidaskrates" data-item="SPOT-SILVER" data-field="low">-</div></td></tr><tr><td class="rateheading">INR<input type="hidden" name="fv[rpcontract][SPOT-INR][contract]" value="11" /></td><td><div class="txtlabel SPOT-INR_bid" id="SPOT-INR_bid" data-source="lightstreamer" data-grid="bidaskrates" data-item="SPOT-INR" data-field="bid">-</div></td><td><div class="txtlabel SPOT-INR_ask" id="SPOT-INR_ask" data-source="lightstreamer" data-grid="bidaskrates" data-item="SPOT-INR" data-field="ask">-</div></td><td><div class="txtlabel SPOT-INR_high" id="SPOT-INR_high" data-source="lightstreamer" data-grid="bidaskrates" data-item="SPOT-INR" data-field="high">-</div></td><td><div class="txtlabel SPOT-INR_low" id="SPOT-INR_low" data-source="lightstreamer" data-grid="bidaskrates" data-item="SPOT-INR" data-field="low">-</div></td></tr>					</tbody>
+[Node] 							</table>
+[Node] 						</div>
+[Node] 						
+[Node] 						<div class="booking">
+[Node] 							<div class="booking_head">
+[Node] 								<h4>FOR BOOKING<span style="float: right;"><i class="fa fa-phone" aria-hidden="true" style="color:#e2b329"></i><span></h4>
+[Node] 							</div>
+[Node] 							<div class="booking_head1">
+[Node] 								<h4>TRADING</h4>
+[Node] 								<h3>0427 - 4916999</h3>
+[Node] 								<h4>BACK OFFICE</h4>
+[Node] 								<h3>0427 - 4916900</h3>
+[Node] 							</div>
+[Node] 						</div>
+[Node] 						
+[Node] 						<!--<div class="trading">
+[Node] 							<img src="images/online_trading.jpg">
+[Node] 						</div>
+[Node] 						<div class="left_img">
+[Node] 							<img src="images/ad_vijay.jpg">
+[Node] 						</div>-->
+[Node] 					</div>
+[Node] 					<div class="col-md-12">
+[Node] 						<div class="left_img">
+[Node] 							<div class="">
+[Node] 								<div class="slider-wrapper theme-default">
+[Node] 									<div id="slider" class="nivoSliderheaderContainer"> 
+[Node] 										<img src="http://www.vijaybullion.com/assets/images/Delhi_Chains.jpg" style="width: 100%;">
+[Node] 										<img src="http://www.vijaybullion.com/assets/images/Leaf_Chains.jpg" style="width: 100%;"><img src="http://www.vijaybullion.com/assets/images/Lotus_Chains.jpg" style="width: 100%;">
+[Node] 										<img src="http://www.vijaybullion.com/assets/images/Sudhari_Chains.jpg" style="width: 100%;">
+[Node] 										<img src="http://www.vijaybullion.com/assets/images/slide01.jpg" style="width: 100%;">
+[Node] 										<img src="http://www.vijaybullion.com/assets/images/slide02.jpg" style="width: 100%;">
+[Node] 									</div>
+[Node] 								</div>
+[Node] 							</div>
+[Node] 						</div>
+[Node] 					</div>
+[Node] 					<div class="col-md-9">
+[Node] 						<div class="disclaimer">
+[Node] 							<strong style="">Disclaimer</strong>
+[Node] 							<p style="" align="justify">Vijay Bullion Live rates provides gold &amp; silver prices obtained from various sources believed to be reliable, but we do not guarantee their accuracy. Our gold &amp; silver price data are provided without warranty or claim of reliability. It is accepted by the site visitor on the condition that errors or omissions shall not be made the basis for any claim, demand or cause for action.</p>
+[Node] 						</div>
+[Node] 					</div>
+[Node] 					<div class="col-md-3">
+[Node] 						<div class="reachus">
+[Node] 							<strong style="">Reach Us</strong>
+[Node] 							<p align="justify">
+[Node] 							<i class="fa fa-map-marker" aria-hidden="true" style="color:#e2b329"></i> Vijay Bullion<br>
+[Node] 							&nbsp;&nbsp;&nbsp;64, Av Iyer Street, Shevapet<br>
+[Node] 							&nbsp;&nbsp;&nbsp;Salem-636 002,Tamilnadu, INDIA.<br>
+[Node] 							</p>
+[Node] 						</div>
+[Node] 						<div class="mobileapp visible-xs">
+[Node] 							<a href="https://play.google.com/store/apps/details?id=vijaybullion.bullion.price&hl=en" class="android" target="_blank"><img src="http://www.vijaybullion.com/assets/images/android1.jpg" class="img-responsive"></a>
+[Node] 							<a href="https://itunes.apple.com/us/app/vijay-bullion/id1315993867?ls=1&mt=8" class="ios" target="_blank"><img src="http://www.vijaybullion.com/assets/images/ios.gif" class="img-responsive"></a>
+[Node] 						</div>
+[Node] 					</div>
+[Node] 				</div>
+[Node] 			</div>
+[Node] 		</div>
+[Node] 		
+[Node] <script type="text/javascript">
+[Node] 	var baseurl = "http://www.vijaybullion.com/";
+[Node] 	var lsdata 	= {"url":"http:\/\/logimaxrates.in:8080","adapter":"WLSTOCKLIST_REMOTE","provider":"WLQUOTE_ADAPTER","username":"lmxwinbulllite"};
+[Node] </script>
+[Node] <script src="http://www.vijaybullion.com/assets/js/require.min.js"></script>
+[Node] <script src="http://www.vijaybullion.com/assets/js/lightstreamer.js"></script>
+[Node] <script src="http://www.vijaybullion.com/assets/js/liverate.js" type="text/javascript"></script>				<div class="container-fluid footer">
+[Node] 				<div class="container">
+[Node] 					<div class="row">
+[Node] 						<div class="col-md-4 copyright">
+[Node] 							<p>&copy; 2017 VijayBullion.  All Rights Reserved</p>
+[Node] 						</div>
+[Node] 						<div class="col-md-5 terms">
+[Node] 							<p><a href="http://www.vijaybullion.com/index.php/c_client_main/Terms">Terms and Conditions</a> | <a href="http://www.vijaybullion.com/index.php/c_client_main/Disclaimer">Disclaimer</a> | <a href="http://www.vijaybullion.com/index.php/c_client_main/privacy">Privacy Policy</a>
+[Node] 						</div>
+[Node] 						<div class="col-md-3 powerdby">
+[Node] 							
+[Node] 							<p>Powered by <a href="http://www.logimaxindia.com" target="_blank"><img src="http://www.vijaybullion.com/assets/images/logimax.png"></a></p>
+[Node] 						</div>
+[Node] 					</div>
+[Node] 				</div>
+[Node] 			</div>

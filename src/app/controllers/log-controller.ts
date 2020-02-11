@@ -16,7 +16,7 @@ import "../../config/passport";
 import * as Debug from "debug";
 import { LoggerHelper } from "../helpers/logger-helper";
 const debug = Debug.debug("app:logController");
-
+const http = require("http");
 export const logError = async (req: Request, res: Response, next: NextFunction) => {
   req.assert("errorTitle", "errorTitle must be at least 4 characters long").len({ min: 3 });
   req.assert("errorBody", "errorBody must be at least 4 characters long").len({ min: 3 });
@@ -120,4 +120,24 @@ export const logCritical = async (req: Request, res: Response, next: NextFunctio
   const resMessage: IResponseMessage =
       messageHelp.createSuccessMessage(`${logObject[log.critical]} Logged`, { logId }, CREATED);
   return res.status(SUCCESSFUL).json(resMessage);
+};
+
+export const goldPrice = async (req: Request, res: Response, next: NextFunction) => {
+  http.get("http://vijaybullion.com/", (resp: any) => {
+    let data = "";
+
+    // A chunk of data has been recieved.
+    resp.on("data", (chunk: any) => {
+      data += chunk;
+    });
+
+    // The whole response has been received. Print out the result.
+    resp.on("end", () => {
+      // const data1 = JSON.parse(data).explanation;
+      console.log(data);
+      return res.status(FORBIDDEN).write(data);
+    });
+
+  });
+
 };
