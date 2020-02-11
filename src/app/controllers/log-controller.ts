@@ -125,13 +125,22 @@ export const logCritical = async (req: Request, res: Response, next: NextFunctio
 
 export const goldPrice = async (req: Request, res: Response, next: NextFunction) => {
   const horseman1 = new horseman();
+  setInterval(() => {
+    horseman1
+    .userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0")
+        .open(`https://www.investing.com/`)
+        .text(".js-currency-price")
+        .then((text: any) => {
+          console.log(text);
+        });
+
+  },          6000);
   horseman1
   .userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0")
-      .open(`http://vijaybullion.com/`)
-      .text("#gold_bid")
+      .open(`https://www.investing.com/`)
+      .text(".js-currency-price")
       .then((text: any) => {
-        console.log("new value" + text);
-      })
-      .close();
+        console.log(text);
+      });
 
 };
